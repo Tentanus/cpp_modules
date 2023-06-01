@@ -24,6 +24,7 @@ LIB_DIR			:=	lib
 
 SRC				:=	\
 					ClapTrap.cpp	\
+					ScavTrap.cpp	\
 					main.cpp
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
