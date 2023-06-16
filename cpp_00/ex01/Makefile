@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/06/16 14:58:50 by mweverli      ########   odam.nl          #
+#    Updated: 2023/06/16 13:16:42 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,10 @@ DIR_LIST	:=	$(sort $(dir $(OBJ)))
 #============= COMPILATION ==============#
 
 INCLUDE		:=	-I $(INC_DIR)
+LIBRARY		:=
 
 CC			:=	c++
-CFL			:=	-Wall -Werror -Wextra -Wpedantic -std=c++98
+CFL			:=	-Wall -Werror -Wextra -Wpedantic #-std=c++98
 
 ifdef DEBUG
 CFL			+=	-g
@@ -82,6 +83,11 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+#========================================#
+#============== LIBRARIES ===============#
+#========================================#
+
 
 #========================================#
 #============ MISCELLANEOUS =============#
