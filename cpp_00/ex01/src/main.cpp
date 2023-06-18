@@ -9,10 +9,8 @@ int main() {
 	PhoneBook			phonebook;
 
 	while (1) {
-		std::cin >> input;
-		iss(input);
-		iss >> word
-		
+		std::getline(std::cin, input);
+		input.
 		switch (word) {
 			case 'EXIT':
 				return (0);
