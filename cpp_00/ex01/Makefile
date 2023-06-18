@@ -22,8 +22,8 @@ SRC_DIR		:=	src
 INC_DIR		:=	inc
 LIB_DIR		:=	lib
 
-SRC			:=					\
-				megaphone.cpp
+SRC			:=	\
+				main.cpp	\
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
