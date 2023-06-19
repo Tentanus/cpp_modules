@@ -30,15 +30,16 @@ int main() {
 	while (1) {
 		std::cout << "Enter command: ";
 		std::getline(std::cin, input);
+		input.
 		input.erase(0, input.find_first_not_of(" \t\v\r\f"));
 		input.erase(input.find_last_not_of(" \t\v\r\f"), input.end());
 		if (input == "EXIT")
 			return (0);
 		else if (input == "ADD")
-			phonebook_add();
+			phonebook.add();
 		else if (input == "SEARCH")
-			phonebook_search();
+			phonebook.search();
 		else
-			return (phonebook_error(ERR_INP));
+			phonebook_error(ERR_INP);
 	}
 }
