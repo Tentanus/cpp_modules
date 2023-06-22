@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/06/16 13:16:42 by mweverli      ########   odam.nl          #
+#    Updated: 2023/06/22 14:28:22 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME		:=	megaphone
+NAME		:=	phonebook
 
 OBJ_DIR		:=	OBJ
 SRC_DIR		:=	src
@@ -23,7 +23,8 @@ INC_DIR		:=	inc
 LIB_DIR		:=	lib
 
 SRC			:=	\
-				main.cpp	\
+				main.cpp		\
+				phonebook.cpp	\
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
@@ -35,10 +36,9 @@ DIR_LIST	:=	$(sort $(dir $(OBJ)))
 #============= COMPILATION ==============#
 
 INCLUDE		:=	-I $(INC_DIR)
-LIBRARY		:=
 
 CC			:=	c++
-CFL			:=	-Wall -Werror -Wextra -Wpedantic #-std=c++98
+CFL			:=	-Wall -Werror -Wextra -Wpedantic -std=c++98
 
 ifdef DEBUG
 CFL			+=	-g
@@ -50,11 +50,11 @@ endif
 
 COMPILE		:=	$(CC) $(CFL)
 
-INFO_FL		:=												\
-$(if $(findstring -std=c++98,$(CFL)),c++98)					\
-$(if $(findstring -g,$(CFL)),-g)							\
-$(if $(findstring address,$(CFL)),addr)						\
-$(if $(findstring undefined,$(CFL)),undef)					\
+INFO_FL		:=									\
+$(if $(findstring -std=c++98,$(CFL)),c++98)		\
+$(if $(findstring -g,$(CFL)),-g)				\
+$(if $(findstring address,$(CFL)),addr)			\
+$(if $(findstring undefined,$(CFL)),undef)		\
 
 
 #========================================#
