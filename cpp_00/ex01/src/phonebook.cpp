@@ -1,11 +1,42 @@
+
+#include <iostream>
 #include <phonebook.hpp>
 
-void	PhoneBook::add()
+Contact	create_contact()
 {
-	const int32_t	count = this->get_sizef();
+	std::string	inp;
+	Contact		ret;
 
-	if (count != 8)
+	std::cout << std::endl << "Creating Contact" << std::endl;
+	ret.set_first();
+	ret.set_last();
+	ret.set_nick();
+	ret.set_phone();
+	ret.set_secret();
+
+	return (ret);
+}
+
+void	PhoneBook::re_move()
+{
+//	std::cout << "re_move"<< std::endl;
+}
+
+void	PhoneBook::add_back()
+{
+	const int32_t	count = this->count;
+
+//	std::cout << "add_back" << std::endl;
+	if (count == 8)
 	{
-		this.add_back();
+		this->re_move();
+		this->count--;
 	}
+	this->list[count] = create_contact();
+	this->count++;
+}
+
+void	PhoneBook::search()
+{
+	std::cout << "search"<< std::endl;
 }

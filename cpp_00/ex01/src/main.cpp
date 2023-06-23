@@ -3,10 +3,10 @@
 #include <phonebook.hpp>
 
 std::string g_err_msg[] = {
-	"FILLER",
-	"FILLER", 
-	"incorrect input: use ADD, SEARCH, EXIT", 
-	"ERR_COUNT"};
+	"SUCCESS",
+	"incorrect input [ADD/SEARCH/EXIT]",
+	"ERR_COUNT"
+};
 
 int phonebook_error(int err_code)
 {
@@ -21,12 +21,12 @@ int main()
 
 	while (1)
 	{
-		std::cout << "Enter command: ";
+		std::cout << "Enter command [ADD/SEARCH/EXIT]: ";
 		std::getline(std::cin, input);
 		if (input == "EXIT")
 			return (0);
 		else if (input == "ADD")
-			pb.add();
+			pb.add_back();
 		else if (input == "SEARCH")
 			pb.search();
 		else

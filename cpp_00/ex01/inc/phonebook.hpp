@@ -1,26 +1,11 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include <string>
-
-class Contact
-{
-  private:
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phonenumber;
-	std::string secret;
-
-	public:
-	
-};
-
-
+# include <contact.hpp>
 
 typedef enum e_err_num
 {
-	SUCCESS = 1,
+	SUCCESS,
 	ERR_INP,
 	ERR_COUNT
 } t_err_num;
@@ -28,10 +13,13 @@ typedef enum e_err_num
 class PhoneBook
 {
   private:
-	Contact list[8];
-	int		count;
+	Contact		list[8];
+	int32_t		count;
 
   public:
+	void	add_back();
+	void	search();
+	void	re_move();
 };
 
 #endif

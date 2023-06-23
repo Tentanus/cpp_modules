@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/06/22 14:28:22 by mweverli      ########   odam.nl          #
+#    Updated: 2023/06/23 19:42:18 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ LIB_DIR		:=	lib
 SRC			:=	\
 				main.cpp		\
 				phonebook.cpp	\
+				contact.cpp		\
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
