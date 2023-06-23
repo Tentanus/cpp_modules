@@ -23,12 +23,12 @@ int main()
 	{
 		std::cout << "Enter command [ADD/SEARCH/EXIT]: ";
 		std::getline(std::cin, input);
-		if (input == "EXIT")
-			return (0);
+		if (input == "SEARCH")
+			pb.search();
 		else if (input == "ADD")
 			pb.add_back();
-		else if (input == "SEARCH")
-			pb.search();
+		else if (input == "EXIT")
+			return (0);
 		else
 			phonebook_error(ERR_INP);
 	}

@@ -19,7 +19,16 @@ Contact	create_contact()
 
 void	PhoneBook::re_move()
 {
+	int32_t	i;
+
 //	std::cout << "re_move"<< std::endl;
+	i = 1;
+	do {
+		this->list[i - 1] = this->list[i];
+		i++;
+	}
+	while (i != 8);
+	this->count--;
 }
 
 void	PhoneBook::add_back()
@@ -28,10 +37,7 @@ void	PhoneBook::add_back()
 
 //	std::cout << "add_back" << std::endl;
 	if (count == 8)
-	{
 		this->re_move();
-		this->count--;
-	}
 	this->list[count] = create_contact();
 	this->count++;
 }
