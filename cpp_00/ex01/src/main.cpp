@@ -19,6 +19,7 @@ int main()
 	std::string	input;
 	PhoneBook	pb;
 
+	pb.count = 0;
 	while (1)
 	{
 		std::cout << "Enter command [ADD/SEARCH/EXIT]: ";

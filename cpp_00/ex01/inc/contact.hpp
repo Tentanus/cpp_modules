@@ -19,10 +19,10 @@ class Contact
 	void	set_phone();
 	void	set_secret();
 
-	std::string	get_first();
-	std::string	get_last();
-	std::string	get_nick();
-	std::string	get_phone();
-	std::string	get_secret();
+	std::string	get_first() const;
+	std::string	get_last() const;
+	std::string	get_nick() const;
+	std::string	get_phone() const;
+	std::string	get_secret() const;
 };
 
