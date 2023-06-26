@@ -11,7 +11,6 @@ void	Contact::set_first()
 		std::cout << "First Name:\t";
 		std::getline(std::cin, inp);
 		size_t	pos = inp.find_first_of(" \t\r\v\n");
-		printf("%s| %zu\n", inp.c_str(), pos);
 		if (!inp.empty() && pos == SIZE_MAX)
 			break ;
 		if (!pos || pos == SIZE_MAX)
@@ -34,7 +33,6 @@ void	Contact::set_last()
 		std::cout << "Last Name:\t";
 		std::getline(std::cin, inp);
 		size_t	pos = inp.find_first_of(" \t\r\v\n");
-		printf("%s| %zu\n", inp.c_str(), pos);
 		if (!inp.empty() && pos == SIZE_MAX)
 			break ;
 		if (!pos || pos == SIZE_MAX)
@@ -57,7 +55,6 @@ void	Contact::set_nick()
 		std::cout << "Nickname:\t";
 		std::getline(std::cin, inp);
 		size_t	pos = inp.find_first_of(" \t\r\v\n");
-		printf("%s| %zu\n", inp.c_str(), pos);
 		if (!inp.empty() && pos == SIZE_MAX)
 			break ;
 		if (!pos || pos == SIZE_MAX)
@@ -80,7 +77,6 @@ void	Contact::set_phone()
 		std::cout << "Phonenumber:\t";
 		std::getline(std::cin, inp);
 		size_t	pos = inp.find_first_of(" \t\r\v\n");
-		printf("%s| %zu\n", inp.c_str(), pos);
 		if (!inp.empty() && pos == SIZE_MAX)
 			break ;
 		if (!pos || pos == SIZE_MAX)
@@ -103,7 +99,6 @@ void	Contact::set_secret()
 		std::cout << "Darkest Secret:\t";
 		std::getline(std::cin, inp);
 		size_t	pos = inp.find_first_of(" \t\r\v\n");
-		printf("%s| %zu\n", inp.c_str(), pos);
 		if (!inp.empty() && pos == SIZE_MAX)
 			break ;
 		if (!pos || pos == SIZE_MAX)

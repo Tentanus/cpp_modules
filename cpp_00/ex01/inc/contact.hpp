@@ -1,5 +1,7 @@
 
 # include <string>
+# include <stdint.h>
+# include <cstdio>
 
 class Contact
 {
