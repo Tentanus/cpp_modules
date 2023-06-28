@@ -1,7 +1,5 @@
 
 # include <string>
-# include <stdint.h>
-# include <cstdio>
 
 class Contact
 {
@@ -13,6 +11,10 @@ class Contact
 	std::string secret;
 
 	public:
+
+	Contact();
+	~Contact();
+
 	void	set_first();
 	void	set_last();
 	void	set_nick();

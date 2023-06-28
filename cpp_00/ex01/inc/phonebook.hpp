@@ -14,11 +14,16 @@ class PhoneBook
 {
   private:
 	Contact		list[8];
-
-  public:
 	int32_t		count;
 
-	void	add_back();
+  public:
+
+	PhoneBook();
+	~PhoneBook();
+
+	int		get_count();
+
+	void	add();
 	void	search();
 	void	re_move();
 	void	print();
