@@ -26,7 +26,8 @@ class PhoneBook
 	void	add();
 	void	search();
 	void	re_move();
-	void	print();
+	void	print_overview();
+	void	print_contact(int i);
 
 	Contact	get_contact(int32_t i);
 };

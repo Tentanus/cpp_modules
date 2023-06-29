@@ -29,8 +29,6 @@ int main()
 			pb.search();
 		else if (input == "ADD")
 			pb.add();
-		else if (input == "PRINT")
-			pb.print();
 		else
 			phonebook_error(ERR_INP);
 	}

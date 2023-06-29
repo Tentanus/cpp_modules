@@ -40,25 +40,6 @@ void	PhoneBook::re_move() {
 	this->count--;
 }
 
-void	PhoneBook::print()
-{
-	int32_t	i;
-	Contact	tmp;
-
-	i = 0;
-	while (i < this->count)
-	{
-		std::cout << "Contact nbr: " << i + 1 << std::endl;
-		tmp = this->list[i];
-		std::cout << "\t" << tmp.get_first() << " " << tmp.get_last() << std::endl;
-		std::cout << "\t" << tmp.get_nick() << std::endl;
-		std::cout << "\t" << tmp.get_phone() << std::endl;
-		std::cout << "\t" << tmp.get_secret() << std::endl;
-		std::cout << std::endl;
-		i++;
-	}
-}
-
 void	PhoneBook::add() {
 
 //	std::cout << "add_back" << std::endl;
@@ -77,16 +58,15 @@ std::string	format_string(std::string str) {
 	return (format_str);
 }
 
-void	PhoneBook::search() {
-//	std::cout << "search"<< std::endl;
-
+void	PhoneBook::print_overview() {
 	std::cout << "|" << std::setw(10) << std::right << "index ";
 	std::cout << "|" << std::setw(10) << std::right << "first ";
 	std::cout << "|" << std::setw(10) << std::right << "last ";
 	std::cout << "|" << std::setw(10) << std::right << "nickname ";
 	std::cout << "|" << std::endl;
-	for (int i = 0; i < 4; i++) 
-		std::cout << "|" <<"__________";
+
+	for (int i = 0; i < 4; i++)
+		std::cout << "|" << "__________";
 	std::cout << "|" << std::endl;
 
 	for (int i = 0; i < this->count; i++) {
@@ -96,4 +76,42 @@ void	PhoneBook::search() {
 		std::cout << "|" << std::setw(10) << format_string(this->list[i].get_nick());
 		std::cout << "|" << std::endl;
 	}
+
+	for (int i = 0; i < 4; i++)
+		std::cout << "|" << "__________";
+	std::cout << "|" << std::endl;
+}
+
+void	PhoneBook::print_contact(int i)
+{
+	std::cout << "Full Name:\t" << this->list[i].get_first() << " " << this->list[i].get_last() << std::endl;
+	std::cout << "Nickname:\t" << this->list[i].get_nick() << std::endl;
+	std::cout << "PhoneNumber:\t" << this->list[i].get_phone() << std::endl;
+	std::cout << "Darkest Secret:\t" << this->list[i].get_secret() << std::endl;
+	std::cout <<  std::endl;
+}
+
+
+void	PhoneBook::search() {
+//	std::cout << "search"<< std::endl;
+	std::string				inp;
+	std::string::size_type	sz;
+	int						val;
+
+	this->print_overview();
+
+	std::cout << std::endl << "Give detailed overview of Contact [1 - 8] or EXIT" << std::endl;
+	std::getline(std::cin, inp);
+	if (inp == "EXIT")
+		return ;
+
+	val = std::stoi(inp, &sz);
+	if (val > 0 && val < 9)
+		this->print_contact(val - 1);
+	else
+		std::cout << "Faulty input: returning to menu." << std::endl;
+
+
+
+
 }

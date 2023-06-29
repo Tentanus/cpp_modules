@@ -26,5 +26,7 @@ class Contact
 	std::string	get_nick() const;
 	std::string	get_phone() const;
 	std::string	get_secret() const;
+
+	void	print_contact();
 };
 
