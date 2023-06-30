@@ -95,8 +95,6 @@ void	PhoneBook::print_contact(int i)
 void	PhoneBook::search() {
 //	std::cout << "search"<< std::endl;
 	std::string				inp;
-	std::string::size_type	sz;
-	int						val;
 
 	this->print_overview();
 
@@ -104,14 +102,16 @@ void	PhoneBook::search() {
 	std::getline(std::cin, inp);
 	if (inp == "EXIT")
 		return ;
-
-	val = std::stoi(inp, &sz);
-	if (val > 0 && val < 9)
-		this->print_contact(val - 1);
+	else if (inp == "1" || \
+			inp == "2" || \
+			inp == "3" || \
+			inp == "4" || \
+			inp == "5" || \
+			inp == "6" || \
+			inp == "7" || \
+			inp == "8")
+		this->print_contact(std::stoi(inp) - 1);
 	else
 		std::cout << "Faulty input: returning to menu." << std::endl;
-
-
-
 
 }
