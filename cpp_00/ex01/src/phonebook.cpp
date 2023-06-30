@@ -27,25 +27,11 @@ Contact	create_contact() {
 	return (ret);
 }
 
-void	PhoneBook::re_move() {
-	int32_t	i;
-
-//	std::cout << "re_move"<< std::endl;
-	i = 1;
-	do {
-		this->list[i - 1] = this->list[i];
-		i++;
-	}
-	while (i != 8);
-	this->count--;
-}
-
 void	PhoneBook::add() {
-
 //	std::cout << "add_back" << std::endl;
-	if (this->count > 8)
+	if (this->count >= 8)
 		this->count = 1;
-	this->list[this->count % 8] = create_contact();
+	this->list[this->count] = create_contact();
 	this->count++;
 }
 
@@ -69,7 +55,7 @@ void	PhoneBook::print_overview() {
 		std::cout << "|" << "__________";
 	std::cout << "|" << std::endl;
 
-	for (int i = 0; i < this->count; i++) {
+	for (int i = 0; i < 8; i++) {
 		std::cout << "|" << std::setw(9) << i + 1 << " ";
 		std::cout << "|" << std::setw(10) << format_string(this->list[i].get_first());
 		std::cout << "|" << std::setw(10) << format_string(this->list[i].get_last());
@@ -98,7 +84,7 @@ void	PhoneBook::search() {
 
 	this->print_overview();
 
-	std::cout << std::endl << "Give detailed overview of Contact [1 - 8] or EXIT" << std::endl;
+	std::cout << std::endl << "Give detailed overview of Contact [1 - 8] or EXIT: ";
 	std::getline(std::cin, inp);
 	if (inp == "EXIT")
 		return ;
