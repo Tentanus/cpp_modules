@@ -99,10 +99,13 @@ re: fclean all
 .DEFAULT_GOAL := all
 
 #=============== COLOURS ================#
+OS		:=	$(shell uname -r)
 
-BOLD	:= \033[1m
-RED		:= \033[31;1m
-GREEN	:= \033[32;1m
-CYAN	:= \033[36;1m
-RESET	:= \033[0m
+ifneq ($(OS), 6.3.6-arch1-1)
+	BOLD	:= \033[1m
+	RED		:= \033[31;1m
+	GREEN	:= \033[32;1m
+	CYAN	:= \033[36;1m
+	RESET	:= \033[0m
+endif
 

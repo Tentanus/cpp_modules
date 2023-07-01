@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME		:=	test
+NAME		:=	test.out
 
 OBJ_DIR		:=	OBJ
 SRC_DIR		:=	src

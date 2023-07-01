@@ -3,7 +3,7 @@
 
 # include <contact.hpp>
 
-# define MAX_CONTACT 2
+# define MAX_CONTACT 8
 
 typedef enum e_err_num
 {
