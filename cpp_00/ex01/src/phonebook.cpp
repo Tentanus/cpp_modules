@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 #include <phonebook.hpp>
 
 PhoneBook::PhoneBook() {
@@ -8,10 +9,6 @@ PhoneBook::PhoneBook() {
 }
 
 PhoneBook::~PhoneBook() {}
-
-int	PhoneBook::get_count() {
-	return(this->count);
-}
 
 Contact	create_contact() {
 	std::string	inp;
@@ -29,8 +26,8 @@ Contact	create_contact() {
 
 void	PhoneBook::add() {
 //	std::cout << "add_back" << std::endl;
-	if (this->count >= 8)
-		this->count = 1;
+	if (this->count >= MAX_CONTACT)
+		this->count = 0;
 	this->list[this->count] = create_contact();
 	this->count++;
 }
@@ -55,7 +52,7 @@ void	PhoneBook::print_overview() {
 		std::cout << "|" << "__________";
 	std::cout << "|" << std::endl;
 
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < MAX_CONTACT; i++) {
 		std::cout << "|" << std::setw(9) << i + 1 << " ";
 		std::cout << "|" << std::setw(10) << format_string(this->list[i].get_first());
 		std::cout << "|" << std::setw(10) << format_string(this->list[i].get_last());
@@ -81,22 +78,17 @@ void	PhoneBook::print_contact(int i)
 void	PhoneBook::search() {
 //	std::cout << "search"<< std::endl;
 	std::string				inp;
+	int						val_atoi;
 
 	this->print_overview();
 
-	std::cout << std::endl << "Give detailed overview of Contact [1 - 8] or EXIT: ";
+	std::cout << std::endl << "Give detailed overview of Contact [1 - " << MAX_CONTACT << "] or EXIT: ";
 	std::getline(std::cin, inp);
+	val_atoi = std::atoi(inp.c_str());
 	if (inp == "EXIT")
 		return ;
-	else if (inp == "1" || \
-			inp == "2" || \
-			inp == "3" || \
-			inp == "4" || \
-			inp == "5" || \
-			inp == "6" || \
-			inp == "7" || \
-			inp == "8")
-		this->print_contact(std::stoi(inp) - 1);
+	else if (val_atoi > 0 && val_atoi <= MAX_CONTACT)
+		this->print_contact(val_atoi - 1);
 	else
 		std::cout << "Faulty input: returning to menu." << std::endl;
 
