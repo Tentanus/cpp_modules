@@ -65,8 +65,8 @@ void	PhoneBook::print_overview() {
 	std::cout << "|" << std::endl;
 }
 
-void	PhoneBook::print_contact(int i)
-{
+void	PhoneBook::print_contact(int i) {
+	std::cout << std::endl;
 	std::cout << "Full Name:\t" << this->list[i].get_first() << " " << this->list[i].get_last() << std::endl;
 	std::cout << "Nickname:\t" << this->list[i].get_nick() << std::endl;
 	std::cout << "PhoneNumber:\t" << this->list[i].get_phone() << std::endl;
@@ -76,20 +76,22 @@ void	PhoneBook::print_contact(int i)
 
 
 void	PhoneBook::search() {
-//	std::cout << "search"<< std::endl;
 	std::string				inp;
 	int						val_atoi;
 
 	this->print_overview();
 
-	std::cout << std::endl << "Give detailed overview of Contact [1 - " << MAX_CONTACT << "] or EXIT: ";
-	std::getline(std::cin, inp);
-	val_atoi = std::atoi(inp.c_str());
-	if (inp == "EXIT")
-		return ;
-	else if (val_atoi > 0 && val_atoi <= MAX_CONTACT)
-		this->print_contact(val_atoi - 1);
-	else
-		std::cout << "Faulty input: returning to menu." << std::endl;
-
+	while (1) {
+		std::cout << std::endl << "Give detailed overview of Contact [1 - " << MAX_CONTACT << "] or EXIT: ";
+		std::getline(std::cin, inp);
+		val_atoi = std::atoi(inp.c_str());
+		if (inp == "EXIT")
+			return ;
+		else if (val_atoi > 0 && val_atoi <= MAX_CONTACT) {
+			this->print_contact(val_atoi - 1);
+			return ;
+		}
+		else
+			std::cout << "Faulty input: please try again." << std::endl;
+	}
 }
