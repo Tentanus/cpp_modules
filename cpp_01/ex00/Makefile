@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME		:=	e
+NAME		:=	Zombie
 
 OBJ_DIR		:=	OBJ
 SRC_DIR		:=	src

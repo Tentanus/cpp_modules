@@ -2,6 +2,7 @@
 #include <string>
 #include <Zombie.hpp>
 
-int main(void) {
+int main(void) 
+{
 	
 }
