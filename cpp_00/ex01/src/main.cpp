@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <cstdio>
+#include <cstdint>
 #include <phonebook.hpp>
 
 std::string g_err_msg[] = {
