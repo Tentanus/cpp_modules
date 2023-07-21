@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/06/23 19:42:18 by mweverli      ########   odam.nl          #
+#    Updated: 2023/07/21 18:05:52 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ DIR_LIST	:=	$(sort $(dir $(OBJ)))
 INCLUDE		:=	-I $(INC_DIR)
 
 CC			:=	c++
-CFL			:=	-Wall -Werror -Wextra -Wpedantic -std=c++98
+CFL			:=	-Wall -Wextra -Werror -Wpedantic -std=c++98
 
 ifdef DEBUG
 CFL			+=	-g

@@ -1,9 +1,12 @@
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
-# include <string>
+# include <info.hpp>
 
 class Contact
 {
   private:
+
 	std::string first;
 	std::string last;
 	std::string nick;
@@ -30,3 +33,4 @@ class Contact
 	void	print_contact();
 };
 
+#endif

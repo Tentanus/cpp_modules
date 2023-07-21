@@ -1,42 +1,73 @@
-
 #include <iostream>
 #include <contact.hpp>
 
-Contact::Contact()
-{
-	first = "";
-	last = "";
-	nick = "";
-	phone = "";
-	secret = "";
-}
+Contact::Contact() {}
 
 Contact::~Contact() {}
 
-void	Contact::set_first() {
-	std::cout << "First Name:\t";
-	std::getline(std::cin, this->first);
+void	Contact::set_first()
+{
+	std::string	input;
+	while (1)
+	{
+		input = get_line("Fist Name:\t");
+		if (!input.empty())
+			break;
+		phonebook_error(ERR_FIL);
+	}
+	this->first = input;
 }
 
-void	Contact::set_last() {
-	std::cout << "Last Name:\t";
-	std::getline(std::cin, this->last);
+void	Contact::set_last()
+{
+	std::string	input;
+	while (1)
+	{
+		input = get_line("Last Name:\t");
+		if (!input.empty())
+			break;
+		phonebook_error(ERR_FIL);
+	}
+	this->last= input;
 }
 
-void	Contact::set_nick() {
-	std::cout << "Nickname:\t";
-	std::getline(std::cin, this->nick);
+void	Contact::set_nick()
+{
+	std::string	input;
+	while (1)
+	{
+		input = get_line("Nickname:\t");
+		if (!input.empty())
+			break;
+		phonebook_error(ERR_FIL);
+	}
+	this->nick= input;
 }
 
-void	Contact::set_phone() {
-	std::cout << "Phonenumber:\t";
-	std::getline(std::cin, this->phone);
+void	Contact::set_phone()
+{
+	std::string	input;
+	while (1)
+	{
+		input = get_line("Phonenumber:\t");
+		if (!input.empty())
+			break;
+		phonebook_error(ERR_FIL);
+	}
+	this->phone = input;
 }
 
-void	Contact::set_secret() {
-	std::cout << "Darkest Secret:\t";
-
-	std::getline(std::cin, this->secret);
+void	Contact::set_secret()
+{
+	std::string	input;
+	while (1)
+	{
+		input = get_line("Darkest Secret:\t");
+		if (!input.empty())
+			break;
+		phonebook_error(ERR_FIL);
+	}
+	this->secret = input;
 }
 
 std::string	Contact::get_first() const
@@ -63,3 +94,4 @@ std::string	Contact::get_secret() const
 {
 	return (this->secret);
 }
+
