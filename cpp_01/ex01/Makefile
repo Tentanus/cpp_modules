@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/06/16 14:58:50 by mweverli      ########   odam.nl          #
+#    Updated: 2023/07/14 15:51:22 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,18 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME		:=	megaphone
+NAME		:=	Zombie
 
 OBJ_DIR		:=	OBJ
 SRC_DIR		:=	src
 INC_DIR		:=	inc
 LIB_DIR		:=	lib
 
-SRC			:=					\
-				megaphone.cpp
+SRC			:=	\
+				Zombie.cpp \
+				newZombie.cpp \
+				randomChump.cpp \
+				main.cpp
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
