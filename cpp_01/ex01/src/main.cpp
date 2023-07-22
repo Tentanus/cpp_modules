@@ -2,6 +2,8 @@
 #include <iostream>
 #include <Zombie.hpp>
 
+#define NBR 10
+
 int main(void) 
 {
 	Zombie z1("Zomb1");
@@ -14,10 +16,12 @@ int main(void)
 
 	std::cout << "\tHorde is arriving" << std::endl;
 
-	z2 = zombieHorde(5, "Bluep");
+	z2 = zombieHorde(NBR, "Horders");
+
+	for (int i = 0; i < NBR; i++)
+		z2[i].announce(); 
 
 	std::cout << "\tHorde has passed" << std::endl;
 
-	delete z2;
-
+	delete[] z2;
 }

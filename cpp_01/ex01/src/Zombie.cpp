@@ -13,7 +13,10 @@ std::string	Zombie::get_name(void) const
 	return (this->_name);
 }
 
-Zombie::Zombie(void) {}
+Zombie::Zombie(void)
+{
+	std::cout << "Zombie created without name" << std::endl;
+}
 
 Zombie::Zombie(std::string name)
 {
