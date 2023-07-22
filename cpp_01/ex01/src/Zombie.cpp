@@ -13,6 +13,8 @@ std::string	Zombie::get_name(void) const
 	return (this->_name);
 }
 
+Zombie::Zombie(void) {}
+
 Zombie::Zombie(std::string name)
 {
 	this->_name = name;

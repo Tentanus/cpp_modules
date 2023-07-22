@@ -11,7 +11,6 @@ class Zombie {
 
 		std::string	get_name() const;
 		void		announce(void);
-		void		randomChump(std::string name);
 
 	private:
 

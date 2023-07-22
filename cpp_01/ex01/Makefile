@@ -23,10 +23,9 @@ INC_DIR		:=	inc
 LIB_DIR		:=	lib
 
 SRC			:=	\
+				main.cpp \
 				Zombie.cpp \
-				newZombie.cpp \
-				randomChump.cpp \
-				main.cpp
+				zombieHorde.cpp
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
