@@ -33,7 +33,7 @@ void	HumanB::set_Weapon(const Weapon& weapon)
 
 void	HumanB::attack()
 {
-	if (_weapon == nullptr)
+	if (_weapon == NULL)
 		std::cout << get_name() << " attacks with their Fist" << std::endl;
 	else
 		std::cout << get_name() << " attacks with their " << get_Weapon().get_Type() << std::endl;
