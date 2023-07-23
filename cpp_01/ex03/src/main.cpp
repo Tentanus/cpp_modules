@@ -1,21 +1,29 @@
 
 #include <string>
 #include <iostream>
+#include <Weapon>
+#include <HumanA>
+#include <HumanB>
 
 int main(void) 
 {
-	std::string	string = "HI THIS IS BRAIN";
-	std::string	*stringPTR = &string;
-	std::string	&stringREF = string;
+	{
+		Weapon club = Weapon("Crude spiked club");
 
-	std::cout << "ADRESSES:\n";
-	std::cout << "\tstring variable \t" << &string << "\n";
-	std::cout << "\tpointer variable\t" << &stringPTR << "\n";
-	std::cout << "\trefrence variable\t" << &stringREF << "\n";
+		HumanA bob("bob", club);
+		bob.attack();
+		club.setType("Club with nails in hammered in");
+		bob.attack();
+	}
+	{
+		Weapon club = Weapon("Crude spiked club");
 
-	std::cout << "\nVALUES:\n";
-	std::cout << "\tstring variable \t" << string << "\n";
-	std::cout << "\tpointer variable\t" << *stringPTR << "\n";
-	std::cout << "\trefrence variable\t" << stringREF << std::endl;
+		HumanB jim("jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("Club with nails in hammered in");
+		jim.attack();
+	}
+
 	return (0);
 }
