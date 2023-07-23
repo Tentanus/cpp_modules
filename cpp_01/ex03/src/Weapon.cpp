@@ -1,20 +1,27 @@
 
-#include <Weapon>
+#include <Weapon.hpp>
+#include <iostream>
 
-Weapon::Weapon(std::string type)
+Weapon::Weapon()
+{}
+
+Weapon::Weapon(const std::string& type)
 {
 	_type = type;
+	std::cout << "Created Weapon: " << _type << std::endl;
 }
 
 Weapon::~Weapon()
-{}
-
-const std::string	get_Type() const
 {
-	return(this->_type);
+	std::cout << "Destroyed Weapon: " << _type << std::endl;
 }
 
-void				set_Type(std::string type)
+const std::string&	Weapon::get_Type() const
+{
+	return(_type);
+}
+
+void	Weapon::set_Type(const std::string& type)
 {
 	_type = type;
 }
