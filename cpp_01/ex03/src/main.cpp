@@ -9,20 +9,24 @@
 int main() 
 {
 	{
-		Weapon club = Weapon("Crude spiked club");
+		std::cout << "Senario 1:\n\n";
 
-		HumanA bob("bob", club);
+		Weapon club = Weapon("Crude spiked club");
+		HumanA bob("Bob", club);
+
 		bob.attack();
-		club.set_Type("Club with nails in hammered in");
+		club.set_Type("Different CLUB");
 		bob.attack();
 	}
-	{
-		Weapon club = Weapon("Crude spiked club");
 
-		HumanB jim("jim");
-		jim.set_Weapon(club);
+	{
+		std::cout << "\nSenario 2:\n\n";
+
+		Weapon club = Weapon("Crude spiked club");
+		HumanB jim("Jim");
+
 		jim.attack();
-		club.set_Type("Club with nails in hammered in");
+		jim.set_Weapon(club);
 		jim.attack();
 	}
 

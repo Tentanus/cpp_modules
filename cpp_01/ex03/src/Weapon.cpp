@@ -3,7 +3,9 @@
 #include <iostream>
 
 Weapon::Weapon()
-{}
+{
+	_type = "";
+}
 
 Weapon::Weapon(const std::string& type)
 {

@@ -23,17 +23,17 @@ const std::string&	HumanB::get_name() const
 
 const Weapon&	HumanB::get_Weapon() const
 {
-	return(_weapon);
+	return(*_weapon);
 }
 
-void	HumanB::set_Weapon(const Weapon& weapon)
+void	HumanB::set_Weapon(Weapon& weapon)
 {
-	_weapon = weapon;
+	_weapon = &weapon;
 }
 
 void	HumanB::attack()
 {
-	if (_weapon == NULL)
+	if (_weapon == nullptr)
 		std::cout << get_name() << " attacks with their Fist" << std::endl;
 	else
 		std::cout << get_name() << " attacks with their " << get_Weapon().get_Type() << std::endl;

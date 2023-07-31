@@ -4,11 +4,11 @@
 
 #include <iostream>
 
-HumanA::HumanA(const std::string& name, const Weapon& weapon)
+HumanA::HumanA(const std::string name, const Weapon& weapon)
+: _weapon(weapon)
 {
 	_name = name;
-	_weapon = weapon;
-	std::cout << "Created HumanA: " << _name << "\n\t" << "Weapon: " << weapon.get_Type() << std::endl;
+	std::cout << "Created HumanA: " << _name << "\n\t" << "Weapon: " << _weapon.get_Type() << std::endl;
 }
 
 HumanA::~HumanA()
@@ -26,7 +26,7 @@ const Weapon&	HumanA::get_Weapon() const
 	return(_weapon);
 }
 
-void	HumanA::attack()
+void	HumanA::attack() const
 {
 	std::cout << get_name() << " attacks with their " << get_Weapon().get_Type() << std::endl;
 }
