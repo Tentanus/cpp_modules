@@ -106,6 +106,11 @@ void	PhoneBook::search()
 	{
 		std::cout << "\n" << "Give detailed overview of Contact [1 - " << MAX_CONTACT << "] or EXIT: ";
 		std::getline(std::cin, inp);
+		if (std::cin.eof())
+		{
+			std::cin.clear();
+			clearerr(stdin);
+		}
 		val_atoi = std::atoi(inp.c_str());
 		if (inp == "EXIT")
 			return ;

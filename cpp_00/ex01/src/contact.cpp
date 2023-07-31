@@ -62,7 +62,13 @@ void	Contact::set_secret()
 	std::string	input;
 	while (1)
 	{
-		input = get_line("Darkest Secret:\t");
+		std::cout << "Darkest Secret:\t";
+		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cin.clear();
+			clearerr(stdin);
+		}
 		if (!input.empty())
 			break;
 		phonebook_error(ERR_FIL);

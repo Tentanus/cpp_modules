@@ -4,7 +4,7 @@
 # include <info.hpp>
 # include <contact.hpp>
 
-# define MAX_CONTACT 2
+# define MAX_CONTACT 8
 
 class PhoneBook
 {
