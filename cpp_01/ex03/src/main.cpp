@@ -28,6 +28,8 @@ int main()
 		jim.attack();
 		jim.set_Weapon(club);
 		jim.attack();
+		club.set_Type("Morning Star");
+		jim.attack();
 	}
 
 	return (0);

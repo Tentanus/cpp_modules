@@ -10,7 +10,7 @@ class HumanA
 		~HumanA();
 
 		const Weapon&		get_Weapon() const;
-		const std::string&	get_name() const;
+		const std::string	get_name() const;
 
 		void				attack() const;
 

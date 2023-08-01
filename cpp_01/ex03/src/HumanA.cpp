@@ -16,7 +16,7 @@ HumanA::~HumanA()
 	std::cout << "Destroyed HumanA: " << _name << std::endl;
 }
 
-const std::string&	HumanA::get_name() const
+const std::string	HumanA::get_name() const
 {
 	return(_name);
 }

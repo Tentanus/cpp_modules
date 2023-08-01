@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/07/31 18:15:26 by mweverli      ########   odam.nl          #
+#    Updated: 2023/08/01 16:52:11 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME		:=	repline
+NAME		:=	Sed
 
 OBJ_DIR		:=	OBJ
 SRC_DIR		:=	src
