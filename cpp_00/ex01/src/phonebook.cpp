@@ -11,7 +11,7 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook() {}
 
-Contact	create_contact()
+Contact create_contact()
 {
 	std::string	inp;
 	Contact		ret;

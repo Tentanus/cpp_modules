@@ -54,7 +54,7 @@ int	main(int argc, char *argv[])
 
 	const std::string	s1 = argv[2];
 	const std::string	s2 = argv[3];
-	if (s1.empty() || s2.empty())
+	if (s1.empty())
 		return (rep_error(ERR_INP));
 
 	std::string			line;
