@@ -4,17 +4,26 @@
 #include <iostream>
 #include <string>
 
-class Harl {
+class Harl
+{
 	public:
-	void complain (std::string lvl);
+		size_t	complain (std::string lvl);
+		void	debug (void);
+		void	error (void);
+		void	info (void);
+		void	warning (void);
 
 	private:
-	void debug (void);
-	void error (void);
-	void info (void);
-	void warning (void);
 
 	const std::string lvl_list[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	typedef void (Harl::*func_ptr)();
+	const func_ptr func_ptr_list[4] = {
+		&Harl::debug,
+		&Harl::error,
+		&Harl::info,
+		&Harl::warning
+	} ;
 };
 
 #endif
