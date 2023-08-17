@@ -17,8 +17,8 @@ class Harl
 	const std::string lvl_list[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	typedef void (Harl::*func_ptr)();
-	const func_ptr func_ptr_list[4] = {&Harl::debug, &Harl::error, &Harl::info,
-									   &Harl::warning};
+	const func_ptr func_ptr_list[4] = {&Harl::debug, &Harl::info,
+									   &Harl::warning, &Harl::error};
 };
 
 #endif

@@ -20,7 +20,7 @@ int rep_error(size_t err)
 		"unable to create output file" // OUTF
 	};
 
-	std::cerr << "repline: " << err_msg[err] << std::endl;
+	std::cerr << "sed: " << err_msg[err] << std::endl;
 	return (err);
 }
 
