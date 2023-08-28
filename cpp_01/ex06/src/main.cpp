@@ -33,22 +33,12 @@ int main(int argc, char *argv[])
 	{
 	case (0):
 		harl.debug();
-		harl.info();
-		harl.warning();
-		harl.error();
-		break;
 	case (1):
 		harl.info();
-		harl.warning();
-		harl.error();
-		break;
 	case (2):
 		harl.warning();
-		harl.error();
-		break;
 	case (3):
 		harl.error();
-		break;
 	default:
 		std::cout << "f:" << __FILE__ << " l:" << __LINE__ << "\t "
 				  << "OTHER COMPLAINT INFO" << std::endl;
