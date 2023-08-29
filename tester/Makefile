@@ -24,6 +24,7 @@ LIB_DIR		:=	lib
 
 SRC			:=	\
 				main.cpp		\
+				print.cpp
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
@@ -43,6 +44,10 @@ ifdef DEBUG
 CFL			+=	-g
 endif
 
+ifdef DEBUG
+CFL			+=	-D EXP=1
+endif
+
 ifdef FSAN
 CFL			+=	 -fsanitize=address,undefined
 endif
@@ -51,6 +56,7 @@ COMPILE		:=	$(CC) $(CFL)
 
 INFO_FL		:=									\
 $(if $(findstring -std=c++98,$(CFL)),c++98)		\
+$(if $(findstring -std=c++11,$(CFL)),c++11)		\
 $(if $(findstring -g,$(CFL)),-g)				\
 $(if $(findstring address,$(CFL)),addr)			\
 $(if $(findstring undefined,$(CFL)),undef)		\
