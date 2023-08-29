@@ -24,6 +24,7 @@ LIB_DIR		:=	lib
 
 SRC			:=	\
 				main.cpp		\
+				math.cpp		\
 				print.cpp
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)

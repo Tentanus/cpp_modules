@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include <tester.hpp>
+
 void print_float_bit_reversed(float f0)
 {
 	int i0;
@@ -24,8 +26,6 @@ void print_float_bit(float f0)
 	int i0;
 
 	i0 = *(int *)&f0;
-
-	std::cout << "S EEEEEEEE MMMMMMMMMMMMMMMMMMMMMMM" << std::endl;
 
 	for (size_t i = 0; i < sizeof(float) * 8; i++)
 	{
@@ -55,9 +55,7 @@ void print_float_bit(float f0)
 		 */
 
 		for (size_t i = pos; i < 9; i++)
-		{
 			std::cout << ((i0 << i) & 0x80000000 ? "-" : " ");
-		}
 
 		std::cout << " ";
 
@@ -65,6 +63,8 @@ void print_float_bit(float f0)
 		 * going left to right in the bits thes mantissa works as follows
 		 *
 		 * 2 ^ -(mbit_position)
+		 *
+		 * 010	1*2^-1 + 1*2^-2
 		 */
 
 		for (size_t i = 9; i < 32; i++)
@@ -72,6 +72,7 @@ void print_float_bit(float f0)
 			if ((i0 << i) & 0x80000000)
 				mant += power(2, (8 - i));
 		}
+		std::cout << mant;
 
 		std::cout << std::endl;
 	}
