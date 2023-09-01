@@ -18,6 +18,23 @@ class Fixed
 	Fixed &operator=(const Fixed &other);
 	~Fixed();
 
+	bool operator>(const Fixed &other) const;
+	bool operator<(const Fixed &other) const;
+	bool operator>=(const Fixed &other) const;
+	bool operator<=(const Fixed &other) const;
+	bool operator==(const Fixed &other) const;
+	bool operator!=(const Fixed &other) const;
+	/*
+		Fixed operator+(const Fixed &other) const;
+		Fixed operator-(const Fixed &other) const;
+		Fixed operator*(const Fixed &other) const;
+		Fixed operator/(const Fixed &other) const;
+
+		Fixed &operator++(void);
+		Fixed operator++(int);
+		Fixed &operator--(void);
+		Fixed operator--(int);
+	*/
 	float toFloat(void) const;
 	int toInt(void) const;
 
@@ -26,6 +43,6 @@ class Fixed
 	std::string showRawBits(void) const;
 };
 
-std::ostream &operator<<(std::ostream &os, const Fixed &other);
+std::ostream &operator<<(std::ostream &os, const Fixed &fix);
 
 #endif

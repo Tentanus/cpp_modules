@@ -79,3 +79,39 @@ std::ostream &operator<<(std::ostream &os, const Fixed &fix)
 	os << fix.toFloat();
 	return (os);
 }
+
+bool Fixed::operator>(const Fixed &other) const
+{
+	return (_bit > other._bit);
+}
+
+bool Fixed::operator<(const Fixed &other) const
+{
+	return (_bit < other._bit);
+}
+
+bool Fixed::operator>=(const Fixed &other) const
+{
+	return (_bit >= other._bit);
+}
+
+bool Fixed::operator<=(const Fixed &other) const
+{
+	return (_bit <= other._bit);
+}
+
+bool Fixed::operator==(const Fixed &other) const
+{
+	return (_bit == other._bit);
+}
+
+bool Fixed::operator!=(const Fixed &other) const
+{
+	return (_bit != other._bit);
+}
+/*
+Fixed Fixed::operator+(const Fixed &other)
+{
+	return ();
+}
+*/
