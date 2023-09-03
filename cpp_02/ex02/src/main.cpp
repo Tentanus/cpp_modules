@@ -2,34 +2,18 @@
 #include <Fixed.hpp>
 #include <iostream>
 
-int main()
+int main(void)
 {
-	Fixed a;
+	Fixed a(4);
+	Fixed const b(Fixed(5.05f) * Fixed(2));
 
-	Fixed b(2034.34f);
-	Fixed const c(0xFF);
-	Fixed const d(b);
+	std::cout << "a:\t" << a << std::endl;
+	std::cout << "++a:\t" << ++a << std::endl;
+	std::cout << "a:\t" << a << std::endl;
+	std::cout << "a++:\t" << a++ << std::endl;
+	std::cout << "a:\t" << a << std::endl;
 
-	a = Fixed(1234.4321f);
+	std::cout << "b:\t" << b << std::endl;
 
-	std::cout << "\nConverts\n\n";
-
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-
-	std::cout << "\nConverts\n\n";
-
-	std::cout << "a is\t" << a.toInt() << " as integer\t\t" << a.toFloat()
-			  << " as a float" << std::endl;
-	std::cout << "b is\t" << b.toInt() << " as integer\t\t" << b.toFloat()
-			  << " as a float" << std::endl;
-	std::cout << "c is\t" << c.toInt() << " as integer\t\t" << c.toFloat()
-			  << " as a float" << std::endl;
-	std::cout << "d is\t" << d.toInt() << " as integer\t\t" << d.toFloat()
-			  << " as a float\n"
-			  << std::endl;
-
-	return 0;
+	//	std::cout << "max(a,b):\t" << Fixed::max(a, b) << std::endl;
 }

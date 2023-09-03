@@ -31,10 +31,20 @@ Fixed::Fixed(const Fixed &inp)
 	_bit = inp._bit;
 }
 
+Fixed &Fixed::operator=(const Fixed &other)
+{
+	std::cout << "Copy Assignement Operator called" << std::endl;
+	if (this != &other)
+		_bit = other._bit;
+	return (*this);
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+// Methods
 
 float Fixed::toFloat(void) const
 {
@@ -66,19 +76,8 @@ std::string Fixed::showRawBits(void) const
 	return (str);
 }
 
-Fixed &Fixed::operator=(const Fixed &other)
-{
-	std::cout << "Copy Assignement Operator called" << std::endl;
-	if (this != &other)
-		_bit = other._bit;
-	return (*this);
-}
-
-std::ostream &operator<<(std::ostream &os, const Fixed &fix)
-{
-	os << fix.toFloat();
-	return (os);
-}
+// Operators
+//		Comparisons ( == != < > <= >= )
 
 bool Fixed::operator>(const Fixed &other) const
 {
@@ -109,9 +108,77 @@ bool Fixed::operator!=(const Fixed &other) const
 {
 	return (_bit != other._bit);
 }
-/*
-Fixed Fixed::operator+(const Fixed &other)
+
+//		Iterators ( ++ -- )
+
+Fixed &Fixed::operator++(void)
 {
-	return ();
+	_bit += 1 << _fractionalbits;
+	return (*this);
 }
-*/
+
+Fixed &Fixed::operator--(void)
+{
+	_bit -= 1 << _fractionalbits;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+
+	_bit += 1 << _fractionalbits;
+	return (tmp);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+
+	_bit -= 1 << _fractionalbits;
+	return (tmp);
+}
+
+//		Other ( + - * / )
+
+Fixed Fixed::operator+(const Fixed &other) const
+{
+	Fixed ans;
+
+	ans._bit = _bit + other._bit;
+	return (ans);
+}
+
+Fixed Fixed::operator-(const Fixed &other) const
+{
+	Fixed ans;
+
+	ans._bit = _bit - other._bit;
+	return (ans);
+}
+
+Fixed Fixed::operator*(const Fixed &other) const
+{
+	float prod;
+
+	prod = static_cast<float>(_bit) * static_cast<float>(other._bit);
+	Fixed ans(prod / (1 << (2 * _fractionalbits)));
+	return (ans);
+}
+
+Fixed Fixed::operator/(const Fixed &other) const
+{
+	float div;
+
+	div = (float)(_bit) / (float)(other._bit);
+	Fixed ans(div * (1 << (2 / _fractionalbits)));
+	return (ans);
+}
+
+// OS Stream operator overload;
+
+std::ostream &operator<<(std::ostream &os, const Fixed &fix)
+{
+	os << fix.toFloat();
+	return (os);
+}
