@@ -44,6 +44,10 @@ ifdef DEBUG
 CFL			+=	-g
 endif
 
+ifndef MSG
+CFL			+=	-D MSG=1
+endif
+
 ifdef FSAN
 CFL			+=	 -fsanitize=address,undefined
 endif
@@ -55,6 +59,7 @@ $(if $(findstring -std=c++98,$(CFL)),c++98)					\
 $(if $(findstring -g,$(CFL)),-g)							\
 $(if $(findstring address,$(CFL)),addr)						\
 $(if $(findstring undefined,$(CFL)),undef)					\
+$(if $(findstring MSG,$(CFL)),msg)						\
 
 
 #========================================#
