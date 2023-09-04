@@ -6,7 +6,7 @@
 #    By: mweverli <mweverli@student.codam.n>          +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/06/14 18:12:58 by mweverli      #+#    #+#                  #
-#    Updated: 2023/09/04 15:48:51 by mweverli      ########   odam.nl          #
+#    Updated: 2023/09/04 15:50:03 by mweverli      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	BSP	
+NAME			:=	
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
@@ -23,10 +23,6 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC			:=	\
-					Fixed.cpp	\
-					Point.cpp	\
-					bsp.cpp		\
-					main.cpp
 
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
 SRC			:=	$(SRC:%=$(SRC_DIR)/%)
@@ -61,7 +57,7 @@ $(if $(findstring -std=c++98,$(CFL)),c++98)					\
 $(if $(findstring -g,$(CFL)),-g)							\
 $(if $(findstring address,$(CFL)),addr)						\
 $(if $(findstring undefined,$(CFL)),undef)					\
-$(if $(findstring MSG,$(CFL)),msg)						\
+$(if $(findstring MSG,$(CFL)),msg)							\
 
 
 #========================================#
