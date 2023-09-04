@@ -10,7 +10,7 @@ int main(void)
 
 	std::cout << "Comparisons:\n" << std::endl;
 
-	std::cout << "a = " << a << "\nc = " << c << "\n" << std::endl;
+	std::cout << "a = " << a << "\tc = " << c << "\n" << std::endl;
 	if (a == a)
 		std::cout << "a == a" << std::endl;
 	if (a != c)
@@ -33,9 +33,9 @@ int main(void)
 	std::cout << "a:\t" << a << std::endl;
 
 	std::cout << "\n\nOther Operations:\n" << std::endl;
-	std::cout << "\na = " << a << "\nc = " << c << "\n" << std::endl;
+	std::cout << "a = " << a << "\tc = " << c << "\n" << std::endl;
 
-	std::cout << "a + c =\t" << a + l << std::endl;
+	std::cout << "a + c =\t" << a + c << std::endl;
 	std::cout << "a - c =\t" << a - c << std::endl;
 	std::cout << "a * c =\t" << a * c << std::endl;
 	std::cout << "a / c =\t" << a / c << std::endl;
