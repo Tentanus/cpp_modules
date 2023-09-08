@@ -3,20 +3,44 @@
 
 #include <ClapTrap.hpp>
 
+ClapTrap::ClapTrap() : _name("ClapTrap")
+{
+#ifdef MSG
+	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << _name
+			  << std::endl;
+#endif
+	_health = CT_HEALTH;
+	_energy = CT_ENERGY;
+	_attack = CT_ATTACK;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
 #ifdef MSG
-	std::cout << "Called\tConstructor:\tname" << std::endl;
+	std::cout << "Called\tClapTrap Constructor:\tname\t" << _name << std::endl;
 #endif
-	_health = 10;
-	_energy = 10;
-	_attack = 5;
+	_health = CT_HEALTH;
+	_energy = CT_ENERGY;
+	_attack = CT_ATTACK;
+}
+
+ClapTrap::ClapTrap(std::string name, unsigned int health, unsigned int energy,
+				   unsigned int attack)
+	: _name(name)
+{
+#ifdef MSG
+	std::cout << "Called\tClapTrap Constructor:\tconfig\t" << _name
+			  << std::endl;
+#endif
+	_health = health;
+	_energy = energy;
+	_attack = attack;
 }
 
 ClapTrap::~ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tDestructor:\tDefault" << std::endl;
+	std::cout << "Called\tClapTrap Destructor:\tDefault " << _name << std::endl;
 #endif
 }
 
@@ -48,6 +72,13 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	if (amount >= _health)
+	{
+		std::cout << "ClapTrap " << get_name()
+				  << " took too much damage and died." << std::endl;
+		_health = 0;
+		return;
+	}
 	std::cout << "ClapTrap " << get_name() << " took " << amount
 			  << " points of damage." << std::endl;
 

@@ -3,17 +3,26 @@
 
 #include <iostream>
 
+#define CT_HEALTH 10
+#define CT_ENERGY 10
+#define CT_ATTACK 5
+
 // clang-format off
 class ClapTrap
 {
-  private:
+protected:
 	const std::string	_name;
 	unsigned int		_health;
 	unsigned int		_energy;
 	unsigned int		_attack;
 
   public:
+	ClapTrap();
 	ClapTrap(std::string name);
+	ClapTrap(	std::string name,
+				unsigned int health,
+				unsigned int energy,
+				unsigned int attack);
 	~ClapTrap();
 
 	std::string		get_name();

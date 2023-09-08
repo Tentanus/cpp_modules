@@ -3,61 +3,82 @@
 
 #include <ScavTrap.hpp>
 
-ClapTrap::ClapTrap(std::string name) : _name(name)
+ScavTrap::ScavTrap() : ClapTrap("ScavTrap", ST_HEALTH, ST_ENERGY, ST_ATTACK)
 {
 #ifdef MSG
-	std::cout << "Called\tConstructor:\tname" << std::endl;
-#endif
-	_health = 10;
-	_energy = 10;
-	_attack = 5;
-}
-
-ClapTrap::~ClapTrap()
-{
-#ifdef MSG
-	std::cout << "Called\tDestructor:\tDefault" << std::endl;
+	std::cout << "Called\tScavTrap Constructor:\tname" << get_name()
+			  << std::endl;
 #endif
 }
 
-std::string ClapTrap::get_name()
+ScavTrap::ScavTrap(std::string name)
+	: ClapTrap(name, ST_HEALTH, ST_ENERGY, ST_ATTACK)
+{
+#ifdef MSG
+	std::cout << "Called\tScavTrap Constructor:\tname" << get_name()
+			  << std::endl;
+#endif
+}
+
+ScavTrap::~ScavTrap()
+{
+#ifdef MSG
+	std::cout << "Called\tScavTrap Destructor:\tDefault " << get_name()
+			  << std::endl;
+#endif
+}
+
+std::string ScavTrap::get_name()
 {
 	return (_name);
 }
 
-unsigned int ClapTrap::get_health()
+unsigned int ScavTrap::get_health()
 {
 	return (_health);
 }
 
-unsigned int ClapTrap::get_energy()
+unsigned int ScavTrap::get_energy()
 {
 	return (_energy);
 }
 
-unsigned int ClapTrap::get_attack()
+unsigned int ScavTrap::get_attack()
 {
 	return (_attack);
 }
 
-void ClapTrap::attack(const std::string &target)
+void ScavTrap::attack(const std::string &target)
 {
-	std::cout << "ClapTrap " << get_name() << " attacks " << target << " for "
+	std::cout << "ScavTrap " << get_name() << " attacks " << target << " for "
 			  << get_attack() << "." << std::endl;
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ScavTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "ClapTrap " << get_name() << " took " << amount
+	if (amount >= _health)
+	{
+		std::cout << "ScavTrap " << get_name()
+				  << " took too much damage and died." << std::endl;
+		_health = 0;
+		return;
+	}
+	std::cout << "ScavTrap " << get_name() << " took " << amount
 			  << " points of damage." << std::endl;
 
 	_health -= amount;
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ScavTrap::beRepaired(unsigned int amount)
 {
-	std::cout << "ClapTrap " << get_name() << " was repaired for " << amount
+	std::cout << "ScavTrap " << get_name() << " was repaired for " << amount
 			  << " HP." << std::endl;
 
 	_health += amount;
+}
+
+void ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap " << get_name() << " is now in mode_gatekeep"
+			  << std::endl;
 }

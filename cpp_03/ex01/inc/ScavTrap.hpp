@@ -3,16 +3,17 @@
 
 #include <iostream>
 
-// clang-format off
-class ScavTrap
-{
-  private:
-	const std::string	_name;
-	unsigned int		_health;
-	unsigned int		_energy;
-	unsigned int		_attack;
+#include <ClapTrap.hpp>
 
+#define ST_HEALTH 100
+#define ST_ENERGY 50
+#define ST_ATTACK 20
+
+// clang-format off
+class ScavTrap : public ClapTrap
+{
   public:
+	ScavTrap();
 	ScavTrap(std::string name);
 	~ScavTrap();
 
@@ -24,6 +25,7 @@ class ScavTrap
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
+	void	guardGate();
 };
 // clang-format on
 

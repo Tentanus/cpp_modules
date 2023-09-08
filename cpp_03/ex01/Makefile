@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	ClapTrap
+NAME			:=	ScavTrap
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
