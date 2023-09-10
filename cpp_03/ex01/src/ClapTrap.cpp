@@ -7,7 +7,7 @@ ClapTrap::ClapTrap() : _name("ClapTrap")
 {
 #ifdef MSG
 	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << _name
-			  << std::endl;
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = CT_HEALTH;
 	_energy = CT_ENERGY;
@@ -17,7 +17,8 @@ ClapTrap::ClapTrap() : _name("ClapTrap")
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Constructor:\tname\t" << _name << std::endl;
+	std::cout << "Called\tClapTrap Constructor:\tname\t" << _name
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = CT_HEALTH;
 	_energy = CT_ENERGY;
@@ -30,7 +31,7 @@ ClapTrap::ClapTrap(std::string name, unsigned int health, unsigned int energy,
 {
 #ifdef MSG
 	std::cout << "Called\tClapTrap Constructor:\tconfig\t" << _name
-			  << std::endl;
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = health;
 	_energy = energy;
@@ -40,7 +41,8 @@ ClapTrap::ClapTrap(std::string name, unsigned int health, unsigned int energy,
 ClapTrap::~ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Destructor:\tDefault " << _name << std::endl;
+	std::cout << "Called\tClapTrap Destructor:\tDefault " << _name
+			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 

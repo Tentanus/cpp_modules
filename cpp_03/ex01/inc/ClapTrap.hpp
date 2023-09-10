@@ -23,7 +23,7 @@ protected:
 				unsigned int health,
 				unsigned int energy,
 				unsigned int attack);
-	~ClapTrap();
+	virtual	~ClapTrap();
 
 	std::string		get_name();
 	unsigned int	get_health();
