@@ -17,9 +17,8 @@ class FragTrap : public ClapTrap
 	FragTrap(std::string name);
 	~FragTrap();
 
-	void	attack(const std::string& target);
-	void	highFivesGuys(void);};
-
+	void	highFivesGuys(void);
+};
 // clang-format on
 
 #endif

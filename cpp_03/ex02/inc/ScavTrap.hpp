@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include <ClapTrap.hpp>
+#include "ClapTrap.hpp"
 
 #define ST_HEALTH 100
 #define ST_ENERGY 50

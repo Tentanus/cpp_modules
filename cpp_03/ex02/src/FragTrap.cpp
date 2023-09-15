@@ -33,14 +33,7 @@ FragTrap::~FragTrap()
 #endif
 }
 
-void FragTrap::attack(const std::string &target)
+void FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << get_name() << " attacks " << target << " for "
-			  << get_attack() << "." << std::endl;
-}
-
-void FragTrap::guardGate()
-{
-	std::cout << "FragTrap " << get_name() << " is now in mode_gatekeep"
-			  << std::endl;
+	std::cout << "FragTrap " << get_name() << " wants a highfives" << std::endl;
 }
