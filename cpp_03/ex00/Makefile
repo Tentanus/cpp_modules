@@ -97,7 +97,7 @@ echo:
 #============ MISCELLANEOUS =============#
 #========================================#
 
-.PHONY: all clean fclean re debug rebug
+.PHONY: all clean fclean re debug rebug echo
 
 .DEFAULT_GOAL := all
 

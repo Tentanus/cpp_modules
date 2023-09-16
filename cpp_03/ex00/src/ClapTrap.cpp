@@ -3,14 +3,28 @@
 
 #include <ClapTrap.hpp>
 
+#define CT_HEALTH 10
+#define CT_ENERGY 10
+#define CT_ATTACK 5
+
+ClapTrap::ClapTrap()
+{
+#ifdef MSG
+	std::cout << "Called\tConstructor:\tDefault" << std::endl;
+#endif
+	_health = CT_HEALTH;
+	_energy = CT_ENERGY;
+	_attack = CT_ATTACK;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor:\tname" << std::endl;
 #endif
-	_health = 10;
-	_energy = 10;
-	_attack = 5;
+	_health = CT_HEALTH;
+	_energy = CT_ENERGY;
+	_attack = CT_ATTACK;
 }
 
 ClapTrap::ClapTrap(ClapTrap &inp)
@@ -67,6 +81,15 @@ unsigned int ClapTrap::get_energy() const
 unsigned int ClapTrap::get_attack() const
 {
 	return (_attack);
+}
+
+void ClapTrap::status() const
+{
+	std::cout << "\n"
+			  << get_name() << " has following stats:\n"
+			  << "health:\t" << get_health() << "\nenergy:\t" << get_energy()
+			  << "\nattack:\t" << get_attack() << "\n"
+			  << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
