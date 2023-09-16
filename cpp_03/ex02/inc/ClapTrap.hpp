@@ -19,7 +19,7 @@ protected:
   public:
 	ClapTrap();
 	ClapTrap(std::string name);
-	ClapTrap(	std::string name,
+	ClapTrap(   std::string name,
 				unsigned int health,
 				unsigned int energy,
 				unsigned int attack);

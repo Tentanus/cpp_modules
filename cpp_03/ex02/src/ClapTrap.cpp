@@ -68,29 +68,29 @@ unsigned int ClapTrap::get_attack()
 
 void ClapTrap::attack(const std::string &target)
 {
-	std::cout << "ClapTrap " << get_name() << " attacks " << target << " for "
-			  << get_attack() << "." << std::endl;
+	std::cout << get_name() << " attacks " << target << " for " << get_attack()
+			  << "." << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (amount >= _health)
 	{
-		std::cout << "ClapTrap " << get_name()
-				  << " took too much damage and died." << std::endl;
+		std::cout << get_name() << " took too much damage and died."
+				  << std::endl;
 		_health = 0;
 		return;
 	}
-	std::cout << "ClapTrap " << get_name() << " took " << amount
-			  << " points of damage." << std::endl;
+	std::cout << get_name() << " took " << amount << " points of damage."
+			  << std::endl;
 
 	_health -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << "ClapTrap " << get_name() << " was repaired for " << amount
-			  << " HP." << std::endl;
+	std::cout << get_name() << " was repaired for " << amount << " HP."
+			  << std::endl;
 
 	_health += amount;
 }
