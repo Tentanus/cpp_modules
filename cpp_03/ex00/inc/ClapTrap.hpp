@@ -3,28 +3,29 @@
 
 #include <iostream>
 
-// clang-format off
 class ClapTrap
 {
   private:
-	const std::string	_name;
-	unsigned int		_health;
-	unsigned int		_energy;
-	unsigned int		_attack;
+	std::string _name;
+	unsigned int _health;
+	unsigned int _energy;
+	unsigned int _attack;
 
   public:
+	ClapTrap();
 	ClapTrap(std::string name);
+	ClapTrap(ClapTrap &inp);
+	ClapTrap &operator=(const ClapTrap &inp);
 	~ClapTrap();
 
-	std::string		get_name();
-	unsigned int	get_health();
-	unsigned int	get_energy();
-	unsigned int	get_attack();
+	std::string get_name() const;
+	unsigned int get_health() const;
+	unsigned int get_energy() const;
+	unsigned int get_attack() const;
 
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	void attack(const std::string &target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 };
-// clang-format on
 
 #endif

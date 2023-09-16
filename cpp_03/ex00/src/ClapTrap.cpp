@@ -13,6 +13,35 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 	_attack = 5;
 }
 
+ClapTrap::ClapTrap(ClapTrap &inp)
+{
+#ifdef MSG
+	std::cout << "Called\tCopy Constructor:" << inp._name << std::endl;
+#endif
+	if (this != &inp)
+	{
+		_name = inp.get_name();
+		_health = inp.get_health();
+		_energy = inp.get_energy();
+		_attack = inp.get_attack();
+	}
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
+{
+#ifdef MSG
+	std::cout << "Called\tCopy Assignment operator:" << inp._name << std::endl;
+#endif
+	if (this != &inp)
+	{
+		_name = inp.get_name();
+		_health = inp._health;
+		_energy = inp._energy;
+		_attack = inp._attack;
+	}
+	return (*this);
+}
+
 ClapTrap::~ClapTrap()
 {
 #ifdef MSG
@@ -20,22 +49,22 @@ ClapTrap::~ClapTrap()
 #endif
 }
 
-std::string ClapTrap::get_name()
+std::string ClapTrap::get_name() const
 {
 	return (_name);
 }
 
-unsigned int ClapTrap::get_health()
+unsigned int ClapTrap::get_health() const
 {
 	return (_health);
 }
 
-unsigned int ClapTrap::get_energy()
+unsigned int ClapTrap::get_energy() const
 {
 	return (_energy);
 }
 
-unsigned int ClapTrap::get_attack()
+unsigned int ClapTrap::get_attack() const
 {
 	return (_attack);
 }
