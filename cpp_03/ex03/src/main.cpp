@@ -12,10 +12,8 @@ int main()
 {
 
 	DiamondTrap DT("Sjaak");
-	ScavTrap ST("Kees");
 
 	std::cout << BORDERMESSAGE << std::endl;
-	ST.status();
 
 	std::cout << BORDERMESSAGE << "\n" << std::endl;
 

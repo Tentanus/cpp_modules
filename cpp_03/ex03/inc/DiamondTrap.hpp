@@ -7,7 +7,7 @@
 #include <ScavTrap.hpp>
 
 // clang-format off
-class DiamondTrap : protected ScavTrap, protected FragTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
   public:
 	DiamondTrap();
