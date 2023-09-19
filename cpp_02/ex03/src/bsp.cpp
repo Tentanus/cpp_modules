@@ -39,3 +39,7 @@ bool bsp(const Point a, const Point b, const Point c, const Point point)
 			  << std::endl;
 	return (false);
 }
+
+// This is not a solution for the excersize. Points on one of the vertexes or
+// edges are considerd outside of the triangle. My bsp() function considers it
+// inside the triangle.
