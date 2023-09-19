@@ -48,7 +48,7 @@ ScavTrap::~ScavTrap()
 ScavTrap &ScavTrap::operator=(const ScavTrap &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Copy Assignment operator:" << inp._name
+	std::cout << "Called\tScavTrap Copy Assignment operator:" << inp._name
 			  << "\tLocated at: " << this << std::endl;
 #endif
 	if (this != &inp)
