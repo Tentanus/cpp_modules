@@ -84,8 +84,7 @@ unsigned int ClapTrap::get_attack() const
 
 void ClapTrap::status() const
 {
-	std::cout << "\n"
-			  << get_name() << " has following stats:\n"
+	std::cout << get_name() << " has following stats:\n"
 			  << "health:\t" << get_health() << "\nenergy:\t" << get_energy()
 			  << "\nattack:\t" << get_attack() << "\n"
 			  << std::endl;
