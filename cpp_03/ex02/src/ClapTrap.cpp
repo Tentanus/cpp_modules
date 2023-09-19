@@ -3,21 +3,34 @@
 
 #include <ClapTrap.hpp>
 
-ClapTrap::ClapTrap() : _name("ClapTrap")
+ClapTrap::ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << _name
+	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = CT_HEALTH;
 	_energy = CT_ENERGY;
 	_attack = CT_ATTACK;
+}
+
+ClapTrap::ClapTrap(ClapTrap &inp)
+{
+#ifdef MSG
+	std::cout << "Called\tClapTrap Copy Constructor on:\t" << this
+			  << "\nCopied from: " << inp.get_name() << " Located at: " << &inp
+			  << std::endl;
+#endif
+	_name = inp.get_name();
+	_health = inp.get_health();
+	_energy = inp.get_energy();
+	_attack = inp.get_attack();
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name)
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Constructor:\tname\t" << _name
+	std::cout << "Called\tClapTrap Constructor:\tname\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = CT_HEALTH;
@@ -25,72 +38,83 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 	_attack = CT_ATTACK;
 }
 
-ClapTrap::ClapTrap(std::string name, unsigned int health, unsigned int energy,
-				   unsigned int attack)
-	: _name(name)
-{
-#ifdef MSG
-	std::cout << "Called\tClapTrap Constructor:\tconfig\t" << _name
-			  << "\tLocated at: " << this << std::endl;
-#endif
-	_health = health;
-	_energy = energy;
-	_attack = attack;
-}
-
 ClapTrap::~ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Destructor:\tDefault " << _name
+	std::cout << "Called\tClapTrap Destructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 
-std::string ClapTrap::get_name()
+ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
+{
+#ifdef MSG
+	std::cout << "Called\tClapTrap Copy Assignment operator:" << inp._name
+			  << "\tLocated at: " << this << std::endl;
+#endif
+	if (this != &inp)
+	{
+		_name = inp.get_name();
+		_health = inp.get_health();
+		_energy = inp.get_energy();
+		_attack = inp.get_attack();
+	}
+	return (*this);
+}
+
+std::string ClapTrap::get_name() const
 {
 	return (_name);
 }
 
-unsigned int ClapTrap::get_health()
+unsigned int ClapTrap::get_health() const
 {
 	return (_health);
 }
 
-unsigned int ClapTrap::get_energy()
+unsigned int ClapTrap::get_energy() const
 {
 	return (_energy);
 }
 
-unsigned int ClapTrap::get_attack()
+unsigned int ClapTrap::get_attack() const
 {
 	return (_attack);
 }
 
+void ClapTrap::status() const
+{
+	std::cout << "\n"
+			  << get_name() << " has following stats:\n"
+			  << "health:\t" << get_health() << "\nenergy:\t" << get_energy()
+			  << "\nattack:\t" << get_attack() << "\n"
+			  << std::endl;
+}
+
 void ClapTrap::attack(const std::string &target)
 {
-	std::cout << get_name() << " attacks " << target << " for " << get_attack()
-			  << "." << std::endl;
+	std::cout << "ClapTrap " << get_name() << " attacks " << target << " for "
+			  << get_attack() << "." << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (amount >= _health)
 	{
-		std::cout << get_name() << " took too much damage and died."
-				  << std::endl;
+		std::cout << "ClapTrap " << get_name() << " took " << amount
+				  << " damage and died." << std::endl;
 		_health = 0;
 		return;
 	}
-	std::cout << get_name() << " took " << amount << " points of damage."
-			  << std::endl;
-
+	std::cout << "ClapTrap " << get_name() << " took " << amount
+			  << " points of damage." << std::endl;
 	_health -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << get_name() << " was repaired for " << amount << " HP."
-			  << std::endl;
+	std::cout << "ClapTrap " << get_name() << " was repaired for " << amount
+			  << " HP." << std::endl;
 
 	_health += amount;
 }
