@@ -3,24 +3,11 @@
 
 #include <ClapTrap.hpp>
 
-#define CT_HEALTH 10
-#define CT_ENERGY 10
-#define CT_ATTACK 5
-
 ClapTrap::ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tConstructor:\tDefault" << std::endl;
-#endif
-	_health = CT_HEALTH;
-	_energy = CT_ENERGY;
-	_attack = CT_ATTACK;
-}
-
-ClapTrap::ClapTrap(std::string name) : _name(name)
-{
-#ifdef MSG
-	std::cout << "Called\tConstructor:\tname" << std::endl;
+	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = CT_HEALTH;
 	_energy = CT_ENERGY;
@@ -30,7 +17,9 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 ClapTrap::ClapTrap(ClapTrap &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tCopy Constructor:" << inp._name << std::endl;
+	std::cout << "Called\tClapTrap Copy Constructor on:\t" << this
+			  << "\nCopied from: " << inp.get_name() << " Located at: " << &inp
+			  << std::endl;
 #endif
 	_name = inp.get_name();
 	_health = inp.get_health();
@@ -38,24 +27,37 @@ ClapTrap::ClapTrap(ClapTrap &inp)
 	_attack = inp.get_attack();
 }
 
+ClapTrap::ClapTrap(std::string name) : _name(name)
+{
+#ifdef MSG
+	std::cout << "Called\tClapTrap Constructor:\tname\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
+#endif
+	_health = CT_HEALTH;
+	_energy = CT_ENERGY;
+	_attack = CT_ATTACK;
+}
+
 ClapTrap::~ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tDestructor:\tDefault" << std::endl;
+	std::cout << "Called\tClapTrap Destructor:\tDefault\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tCopy Assignment operator:" << inp._name << std::endl;
+	std::cout << "Called\tClapTrap Copy Assignment operator:" << inp._name
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	if (this != &inp)
 	{
 		_name = inp.get_name();
-		_health = inp._health;
-		_energy = inp._energy;
-		_attack = inp._attack;
+		_health = inp.get_health();
+		_energy = inp.get_energy();
+		_attack = inp.get_attack();
 	}
 	return (*this);
 }
@@ -97,9 +99,15 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	if (amount >= _health)
+	{
+		std::cout << "ClapTrap " << get_name() << " took " << amount
+				  << " damage and died." << std::endl;
+		_health = 0;
+		return;
+	}
 	std::cout << "ClapTrap " << get_name() << " took " << amount
 			  << " points of damage." << std::endl;
-
 	_health -= amount;
 }
 
