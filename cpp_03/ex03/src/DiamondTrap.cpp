@@ -1,6 +1,4 @@
 
-#include "FragTrap.hpp"
-#include "ScavTrap.hpp"
 #include <iostream>
 
 #include <DiamondTrap.hpp>
@@ -9,7 +7,7 @@ DiamondTrap::DiamondTrap() : ScavTrap("DiamondTrap_clap_name")
 {
 	ScavTrap::_health = FT_HEALTH;
 	ScavTrap::_energy = ST_ENERGY;
-	_attack = FT_ATTACK;
+	ScavTrap::_attack = FT_ATTACK;
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Constructor:\tname\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
