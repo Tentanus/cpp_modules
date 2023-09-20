@@ -11,6 +11,8 @@ class Cat : public Animal
 	~Cat();
 
 	Cat operator=(const Cat &inp);
+
+	void MakeNoise();
 };
 
 #endif // !CAT_HPP

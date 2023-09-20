@@ -23,7 +23,7 @@ Cat::Cat(Cat &inp) : Animal()
 Cat::~Cat()
 {
 #ifdef MSG
-	std::cout << "Called\tCat Deconstructor" << std::endl;
+	std::cout << "Called\tCat\tDeconstructor" << std::endl;
 #endif
 }
 
@@ -35,4 +35,9 @@ Cat Cat::operator=(const Cat &inp)
 	if (this != &inp)
 		_type = inp.get_type();
 	return (*this);
+}
+
+void Cat::MakeNoise()
+{
+	std::cout << "Miaow Miaow" << std::endl;
 }

@@ -23,7 +23,7 @@ Dog::Dog(Dog &inp) : Animal()
 Dog::~Dog()
 {
 #ifdef MSG
-	std::cout << "Called\tDog Deconstructor" << std::endl;
+	std::cout << "Called\tDog\tDeconstructor" << std::endl;
 #endif
 }
 
@@ -35,4 +35,9 @@ Dog Dog::operator=(const Dog &inp)
 	if (this != &inp)
 		_type = inp.get_type();
 	return (*this);
+}
+
+void Dog::MakeNoise()
+{
+	std::cout << "BARK BARK" << std::endl;
 }

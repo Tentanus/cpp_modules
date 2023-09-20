@@ -15,8 +15,11 @@ class Animal
   public:
 	Animal();
 	~Animal();
+
 	std::string get_type() const;
 	void set_type(std::string type);
+
+	virtual void MakeNoise();
 };
 
 #endif // !ANIMAL_HPP

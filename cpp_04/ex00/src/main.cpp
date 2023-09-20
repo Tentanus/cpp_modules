@@ -10,8 +10,11 @@ int main()
 	Dog Racky;
 	Cat Minouche;
 
-	std::cout << Racky.get_type() << std::endl;
-	std::cout << Minouche.get_type() << std::endl;
+	std::cout << Racky.get_type() << " Makes the sound: " << std::endl;
+	Racky.MakeNoise();
+
+	std::cout << Minouche.get_type() << " Makes the sound: " << std::endl;
+	Minouche.MakeNoise();
 
 	return (0);
 }
