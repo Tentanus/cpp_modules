@@ -23,7 +23,9 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					Animal.cpp		\
+					Animal.cpp	\
+					Cat.cpp		\
+					Dog.cpp		\
 					main.cpp
 
 

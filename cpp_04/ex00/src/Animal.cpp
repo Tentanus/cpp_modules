@@ -7,7 +7,7 @@
 Animal::Animal()
 {
 #ifdef MSG
-	std::cout << "Called\tAnimal Constructor:\tDefault\t" << std::endl;
+	std::cout << "Called\tAnimal\tConstructor:\tDefault" << std::endl;
 #endif
 	_type = "";
 }
@@ -15,7 +15,7 @@ Animal::Animal()
 Animal::Animal(const Animal &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tAnimal Constructor:\tCopy\t" << std::endl;
+	std::cout << "Called\tAnimal\tConstructor:\tCopy" << std::endl;
 #endif
 	_type = inp.get_type();
 }
@@ -23,14 +23,14 @@ Animal::Animal(const Animal &inp)
 Animal::~Animal()
 {
 #ifdef MSG
-	std::cout << "Called\tAnimal Deconstructor" << std::endl;
+	std::cout << "Called\tAnimal\tDeconstructor" << std::endl;
 #endif
 }
 
 Animal Animal::operator=(Animal &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tAnimal Copy Assignment Operator" << std::endl;
+	std::cout << "Called\tAnimal\tCopy Assignment Operator" << std::endl;
 #endif
 	if (this != &inp)
 		_type = inp.get_type();
