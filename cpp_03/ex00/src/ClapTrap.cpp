@@ -8,23 +8,20 @@
 #define CT_ATTACK 5
 
 ClapTrap::ClapTrap()
+	: _name("ClapTrap"), _health(CT_HEALTH), _energy(CT_ENERGY),
+	  _attack(CT_ATTACK)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor:\tDefault" << std::endl;
 #endif
-	_health = CT_HEALTH;
-	_energy = CT_ENERGY;
-	_attack = CT_ATTACK;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name)
+ClapTrap::ClapTrap(std::string name)
+	: _name(name), _health(CT_HEALTH), _energy(CT_ENERGY), _attack(CT_ATTACK)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor:\tname" << std::endl;
 #endif
-	_health = CT_HEALTH;
-	_energy = CT_ENERGY;
-	_attack = CT_ATTACK;
 }
 
 ClapTrap::ClapTrap(ClapTrap &inp)
@@ -41,6 +38,13 @@ ClapTrap::ClapTrap(ClapTrap &inp)
 	}
 }
 
+ClapTrap::~ClapTrap()
+{
+#ifdef MSG
+	std::cout << "Called\tDestructor" << std::endl;
+#endif
+}
+
 ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
 {
 #ifdef MSG
@@ -49,21 +53,14 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
 	if (this != &inp)
 	{
 		_name = inp.get_name();
-		_health = inp._health;
-		_energy = inp._energy;
-		_attack = inp._attack;
+		_health = inp.get_health();
+		_energy = inp.get_energy();
+		_attack = inp.get_attack();
 	}
 	return (*this);
 }
 
-ClapTrap::~ClapTrap()
-{
-#ifdef MSG
-	std::cout << "Called\tDestructor:\tDefault" << std::endl;
-#endif
-}
-
-std::string ClapTrap::get_name() const
+const std::string ClapTrap::get_name() const
 {
 	return (_name);
 }
@@ -85,31 +82,60 @@ unsigned int ClapTrap::get_attack() const
 
 void ClapTrap::status() const
 {
-	std::cout << "\n"
-			  << get_name() << " has following stats:\n"
-			  << "health:\t" << get_health() << "\nenergy:\t" << get_energy()
-			  << "\nattack:\t" << get_attack() << "\n"
-			  << std::endl;
+	std::cout << "Claptrap\tname:\t\t" << get_name() << "\n\t\thealth:\t\t"
+			  << get_health() << "\n\t\tenergy:\t\t" << get_energy()
+			  << "\n\t\tattack:\t\t" << get_attack() << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
 {
+	if (_energy == 0)
+	{
+		std::cout << "ClapTrap " << get_name()
+				  << " is too tired and can't attack." << std::endl;
+		return;
+	}
 	std::cout << "ClapTrap " << get_name() << " attacks " << target << " for "
 			  << get_attack() << "." << std::endl;
+	_energy--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	if (_health == 0)
+	{
+		std::cout << "ClapTrap " << get_name() << " is allready dead."
+				  << std::endl;
+		return;
+	}
+	else if (_health <= amount)
+	{
+		std::cout << "ClapTrap " << get_name() << " took " << get_health()
+				  << " points of damage and died." << std::endl;
+		_health = 0;
+		return;
+	}
 	std::cout << "ClapTrap " << get_name() << " took " << amount
 			  << " points of damage." << std::endl;
-
 	_health -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
+	if (_energy == 0)
+	{
+		std::cout << "ClapTrap " << get_name()
+				  << " is too tired and can't repair." << std::endl;
+		return;
+	}
+	else if (_health == 0)
+	{
+		std::cout << "ClapTrap " << get_name() << " is allready dead."
+				  << std::endl;
+		return;
+	}
 	std::cout << "ClapTrap " << get_name() << " was repaired for " << amount
 			  << " HP." << std::endl;
-
 	_health += amount;
+	_energy--;
 }

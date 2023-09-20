@@ -18,7 +18,7 @@ class ClapTrap
 	ClapTrap &operator=(const ClapTrap &inp);
 	~ClapTrap();
 
-	std::string get_name() const;
+	const std::string get_name() const;
 	unsigned int get_health() const;
 	unsigned int get_energy() const;
 	unsigned int get_attack() const;
