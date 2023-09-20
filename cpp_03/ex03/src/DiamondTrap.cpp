@@ -1,17 +1,27 @@
 
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
 
 #include <DiamondTrap.hpp>
 
 DiamondTrap::DiamondTrap() : ScavTrap("DiamondTrap_clap_name")
 {
+	ScavTrap::_health = FT_HEALTH;
+	ScavTrap::_energy = ST_ENERGY;
+	_attack = FT_ATTACK;
+#ifdef MSG
+	std::cout << "Called\tDiamTrap Constructor:\tname\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
+#endif
+}
+
+DiamondTrap::DiamondTrap(const std::string name) : ScavTrap(name + "_clap_name")
+{
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Constructor:\tname\t" << ScavTrap::get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
-	FragTrap::_health = FT_HEALTH;
-	ScavTrap::_energy = ST_ENERGY;
-	FragTrap::_attack = FT_ATTACK;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &inp)
@@ -25,17 +35,6 @@ DiamondTrap::DiamondTrap(const DiamondTrap &inp)
 	ScavTrap::_health = inp.ScavTrap::get_health();
 	ScavTrap::_energy = inp.ScavTrap::get_energy();
 	ScavTrap::_attack = inp.ScavTrap::get_attack();
-}
-
-DiamondTrap::DiamondTrap(const std::string name) : ScavTrap(name + "_clap_name")
-{
-#ifdef MSG
-	std::cout << "Called\tDiamTrap Constructor:\tname\t" << ScavTrap::get_name()
-			  << "\tLocated at: " << this << std::endl;
-#endif
-	FragTrap::_health = FT_HEALTH;
-	ScavTrap::_energy = ST_ENERGY;
-	FragTrap::_attack = FT_ATTACK;
 }
 
 DiamondTrap::~DiamondTrap()

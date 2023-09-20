@@ -17,6 +17,7 @@
 
 
 NAME			:=	DiamondTrap
+
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
 INC_DIR			:=	inc

@@ -14,6 +14,17 @@ FragTrap::FragTrap() : ClapTrap("FragTrap")
 	_attack = FT_ATTACK;
 }
 
+FragTrap::FragTrap(const std::string name) : ClapTrap(name)
+{
+#ifdef MSG
+	std::cout << "Called\tFragTrap Constructor:\tname\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
+#endif
+	_health = FT_HEALTH;
+	_energy = FT_ENERGY;
+	_attack = FT_ATTACK;
+}
+
 FragTrap::FragTrap(const FragTrap &inp) : ClapTrap(inp.get_name())
 {
 #ifdef MSG
@@ -24,17 +35,6 @@ FragTrap::FragTrap(const FragTrap &inp) : ClapTrap(inp.get_name())
 	_health = inp.get_health();
 	_energy = inp.get_energy();
 	_attack = inp.get_attack();
-}
-
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
-{
-#ifdef MSG
-	std::cout << "Called\tFragTrap Constructor:\tname\t" << get_name()
-			  << "\tLocated at: " << this << std::endl;
-#endif
-	_health = FT_HEALTH;
-	_energy = FT_ENERGY;
-	_attack = FT_ATTACK;
 }
 
 FragTrap::~FragTrap()

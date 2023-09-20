@@ -10,14 +10,15 @@
 #define FT_ATTACK 30
 
 // clang-format off
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
   public:
 	FragTrap();
+	FragTrap(const std::string name);
 	FragTrap(const FragTrap &inp);
-	FragTrap(std::string name);
-	FragTrap &operator=(const FragTrap &inp);
 	~FragTrap();
+
+	FragTrap &operator=(const FragTrap &inp);
 
 	void	highFivesGuys(void);
 };

@@ -10,7 +10,7 @@
 #define ST_ATTACK 20
 
 // clang-format off
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
   public:
 	ScavTrap();
