@@ -1,29 +1,48 @@
 
-#include "DiamondTrap.hpp"
-#include "FragTrap.hpp"
 #include <iostream>
 
-#include <ClapTrap.hpp>
+#include <FragTrap.hpp>
 #include <ScavTrap.hpp>
 
-#define BORDERMESSAGE                                                          \
+#define MSG_BORDER                                                             \
 	"=----------------------------------------------------------="
+
 int main()
 {
-
-	DiamondTrap DT("Sjaak");
-
-	std::cout << BORDERMESSAGE << std::endl;
-
-	std::cout << BORDERMESSAGE << "\n" << std::endl;
+	FragTrap FT_1("Henk");
+	ScavTrap ST_1("Jaap");
 
 	std::cout << "\n";
 
-	std::cout << BORDERMESSAGE << std::endl;
-	std::cout << BORDERMESSAGE << "\n" << std::endl;
+	FT_1.attack("Jaap");
+	ST_1.takeDamage(FT_1.get_attack());
+
+	std::cout << "\n" << MSG_BORDER << std::endl;
+	FT_1.status();
+	std::cout << "\n";
+	ST_1.status();
+	std::cout << MSG_BORDER << "\n" << std::endl;
+
+	FT_1.attack("Jaap");
+	ST_1.takeDamage(FT_1.get_attack());
+	FT_1.attack("Jaap");
+	ST_1.takeDamage(FT_1.get_attack());
+	FT_1.attack("Jaap");
+	ST_1.takeDamage(FT_1.get_attack());
+
+	std::cout << "\n" << MSG_BORDER << std::endl;
+	FT_1.status();
+	std::cout << "\n";
+	ST_1.status();
+	std::cout << MSG_BORDER << "\n" << std::endl;
+
+	ST_1.guardGate();
+	FT_1.highFivesGuys();
 
 	std::cout << "\n";
 
-	std::cout << BORDERMESSAGE << std::endl;
+	//	FT_1.guardGate();
+	//	ST_1.highFivesGuys();
+
 	return (0);
 }

@@ -10,14 +10,15 @@
 #define ST_ATTACK 20
 
 // clang-format off
-class ScavTrap : virtual public ClapTrap
+class ScavTrap : public ClapTrap
 {
   public:
 	ScavTrap();
 	ScavTrap(const ScavTrap &inp);
 	ScavTrap(std::string name);
-	ScavTrap &operator=(const ScavTrap &inp);
 	~ScavTrap();
+
+	ScavTrap &operator=(const ScavTrap &inp);
 
 	void	guardGate();
 };

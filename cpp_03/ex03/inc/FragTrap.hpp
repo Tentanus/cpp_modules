@@ -10,7 +10,7 @@
 #define FT_ATTACK 30
 
 // clang-format off
-class FragTrap : virtual public ClapTrap
+class FragTrap : public ClapTrap
 {
   public:
 	FragTrap();
