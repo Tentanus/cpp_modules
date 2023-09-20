@@ -3,31 +3,31 @@
 
 #include <ClapTrap.hpp>
 
-#define CT_HEALTH 10
-#define CT_ENERGY 10
-#define CT_ATTACK 5
-
 ClapTrap::ClapTrap()
 	: _name("ClapTrap"), _health(CT_HEALTH), _energy(CT_ENERGY),
 	  _attack(CT_ATTACK)
 {
 #ifdef MSG
-	std::cout << "Called\tConstructor:\tDefault" << std::endl;
+	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap(const std::string &name)
 	: _name(name), _health(CT_HEALTH), _energy(CT_ENERGY), _attack(CT_ATTACK)
 {
 #ifdef MSG
-	std::cout << "Called\tConstructor:\tname" << std::endl;
+	std::cout << "Called\tClapTrap Constructor:\tname\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 
-ClapTrap::ClapTrap(ClapTrap &inp)
+ClapTrap::ClapTrap(const ClapTrap &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tCopy Constructor:" << inp._name << std::endl;
+	std::cout << "Called\tClapTrap Copy Constructor on:\t" << this
+			  << "\nCopied from: " << inp.get_name() << " Located at: " << &inp
+			  << std::endl;
 #endif
 	if (this != &inp)
 	{
@@ -41,14 +41,16 @@ ClapTrap::ClapTrap(ClapTrap &inp)
 ClapTrap::~ClapTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tDestructor" << std::endl;
+	std::cout << "Called\tClapTrap Destructor:\tDefault\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
 {
 #ifdef MSG
-	std::cout << "Called\tCopy Assignment operator:" << inp._name << std::endl;
+	std::cout << "Called\tClapTrap Copy Assignment operator:" << inp._name
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	if (this != &inp)
 	{

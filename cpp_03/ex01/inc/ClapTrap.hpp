@@ -17,12 +17,13 @@ class ClapTrap
 
   public:
 	ClapTrap();
-	ClapTrap(std::string name);
-	ClapTrap(ClapTrap &inp);
-	ClapTrap &operator=(const ClapTrap &inp);
+	ClapTrap(const std::string &name);
+	ClapTrap(const ClapTrap &inp);
 	~ClapTrap();
 
-	std::string get_name() const;
+	ClapTrap &operator=(const ClapTrap &inp);
+
+	const std::string get_name() const;
 	unsigned int get_health() const;
 	unsigned int get_energy() const;
 	unsigned int get_attack() const;

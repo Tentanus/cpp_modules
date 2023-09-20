@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#define CT_HEALTH 10
+#define CT_ENERGY 10
+#define CT_ATTACK 5
+
 class ClapTrap
 {
   private:
