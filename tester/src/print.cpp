@@ -27,6 +27,7 @@ void print_float_bit(float f0)
 
 	i0 = *(int *)&f0;
 
+	std::cout << "\nS EEEEEEEE MMMMMMMMMMMMMMMMMMMMMMM\n" << std::endl;
 	for (size_t i = 0; i < sizeof(float) * 8; i++)
 	{
 		if (i == 1 || i == 9)

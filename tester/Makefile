@@ -39,7 +39,11 @@ DIR_LIST	:=	$(sort $(dir $(OBJ)))
 INCLUDE		:=	-I $(INC_DIR)
 
 CC			:=	c++
-CFL			:=	-Wall -Werror -Wextra -Wpedantic -std=c++98
+CFL			:=	-Wall -Werror -Wextra -Wpedantic 
+
+ifndef NO98
+CFL			+=  -std=c++98
+endif
 
 ifdef DEBUG
 CFL			+=	-g
@@ -74,12 +78,12 @@ $(DIR_LIST):
 
 $(NAME): $(OBJ)
 	@echo ""
-	@$(COMPILE) $(INCLUDE) $(OBJ) -o $(NAME)
 	@echo "$(COMPILE) $(INCLUDE) $(CYAN)$(notdir $(OBJ))$(RESET) -o $(NAME)"
+	@$(COMPILE) $(INCLUDE) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
-	@$(COMPILE) $(INCLUDE) -MMD -o $@ -c $< 
 	@echo "$(CYAN)COMPILE $(INFO_FL) $(notdir $(<:%.c=%))$(RESET)"
+	@$(COMPILE) $(INCLUDE) -MMD -o $@ -c $< 
 
 clean:
 	@rm -rf $(OBJ_DIR)
