@@ -6,7 +6,7 @@
 ScavTrap::ScavTrap() : ClapTrap("ScavTrap")
 {
 #ifdef MSG
-	std::cout << "Called\tScavTrap Constructor:\tname\t" << get_name()
+	std::cout << "Called\tScavTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = ST_HEALTH;

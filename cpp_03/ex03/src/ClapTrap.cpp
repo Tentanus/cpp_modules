@@ -38,14 +38,6 @@ ClapTrap::ClapTrap(const ClapTrap &inp)
 	}
 }
 
-ClapTrap::~ClapTrap()
-{
-#ifdef MSG
-	std::cout << "Called\tClapTrap Destructor:\tDefault\t" << get_name()
-			  << "\tLocated at: " << this << std::endl;
-#endif
-}
-
 ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
 {
 #ifdef MSG
@@ -60,6 +52,14 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
 		_attack = inp.get_attack();
 	}
 	return (*this);
+}
+
+ClapTrap::~ClapTrap()
+{
+#ifdef MSG
+	std::cout << "Called\tClapTrap Destructor:\tDefault\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
+#endif
 }
 
 const std::string ClapTrap::get_name() const

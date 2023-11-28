@@ -1,20 +1,20 @@
 
+#include <ClapTrap.hpp>
+#include <FragTrap.hpp>
+#include <ScavTrap.hpp>
 #include <iostream>
 
 #include <DiamondTrap.hpp>
 
-DiamondTrap::DiamondTrap() : ScavTrap("DiamondTrap_clap_name")
+DiamondTrap::DiamondTrap() : ClapTrap("DiamondTrap_clap_name")
 {
-	ScavTrap::_health = FT_HEALTH;
-	ScavTrap::_energy = ST_ENERGY;
-	ScavTrap::_attack = FT_ATTACK;
 #ifdef MSG
-	std::cout << "Called\tDiamTrap Constructor:\tname\t" << get_name()
+	std::cout << "Called\tDiamTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 
-DiamondTrap::DiamondTrap(const std::string name) : ScavTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name")
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Constructor:\tname\t" << ScavTrap::get_name()
@@ -35,14 +35,6 @@ DiamondTrap::DiamondTrap(const DiamondTrap &inp)
 	ScavTrap::_attack = inp.ScavTrap::get_attack();
 }
 
-DiamondTrap::~DiamondTrap()
-{
-#ifdef MSG
-	std::cout << "Called\tDiamTrap Destructor:\tDefault\t"
-			  << ScavTrap::get_name() << "\tLocated at: " << this << std::endl;
-#endif
-}
-
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &inp)
 {
 #ifdef MSG
@@ -57,4 +49,12 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &inp)
 		ScavTrap::_attack = inp.ScavTrap::get_attack();
 	}
 	return (*this);
+}
+
+DiamondTrap::~DiamondTrap()
+{
+#ifdef MSG
+	std::cout << "Called\tDiamTrap Destructor:\tDefault\t"
+			  << ScavTrap::get_name() << "\tLocated at: " << this << std::endl;
+#endif
 }

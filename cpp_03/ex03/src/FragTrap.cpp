@@ -6,7 +6,7 @@
 FragTrap::FragTrap() : ClapTrap("FragTrap")
 {
 #ifdef MSG
-	std::cout << "Called\tFragTrap Constructor:\tname\t" << get_name()
+	std::cout << "Called\tFragTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
 	_health = FT_HEALTH;
