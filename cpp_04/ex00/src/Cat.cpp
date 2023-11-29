@@ -12,12 +12,12 @@ Cat::Cat() : Animal()
 	set_type("Cat");
 }
 
-Cat::Cat(Cat &inp) : Animal()
+Cat::Cat(Cat &rhs) : Animal()
 {
 #ifdef MSG
 	std::cout << "Called\tCat\tConstructor\tCopy" << std::endl;
 #endif
-	set_type(inp.get_type());
+	set_type(rhs.get_type());
 }
 
 Cat::~Cat()
@@ -27,13 +27,13 @@ Cat::~Cat()
 #endif
 }
 
-Cat Cat::operator=(const Cat &inp)
+Cat Cat::operator=(const Cat &rhs)
 {
 #ifdef MSG
 	std::cout << "Called\tCat\tCopy Assignment Operator" << std::endl;
 #endif
-	if (this != &inp)
-		_type = inp.get_type();
+	if (this != &rhs)
+		_type = rhs.get_type();
 	return (*this);
 }
 

@@ -23,9 +23,11 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					Animal.cpp	\
-					Cat.cpp		\
-					Dog.cpp		\
+					Animal.cpp		\
+					WrongAnimal.cpp	\
+					Cat.cpp			\
+					Dog.cpp			\
+					WrongDog.cpp	\
 					main.cpp
 
 
@@ -44,7 +46,7 @@ CC				:=	c++
 CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++98
 
 ifdef DEBUG
-CFL				+=	-g
+CFL				+=	-g -fstandalone-debug
 endif
 
 ifndef NOMSG

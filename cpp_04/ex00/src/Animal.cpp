@@ -12,12 +12,12 @@ Animal::Animal()
 	_type = "";
 }
 
-Animal::Animal(const Animal &inp)
+Animal::Animal(const Animal &rhs)
 {
 #ifdef MSG
 	std::cout << "Called\tAnimal\tConstructor:\tCopy" << std::endl;
 #endif
-	_type = inp.get_type();
+	_type = rhs.get_type();
 }
 
 Animal::~Animal()
@@ -27,13 +27,13 @@ Animal::~Animal()
 #endif
 }
 
-Animal Animal::operator=(Animal &inp)
+Animal Animal::operator=(Animal &rhs)
 {
 #ifdef MSG
 	std::cout << "Called\tAnimal\tCopy Assignment Operator" << std::endl;
 #endif
-	if (this != &inp)
-		_type = inp.get_type();
+	if (this != &rhs)
+		_type = rhs.get_type();
 	return (*this);
 }
 
