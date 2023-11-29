@@ -9,6 +9,9 @@ ClapTrap::ClapTrap() : _name("ClapTrap")
 	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
+	_health = ClapTrap::base_health;
+	_energy = ClapTrap::base_energy;
+	_attack = ClapTrap::base_attack;
 }
 
 ClapTrap::ClapTrap(const std::string &name) : _name(name)
@@ -17,36 +20,39 @@ ClapTrap::ClapTrap(const std::string &name) : _name(name)
 	std::cout << "Called\tClapTrap Constructor:\tname\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
+	_health = ClapTrap::base_health;
+	_energy = ClapTrap::base_energy;
+	_attack = ClapTrap::base_attack;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &inp)
+ClapTrap::ClapTrap(const ClapTrap &rhs)
 {
 #ifdef MSG
 	std::cout << "Called\tClapTrap Copy Constructor on:\t" << this
-			  << "\nCopied from: " << inp.get_name() << " Located at: " << &inp
+			  << "\nCopied from: " << rhs.get_name() << " Located at: " << &rhs
 			  << std::endl;
 #endif
-	if (this != &inp)
+	if (this != &rhs)
 	{
-		_name = inp.get_name();
-		_health = inp.get_health();
-		_energy = inp.get_energy();
-		_attack = inp.get_attack();
+		_name = rhs.get_name();
+		_health = rhs.get_health();
+		_energy = rhs.get_energy();
+		_attack = rhs.get_attack();
 	}
 }
 
-ClapTrap &ClapTrap::operator=(const ClapTrap &inp)
+ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 {
 #ifdef MSG
-	std::cout << "Called\tClapTrap Copy Assignment operator:" << inp._name
+	std::cout << "Called\tClapTrap Copy Assignment operator:" << rhs._name
 			  << "\tLocated at: " << this << std::endl;
 #endif
-	if (this != &inp)
+	if (this != &rhs)
 	{
-		_name = inp.get_name();
-		_health = inp.get_health();
-		_energy = inp.get_energy();
-		_attack = inp.get_attack();
+		_name = rhs.get_name();
+		_health = rhs.get_health();
+		_energy = rhs.get_energy();
+		_attack = rhs.get_attack();
 	}
 	return (*this);
 }

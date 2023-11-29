@@ -25,16 +25,32 @@ FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 	_attack = FragTrap::base_attack;
 }
 
-FragTrap::FragTrap(const FragTrap &inp) : ClapTrap(inp.get_name())
+FragTrap::FragTrap(const FragTrap &rhs) : ClapTrap(rhs.get_name())
 {
 #ifdef MSG
 	std::cout << "Called\tFragTrap Copy Constructor on:\t" << this
-			  << "\nCopied from: " << inp.get_name() << " Located at: " << &inp
+			  << "\nCopied from: " << rhs.get_name() << " Located at: " << &rhs
 			  << std::endl;
 #endif
-	_health = inp.get_health();
-	_energy = inp.get_energy();
-	_attack = inp.get_attack();
+	_health = rhs.get_health();
+	_energy = rhs.get_energy();
+	_attack = rhs.get_attack();
+}
+
+FragTrap &FragTrap::operator=(const FragTrap &rhs)
+{
+#ifdef MSG
+	std::cout << "Called\tFragTrap Copy Assignment operator:" << rhs._name
+			  << "\tLocated at: " << this << std::endl;
+#endif
+	if (this != &rhs)
+	{
+		_name = rhs.get_name();
+		_health = rhs.get_health();
+		_energy = rhs.get_energy();
+		_attack = rhs.get_attack();
+	}
+	return (*this);
 }
 
 FragTrap::~FragTrap()
@@ -43,22 +59,6 @@ FragTrap::~FragTrap()
 	std::cout << "Called\tFragTrap Destructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
-}
-
-FragTrap &FragTrap::operator=(const FragTrap &inp)
-{
-#ifdef MSG
-	std::cout << "Called\tFragTrap Copy Assignment operator:" << inp._name
-			  << "\tLocated at: " << this << std::endl;
-#endif
-	if (this != &inp)
-	{
-		_name = inp.get_name();
-		_health = inp.get_health();
-		_energy = inp.get_energy();
-		_attack = inp.get_attack();
-	}
-	return (*this);
 }
 
 void FragTrap::highFivesGuys(void)
