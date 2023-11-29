@@ -12,6 +12,9 @@ DiamondTrap::DiamondTrap() : ClapTrap("DiamondTrap_clap_name")
 	std::cout << "Called\tDiamTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
+	_health = FragTrap::base_health;
+	_energy = ScavTrap::base_energy;
+	_attack = FragTrap::base_attack;
 }
 
 DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name")
@@ -20,33 +23,35 @@ DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name")
 	std::cout << "Called\tDiamTrap Constructor:\tname\t" << ScavTrap::get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
+	_health = FragTrap::base_health;
+	_energy = ScavTrap::base_energy;
+	_attack = FragTrap::base_attack;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &inp)
-	: ScavTrap(inp.ScavTrap::get_name() + "_clap_name")
+DiamondTrap::DiamondTrap(const DiamondTrap &rhs) : ClapTrap(rhs.get_name())
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Copy Constructor on:\t" << this
-			  << "\nCopied from: " << inp.ScavTrap::get_name()
-			  << " Located at: " << &inp << std::endl;
+			  << "\nCopied from: " << rhs.ScavTrap::get_name()
+			  << " Located at: " << &rhs << std::endl;
 #endif
-	ScavTrap::_health = inp.ScavTrap::get_health();
-	ScavTrap::_energy = inp.ScavTrap::get_energy();
-	ScavTrap::_attack = inp.ScavTrap::get_attack();
+	_health = rhs.get_health();
+	_energy = rhs.get_energy();
+	_attack = rhs.get_attack();
 }
 
-DiamondTrap &DiamondTrap::operator=(const DiamondTrap &inp)
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Copy Assignment operator:"
-			  << inp.ScavTrap::_name << "\tLocated at: " << this << std::endl;
+			  << rhs.ScavTrap::_name << "\tLocated at: " << this << std::endl;
 #endif
-	if (this != &inp)
+	if (this != &rhs)
 	{
-		ScavTrap::_name = inp.ScavTrap::get_name() + "_clap_name";
-		ScavTrap::_health = inp.ScavTrap::get_health();
-		ScavTrap::_energy = inp.ScavTrap::get_energy();
-		ScavTrap::_attack = inp.ScavTrap::get_attack();
+		_name = rhs.get_name() + "_clap_name";
+		_health = rhs.get_health();
+		_energy = rhs.get_energy();
+		_attack = rhs.get_attack();
 	}
 	return (*this);
 }

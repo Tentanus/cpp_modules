@@ -3,9 +3,7 @@
 
 #include <ClapTrap.hpp>
 
-ClapTrap::ClapTrap()
-	: _name("ClapTrap"), _health(CT_HEALTH), _energy(CT_ENERGY),
-	  _attack(CT_ATTACK)
+ClapTrap::ClapTrap() : _name("ClapTrap")
 {
 #ifdef MSG
 	std::cout << "Called\tClapTrap Constructor:\tDefault\t" << get_name()
@@ -13,8 +11,7 @@ ClapTrap::ClapTrap()
 #endif
 }
 
-ClapTrap::ClapTrap(const std::string &name)
-	: _name(name), _health(CT_HEALTH), _energy(CT_ENERGY), _attack(CT_ATTACK)
+ClapTrap::ClapTrap(const std::string &name) : _name(name)
 {
 #ifdef MSG
 	std::cout << "Called\tClapTrap Constructor:\tname\t" << get_name()

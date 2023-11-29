@@ -3,10 +3,6 @@
 
 #include <iostream>
 
-#define CT_HEALTH 10
-#define CT_ENERGY 10
-#define CT_ATTACK 5
-
 class ClapTrap
 {
   protected:
@@ -14,6 +10,10 @@ class ClapTrap
 	unsigned int _health;
 	unsigned int _energy;
 	unsigned int _attack;
+
+	static const unsigned int base_health = 10;
+	static const unsigned int base_energy = 10;
+	static const unsigned int base_attack = 0;
 
   public:
 	ClapTrap();

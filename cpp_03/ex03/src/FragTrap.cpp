@@ -9,9 +9,9 @@ FragTrap::FragTrap() : ClapTrap("FragTrap")
 	std::cout << "Called\tFragTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
-	_health = FT_HEALTH;
-	_energy = FT_ENERGY;
-	_attack = FT_ATTACK;
+	_health = FragTrap::base_health;
+	_energy = FragTrap::base_energy;
+	_attack = FragTrap::base_attack;
 }
 
 FragTrap::FragTrap(const std::string name) : ClapTrap(name)
@@ -20,9 +20,9 @@ FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 	std::cout << "Called\tFragTrap Constructor:\tname\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
-	_health = FT_HEALTH;
-	_energy = FT_ENERGY;
-	_attack = FT_ATTACK;
+	_health = FragTrap::base_health;
+	_energy = FragTrap::base_energy;
+	_attack = FragTrap::base_attack;
 }
 
 FragTrap::FragTrap(const FragTrap &inp) : ClapTrap(inp.get_name())

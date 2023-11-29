@@ -5,13 +5,14 @@
 
 #include <ClapTrap.hpp>
 
-#define FT_HEALTH 80
-#define FT_ENERGY 80
-#define FT_ATTACK 80
-
 // clang-format off
 class FragTrap : virtual public ClapTrap
 {
+  protected:
+	static const unsigned int base_health = 100;
+	static const unsigned int base_energy = 100;
+	static const unsigned int base_attack = 30;
+
   public:
 	FragTrap();
 	FragTrap(const FragTrap &inp);

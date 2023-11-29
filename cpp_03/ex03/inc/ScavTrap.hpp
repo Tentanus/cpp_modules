@@ -5,13 +5,14 @@
 
 #include <ClapTrap.hpp>
 
-#define ST_HEALTH 50
-#define ST_ENERGY 50
-#define ST_ATTACK 50
-
 // clang-format off
 class ScavTrap : virtual public ClapTrap
 {
+  protected:
+	static const unsigned int base_health = 100;
+	static const unsigned int base_energy = 50;
+	static const unsigned int base_attack = 20;
+
   public:
 	ScavTrap();
 	ScavTrap(const ScavTrap &inp);

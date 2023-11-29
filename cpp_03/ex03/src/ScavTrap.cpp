@@ -9,9 +9,9 @@ ScavTrap::ScavTrap() : ClapTrap("ScavTrap")
 	std::cout << "Called\tScavTrap Constructor:\tDefault\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
-	_health = ST_HEALTH;
-	_energy = ST_ENERGY;
-	_attack = ST_ATTACK;
+	_health = ScavTrap::base_health;
+	_energy = ScavTrap::base_energy;
+	_attack = ScavTrap::base_attack;
 }
 
 ScavTrap::ScavTrap(const std::string name) : ClapTrap(name)
@@ -20,9 +20,9 @@ ScavTrap::ScavTrap(const std::string name) : ClapTrap(name)
 	std::cout << "Called\tScavTrap Constructor:\tname\t" << get_name()
 			  << "\tLocated at: " << this << std::endl;
 #endif
-	_health = ST_HEALTH;
-	_energy = ST_ENERGY;
-	_attack = ST_ATTACK;
+	_health = ScavTrap::base_health;
+	_energy = ScavTrap::base_energy;
+	_attack = ScavTrap::base_attack;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &inp) : ClapTrap(inp.get_name())
