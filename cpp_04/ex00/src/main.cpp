@@ -8,18 +8,23 @@
 
 int main()
 {
+	Animal Zoink;
 	Dog Racky;
+	Cat Brokje;
+
 	WrongDog Hot;
-	Cat Robby;
+
+	std::cout << Zoink.get_type() << " Makes the sound: " << std::endl;
+	Zoink.MakeNoise();
 
 	std::cout << Racky.get_type() << " Makes the sound: " << std::endl;
 	Racky.MakeNoise();
 
+	std::cout << Brokje.get_type() << " Makes the sound: " << std::endl;
+	Brokje.MakeNoise();
+
 	std::cout << Hot.get_type() << " Makes the sound: " << std::endl;
 	Hot.MakeNoise();
-
-	std::cout << Robby.get_type() << " Makes the sound: " << std::endl;
-	Robby.MakeNoise();
 
 	return (0);
 }

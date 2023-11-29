@@ -39,5 +39,5 @@ WrongDog WrongDog::operator=(const WrongDog &rhs)
 
 void WrongDog::MakeNoise()
 {
-	std::cout << "BARK BARK" << std::endl;
+	std::cout << "BORK BORK" << std::endl;
 }

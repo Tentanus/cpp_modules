@@ -49,5 +49,5 @@ void WrongAnimal::set_type(std::string type)
 
 void WrongAnimal::MakeNoise()
 {
-	std::cout << "*WrongAnimal Noises" << std::endl;
+	std::cout << " * WrongAnimal Noises *" << std::endl;
 }
