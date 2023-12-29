@@ -42,7 +42,7 @@ CC			:=	c++
 CFL			:=	-Wall -Werror -Wextra -Wpedantic 
 
 ifndef NO98
-CFL			+=  -std=c++98
+CFL			+=  -std=c++17
 endif
 
 ifdef DEBUG
@@ -78,12 +78,12 @@ $(DIR_LIST):
 
 $(NAME): $(OBJ)
 	@echo ""
-	@echo "$(COMPILE) $(INCLUDE) $(CYAN)$(notdir $(OBJ))$(RESET) -o $(NAME)"
 	@$(COMPILE) $(INCLUDE) $(OBJ) -o $(NAME)
+	@echo "$(COMPILE) $(INCLUDE) $(CYAN)$(notdir $(OBJ))$(RESET) -o $(NAME)"
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
-	@echo "$(CYAN)COMPILE $(INFO_FL) $(notdir $(<:%.c=%))$(RESET)"
 	@$(COMPILE) $(INCLUDE) -MMD -o $@ -c $< 
+	@echo "$(CYAN)COMPILE $(INFO_FL) $(notdir $(<:%.c=%))$(RESET)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
