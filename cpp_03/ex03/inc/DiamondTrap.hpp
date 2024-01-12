@@ -9,6 +9,9 @@
 // clang-format off
 class DiamondTrap : public ScavTrap, public FragTrap
 {
+  private:
+	std::string name;
+
   public:
 	DiamondTrap();
 	DiamondTrap(const DiamondTrap &inp);

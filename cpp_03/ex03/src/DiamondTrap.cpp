@@ -6,7 +6,8 @@
 
 #include <DiamondTrap.hpp>
 
-DiamondTrap::DiamondTrap() : ClapTrap("DiamondTrap_clap_name")
+DiamondTrap::DiamondTrap()
+	: ClapTrap("ClapTrap_clap_name"), name("DiamondTrap_clap_name")
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Constructor:\tDefault\t" << get_name()
@@ -17,7 +18,8 @@ DiamondTrap::DiamondTrap() : ClapTrap("DiamondTrap_clap_name")
 	_attack = FragTrap::base_attack;
 }
 
-DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(const std::string name)
+	: ClapTrap(name + "_clap_name"), name(name)
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Constructor:\tname\t" << ScavTrap::get_name()
@@ -28,7 +30,8 @@ DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name")
 	_attack = FragTrap::base_attack;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &rhs) : ClapTrap(rhs.get_name())
+DiamondTrap::DiamondTrap(const DiamondTrap &rhs)
+	: ClapTrap(rhs.get_name() + "_clap_name"), name(rhs.get_name())
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Copy Constructor on:\t" << this
@@ -48,6 +51,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 #endif
 	if (this != &rhs)
 	{
+		name = rhs.get_name();
 		_name = rhs.get_name() + "_clap_name";
 		_health = rhs.get_health();
 		_energy = rhs.get_energy();
@@ -62,4 +66,10 @@ DiamondTrap::~DiamondTrap()
 	std::cout << "Called\tDiamTrap Destructor:\tDefault\t"
 			  << ScavTrap::get_name() << "\tLocated at: " << this << std::endl;
 #endif
+}
+
+void DiamondTrap::WhoamI()
+{
+	std::cout << "My name is: " << name << "\nClaptrap _name: " << get_name()
+			  << std::endl;
 }

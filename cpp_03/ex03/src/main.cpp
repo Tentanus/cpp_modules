@@ -41,7 +41,13 @@ int main()
 
 	std::cout << "\n";
 
+	DT_1.WhoamI();
+
+	std::cout << "\n";
+
 	DT_1.guardGate();
 	DT_1.highFivesGuys();
+
+	std::cout << "\n" << MSG_BORDER << "\n" << std::endl;
 	return (0);
 }
