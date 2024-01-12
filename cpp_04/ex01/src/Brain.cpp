@@ -54,9 +54,9 @@ void Brain::AddIdea(const std::string bulb)
 
 const std::string Brain::GetIdea(int index)
 {
-	if (index > 0 || _max_idea <= index)
+	if (index <= -1 || index >= _max_idea)
 	{
-		std::cout << "This brain can't think that much" << std::endl;
+		std::cerr << "You've left the brain.";
 		return ("-- An awkward silence --");
 	}
 	return (_idea[index]);

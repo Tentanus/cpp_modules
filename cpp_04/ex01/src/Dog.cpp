@@ -56,3 +56,8 @@ void Dog::AddIdea(const std::string idea)
 {
 	_brain->AddIdea(idea);
 }
+
+const std::string Dog::readBrain(int index)
+{
+	return (_brain->GetIdea(index));
+}

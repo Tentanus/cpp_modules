@@ -2,7 +2,6 @@
 #define CAT_HPP
 
 #include <Animal.hpp>
-#include <Brain.hpp>
 
 class Cat : public Animal
 {
@@ -18,6 +17,7 @@ class Cat : public Animal
 
 	void MakeNoise();
 	void AddIdea(const std::string idea);
+	const std::string readBrain(int index);
 };
 
 #endif // !CAT_HPP

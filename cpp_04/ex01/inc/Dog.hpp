@@ -17,6 +17,7 @@ class Dog : public Animal
 
 	void MakeNoise();
 	void AddIdea(const std::string idea);
+	const std::string readBrain(int index);
 };
 
 #endif //! DOG_HPP

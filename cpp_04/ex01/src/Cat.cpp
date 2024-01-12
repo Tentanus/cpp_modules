@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 
-#include <Brain.hpp>
 #include <Cat.hpp>
 
 Cat::Cat() : Animal()
@@ -56,4 +55,9 @@ void Cat::MakeNoise()
 void Cat::AddIdea(const std::string idea)
 {
 	_brain->AddIdea(idea);
+}
+
+const std::string Cat::readBrain(int index)
+{
+	return (_brain->GetIdea(index));
 }
