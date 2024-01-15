@@ -27,16 +27,6 @@ AAnimal::~AAnimal()
 #endif
 }
 
-AAnimal AAnimal::operator=(AAnimal &rhs)
-{
-#ifdef MSG
-	std::cout << "Called\tAnimal\tCopy Assignment Operator" << std::endl;
-#endif
-	if (this != &rhs)
-		_type = rhs.get_type();
-	return (*this);
-}
-
 std::string AAnimal::get_type() const
 {
 	return (_type);

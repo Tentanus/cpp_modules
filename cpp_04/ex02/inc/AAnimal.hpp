@@ -7,7 +7,6 @@ class AAnimal
 {
   private:
 	AAnimal(const AAnimal &inp);
-	AAnimal operator=(AAnimal &inp);
 
   protected:
 	std::string _type;

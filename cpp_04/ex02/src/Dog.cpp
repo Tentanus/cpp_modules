@@ -4,7 +4,7 @@
 
 #include <Dog.hpp>
 
-Dog::Dog() : Animal()
+Dog::Dog() : AAnimal()
 {
 #ifdef MSG
 	std::cout << "Called\tDog\tConstructor:\tDefault" << std::endl;
@@ -14,7 +14,7 @@ Dog::Dog() : Animal()
 	_brain = new Brain;
 }
 
-Dog::Dog(Dog &rhs) : Animal()
+Dog::Dog(Dog &rhs) : AAnimal()
 {
 #ifdef MSG
 	std::cout << "Called\tDog\tConstructor\tCopy" << std::endl;

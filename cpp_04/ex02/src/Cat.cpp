@@ -4,7 +4,7 @@
 
 #include <Cat.hpp>
 
-Cat::Cat() : Animal()
+Cat::Cat() : AAnimal()
 {
 #ifdef MSG
 	std::cout << "Called\tCat\tConstructor:\tDefault" << std::endl;
@@ -14,7 +14,7 @@ Cat::Cat() : Animal()
 	_brain = new Brain;
 }
 
-Cat::Cat(Cat &rhs) : Animal()
+Cat::Cat(Cat &rhs) : AAnimal()
 {
 #ifdef MSG
 	std::cout << "Called\tCat\tConstructor\tCopy" << std::endl;
