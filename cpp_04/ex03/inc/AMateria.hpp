@@ -1,6 +1,7 @@
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
 
+#include <iostream>
 #include <string>
 
 class ICharacter;
@@ -16,7 +17,7 @@ class AMateria
 	virtual ~AMateria();
 	AMateria &operator=(const AMateria &rhs);
 
-	std::string const &getType() const; // Returns the materia type
+	const std::string &getType() const; // Returns the materia type
 
 	virtual AMateria *clone() const = 0;
 	virtual void use(ICharacter &target);

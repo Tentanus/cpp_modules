@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	Animals
+NAME			:=	MyWorld
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
@@ -25,9 +25,9 @@ LIB_DIR			:=	lib
 SRC				:=	\
 					main.cpp		\
 					AMateria.cpp	\
-					ICharacter.cpp	\
+					Character.cpp	\
 					Ice.cpp			\
-					Cure.cpp		\
+					Cure.cpp
 
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
@@ -60,6 +60,7 @@ COMPILE			:=	$(CC) $(CFL)
 
 INFO_FL			:=											\
 $(if $(findstring -std=c++98,$(CFL)),c++98)					\
+$(if $(findstring -std=c++17,$(CFL)),c++17)					\
 $(if $(findstring -g,$(CFL)),-g)							\
 $(if $(findstring address,$(CFL)),addr)						\
 $(if $(findstring undefined,$(CFL)),undef)					\

@@ -1,21 +1,21 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include <string>
-
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
+
+#include <string>
 
 class Character : public ICharacter
 {
   private:
-	const std::string _name;
-	Materia _slots[4];
+	std::string _name;
+	AMateria *_slots[4];
 
   public:
 	Character(const std::string name);
 	Character(const Character &rhs);
-	~Character();
+	virtual ~Character();
 	Character &operator=(const Character &rhs);
 
 	std::string const &getName() const;
