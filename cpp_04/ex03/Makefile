@@ -23,11 +23,12 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					main.cpp		\
-					AMateria.cpp	\
-					Character.cpp	\
-					Ice.cpp			\
-					Cure.cpp
+					main.cpp			\
+					AMateria.cpp		\
+					Character.cpp		\
+					Cure.cpp			\
+					Ice.cpp				\
+					MateriaSource.cpp
 
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)

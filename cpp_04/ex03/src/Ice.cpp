@@ -7,28 +7,28 @@
 Ice::Ice() : AMateria("ice")
 {
 #ifdef MSG
-	std::cout << "Called\tIce\tConstructor:\tNamed" << std::endl;
+	std::cout << "Called\tIce\t\tConstructor:\tNamed" << std::endl;
 #endif
 }
 
 Ice::Ice(const Ice &rhs) : AMateria(rhs.getType())
 {
 #ifdef MSG
-	std::cout << "Called\tIce\tConstructor:\tCopy" << std::endl;
+	std::cout << "Called\tIce\t\tConstructor:\tCopy" << std::endl;
 #endif
 }
 
 Ice::~Ice()
 {
 #ifdef MSG
-	std::cout << "Called\tIce\tDeconstructor" << std::endl;
+	std::cout << "Called\tIce\t\tDeconstructor" << std::endl;
 #endif
 }
 
 Ice &Ice::operator=(const Ice &rhs)
 {
 #ifdef MSG
-	std::cout << "Called\tIce\tCopy Assignment operator" << std::endl;
+	std::cout << "Called\tIce\t\tCopy Assignment operator" << std::endl;
 #endif
 
 	if (this == &rhs)

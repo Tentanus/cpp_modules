@@ -6,11 +6,13 @@
 
 #include <string>
 
+#define CHARACTERSLOT_MAX 4
+
 class Character : public ICharacter
 {
   private:
 	std::string _name;
-	AMateria *_slots[4];
+	AMateria *_slots[CHARACTERSLOT_MAX];
 
   public:
 	Character(const std::string name);

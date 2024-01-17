@@ -19,7 +19,7 @@ AMateria::AMateria(const AMateria &rhs) : _type(rhs.getType())
 AMateria::~AMateria()
 {
 #ifdef MSG
-	std::cout << "Called\tAMateria\tDestructor:\tNamed" << std::endl;
+	std::cout << "Called\tAMateria\tDeconstructor" << std::endl;
 #endif
 }
 

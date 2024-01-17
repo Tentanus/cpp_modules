@@ -8,28 +8,28 @@
 Cure::Cure() : AMateria("cure")
 {
 #ifdef MSG
-	std::cout << "Called\tCure\tConstructor:\tNamed" << std::endl;
+	std::cout << "Called\tCure\t\tConstructor:\tNamed" << std::endl;
 #endif
 }
 
 Cure::Cure(const Cure &rhs) : AMateria(rhs.getType())
 {
 #ifdef MSG
-	std::cout << "Called\tCure\tConstructor:\tCopy" << std::endl;
+	std::cout << "Called\tCure\t\tConstructor:\tCopy" << std::endl;
 #endif
 }
 
 Cure::~Cure()
 {
 #ifdef MSG
-	std::cout << "Called\tCure\tDestructor" << std::endl;
+	std::cout << "Called\tCure\t\tDestructor" << std::endl;
 #endif
 }
 
 Cure &Cure::operator=(const Cure &rhs)
 {
 #ifdef MSG
-	std::cout << "Called\tCure\tCopy Assignment operator" << std::endl;
+	std::cout << "Called\tCure\t\tCopy Assignment operator" << std::endl;
 #endif
 
 	if (this == &rhs)

@@ -7,6 +7,9 @@ Character::Character(const std::string name) : _name(name)
 #ifdef MSG
 	std::cout << "Called\tCharacter\tConstructor:\tNamed" << std::endl;
 #endif
+
+	for (size_t idx = 0; idx < CHARACTERSLOT_MAX; idx++)
+		_slots[idx] = NULL;
 }
 
 Character::Character(const Character &rhs) : _name(rhs.getName())
@@ -14,6 +17,9 @@ Character::Character(const Character &rhs) : _name(rhs.getName())
 #ifdef MSG
 	std::cout << "Called\tCharacter\tConstructor:\tCopy" << std::endl;
 #endif
+
+	for (size_t idx = 0; idx < CHARACTERSLOT_MAX; idx++)
+		_slots[idx] = rhs._slots[idx];
 }
 
 Character::~Character()
@@ -22,7 +28,7 @@ Character::~Character()
 	std::cout << "Called\tCharacter\tDestructor" << std::endl;
 #endif
 
-	for (size_t idx = 0; idx < 4; idx++)
+	for (size_t idx = 0; idx < CHARACTERSLOT_MAX; idx++)
 		if (_slots[idx])
 			delete _slots[idx];
 }
@@ -37,6 +43,10 @@ Character &Character::operator=(const Character &rhs)
 		return (*this);
 
 	_name = rhs.getName();
+	for (size_t idx = 0; idx < CHARACTERSLOT_MAX; idx++)
+		if (_slots[idx])
+			_slots[idx] = rhs._slots[idx];
+
 	return (*this);
 }
 
@@ -55,10 +65,10 @@ void Character::equip(AMateria *m)
 	}
 
 	size_t idx = 0;
-	while (_slots[idx] != NULL && idx < 4)
+	while (idx < CHARACTERSLOT_MAX && _slots[idx] != NULL)
 		idx++;
 
-	if (idx == 4)
+	if (idx == CHARACTERSLOT_MAX)
 	{
 		std::cout << getName()
 				  << " has no more slots and the Materia has evaporated."
@@ -72,7 +82,7 @@ void Character::equip(AMateria *m)
 
 void Character::unequip(int idx)
 {
-	if (idx < 0 || idx > 3)
+	if (idx < 0 || idx >= CHARACTERSLOT_MAX)
 	{
 		std::cout << getName() << " doesn't have this knowledge of Materia."
 				  << std::endl;
@@ -84,7 +94,7 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx < 0 || idx > 3 || _slots[idx] == NULL)
+	if (idx < 0 || idx >= CHARACTERSLOT_MAX || _slots[idx] == NULL)
 	{
 		std::cout << getName() << " doesn't have this knowledge of Materia."
 				  << std::endl;
