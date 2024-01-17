@@ -20,6 +20,9 @@ class ScavTrap : public ClapTrap
 
 	ScavTrap &operator=(const ScavTrap &inp);
 
+	virtual void 	status() const;
+	virtual void	attack(const std::string &target);
+
 	void	guardGate();
 };
 // clang-format on

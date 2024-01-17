@@ -21,6 +21,7 @@ class ScavTrap : virtual public ClapTrap
 
 	ScavTrap &operator=(const ScavTrap &inp);
 
+	void	attack(const std::string &target);
 	void	guardGate();
 };
 // clang-format on

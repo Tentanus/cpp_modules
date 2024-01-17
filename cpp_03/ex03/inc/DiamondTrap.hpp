@@ -19,7 +19,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 	~DiamondTrap();
 
 	DiamondTrap &operator=(const DiamondTrap &inp);
-
+	
     void    WhoamI();
 };
 // clang-format on

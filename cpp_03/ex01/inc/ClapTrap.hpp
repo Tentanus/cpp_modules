@@ -5,7 +5,7 @@
 
 #define CT_HEALTH 10
 #define CT_ENERGY 10
-#define CT_ATTACK 5
+#define CT_ATTACK 0
 
 class ClapTrap
 {
@@ -28,9 +28,10 @@ class ClapTrap
 	unsigned int get_energy() const;
 	unsigned int get_attack() const;
 
-	void status() const;
+	virtual void status() const;
 
-	void attack(const std::string &target);
+	virtual void attack(const std::string &target);
+
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 };

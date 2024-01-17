@@ -35,8 +35,8 @@ DiamondTrap::DiamondTrap(const DiamondTrap &rhs)
 {
 #ifdef MSG
 	std::cout << "Called\tDiamTrap Copy Constructor on:\t" << this
-			  << "\nCopied from: " << rhs.ScavTrap::get_name()
-			  << " Located at: " << &rhs << std::endl;
+			  << "\nCopied from: " << rhs.get_name() << " Located at: " << &rhs
+			  << std::endl;
 #endif
 	_health = rhs.get_health();
 	_energy = rhs.get_energy();
@@ -46,8 +46,8 @@ DiamondTrap::DiamondTrap(const DiamondTrap &rhs)
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 {
 #ifdef MSG
-	std::cout << "Called\tDiamTrap Copy Assignment operator:"
-			  << rhs.ScavTrap::_name << "\tLocated at: " << this << std::endl;
+	std::cout << "Called\tDiamTrap Copy Assignment operator:" << rhs._name
+			  << "\tLocated at: " << this << std::endl;
 #endif
 	if (this != &rhs)
 	{
@@ -63,8 +63,8 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &rhs)
 DiamondTrap::~DiamondTrap()
 {
 #ifdef MSG
-	std::cout << "Called\tDiamTrap Destructor:\tDefault\t"
-			  << ScavTrap::get_name() << "\tLocated at: " << this << std::endl;
+	std::cout << "Called\tDiamTrap Destructor:\tDefault\t" << get_name()
+			  << "\tLocated at: " << this << std::endl;
 #endif
 }
 

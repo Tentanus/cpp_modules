@@ -5,7 +5,7 @@
 
 #define CT_HEALTH 10
 #define CT_ENERGY 10
-#define CT_ATTACK 5
+#define CT_ATTACK 0
 
 class ClapTrap
 {
@@ -17,8 +17,8 @@ class ClapTrap
 
   public:
 	ClapTrap();
-	ClapTrap(std::string name);
-	ClapTrap(ClapTrap &inp);
+	ClapTrap(const std::string &name);
+	ClapTrap(const ClapTrap &inp);
 	ClapTrap &operator=(const ClapTrap &inp);
 	~ClapTrap();
 

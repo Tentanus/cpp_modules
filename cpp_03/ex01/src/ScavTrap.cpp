@@ -61,6 +61,26 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &inp)
 	return (*this);
 }
 
+void ScavTrap::status() const
+{
+	std::cout << "Scavtrap\tname:\t\t" << get_name() << "\n\t\thealth:\t\t"
+			  << get_health() << "\n\t\tenergy:\t\t" << get_energy()
+			  << "\n\t\tattack:\t\t" << get_attack() << std::endl;
+}
+
+void ScavTrap::attack(const std::string &target)
+{
+	if (_energy == 0)
+	{
+		std::cout << "ScavTrap " << get_name()
+				  << " is too tired and can't attack." << std::endl;
+		return;
+	}
+	std::cout << "ScavTrap " << get_name() << " attacks " << target << " for "
+			  << get_attack() << "." << std::endl;
+	_energy--;
+}
+
 void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << get_name() << " is now in mode_gatekeep"

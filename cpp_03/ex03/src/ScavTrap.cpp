@@ -61,6 +61,19 @@ ScavTrap::~ScavTrap()
 #endif
 }
 
+void ScavTrap::attack(const std::string &target)
+{
+	if (_energy == 0)
+	{
+		std::cout << "ClapTrap " << get_name()
+				  << " is too tired and can't attack." << std::endl;
+		return;
+	}
+	std::cout << "ClapTrap " << get_name() << " attacks " << target << " for "
+			  << get_attack() << "." << std::endl;
+	_energy--;
+}
+
 void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << get_name() << " is now in mode_gatekeep"
