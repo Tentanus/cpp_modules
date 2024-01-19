@@ -11,10 +11,10 @@
 int main()
 {
 	//  This will not Compile due to AAnimal being an Abstract Class
-	//	Animal *Zoink = new AAnimal;
+	//	AAnimal *Zoink = new AAnimal;
 
-	Dog *Brutus = new Dog;
-	Cat *Boris = new Cat;
+	AAnimal *Brutus = new Dog;
+	AAnimal *Boris = new Cat;
 
 	std::cout << "\n" << MSG_BORDER << "\n" << std::endl;
 
@@ -25,6 +25,8 @@ int main()
 
 	std::cout << "A cat goes: " << std::endl;
 	Boris->MakeNoise();
+
+	std::cout << "\n" << MSG_BORDER << "\n" << std::endl;
 
 	delete Brutus;
 	delete Boris;
