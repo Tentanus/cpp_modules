@@ -12,7 +12,7 @@ class Dog : public Animal
 
 	Dog operator=(const Dog &inp);
 
-	void MakeNoise();
+	void MakeNoise() const;
 };
 
 #endif //! DOG_HPP

@@ -14,12 +14,12 @@ class Animal
 
   public:
 	Animal();
-	~Animal();
+	virtual ~Animal();
 
 	std::string get_type() const;
 	void set_type(std::string type);
 
-	virtual void MakeNoise();
+	virtual void MakeNoise() const;
 };
 
 #endif // !ANIMAL_HPP

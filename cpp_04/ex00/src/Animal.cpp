@@ -47,7 +47,7 @@ void Animal::set_type(std::string type)
 	_type = type;
 }
 
-void Animal::MakeNoise()
+void Animal::MakeNoise() const
 {
 	std::cout << " * An uncanny gurgling noise * " << std::endl;
 }

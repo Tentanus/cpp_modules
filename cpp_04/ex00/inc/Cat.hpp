@@ -12,7 +12,7 @@ class Cat : public Animal
 
 	Cat operator=(const Cat &inp);
 
-	void MakeNoise();
+	void MakeNoise() const;
 };
 
 #endif // !CAT_HPP

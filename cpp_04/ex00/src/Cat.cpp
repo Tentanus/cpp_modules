@@ -37,7 +37,7 @@ Cat Cat::operator=(const Cat &rhs)
 	return (*this);
 }
 
-void Cat::MakeNoise()
+void Cat::MakeNoise() const
 {
 	std::cout << "Miaow Miaow" << std::endl;
 }
