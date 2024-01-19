@@ -16,17 +16,30 @@ int main()
 		Brok->AddIdea("OMG I'm in the park!!");
 		Brok->AddIdea("OMG I'm in the park!!");
 		Brok->AddIdea("OMG I'm in the park!!");
+
+		Dog *Brick = new Dog(*Brok);
+
 		for (size_t i = 0; i < 3; i++)
 		{
 			Brok->AddIdea("OMG My boss is trhowing the ball!!");
 			Brok->AddIdea("Get the ball!");
 			Brok->AddIdea("Bring ball back to boss!");
 		}
+
 		for (int i = -1; i < 15; i++)
-			std::cout << "Thought[" << i << "] : " << Brok->readBrain(i)
+			std::cout << "Brok's Thought [" << i << "] : " << Brok->readBrain(i)
 					  << std::endl;
+
+		for (int i = -1; i < 15; i++)
+			std::cout << "Brick's Thought [" << i
+					  << "] : " << Brick->readBrain(i) << std::endl;
+
+		delete Brick;
+		delete Brok;
 	}
+
 	std::cout << "\n\n" << MSG_BORDER << "\n" << std::endl;
+
 	{
 		Animal *playpen[10];
 

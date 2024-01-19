@@ -25,7 +25,7 @@ Character::Character(const Character &rhs) : _name(rhs.getName())
 Character::~Character()
 {
 #ifdef MSG
-	std::cout << "Called\tCharacter\tDestructor" << std::endl;
+	std::cout << "Called\tCharacter\tDeconstructor" << std::endl;
 #endif
 
 	for (size_t idx = 0; idx < CHARACTERSLOT_MAX; idx++)

@@ -22,7 +22,7 @@ Cure::Cure(const Cure &rhs) : AMateria(rhs.getType())
 Cure::~Cure()
 {
 #ifdef MSG
-	std::cout << "Called\tCure\t\tDestructor" << std::endl;
+	std::cout << "Called\tCure\t\tDeconstructor" << std::endl;
 #endif
 }
 
