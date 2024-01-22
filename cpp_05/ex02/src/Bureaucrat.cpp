@@ -2,7 +2,6 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-#include <exception>
 #include <iostream>
 #include <string>
 
@@ -45,7 +44,7 @@ void Bureaucrat::signForm(AForm &form)
 	catch (AForm::GradeTooLowException &e)
 	{
 		std::cout << "Bureaucrat: " << getName() << " couldn't sign form \""
-				  << form.getName() << "\", due to [" << e.what() << "]."
+				  << form.getName() << "\", due to " << e.what() << "."
 				  << std::endl;
 		return;
 	}

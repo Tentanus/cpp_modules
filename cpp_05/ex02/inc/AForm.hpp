@@ -48,6 +48,15 @@ class AForm
 			return (RED "Form Exception : Grade is too Low." NC);
 		};
 	};
+
+	class FormNotSignedException : public std::exception
+	{
+	  public:
+		virtual const char *what() const throw()
+		{
+			return (RED "Form Exception : Form Not Signed" NC);
+		};
+	};
 };
 
 std::ostream &operator<<(std::ostream &out, const AForm &bur);

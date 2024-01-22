@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	Bureaucrat	
+NAME			:=	Brasil.mp4	
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
@@ -23,9 +23,12 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					main.cpp		\
-					Bureaucrat.cpp	\
-					AForm.cpp
+					main.cpp					\
+					AForm.cpp					\
+					Bureaucrat.cpp				\
+					PresidentialPardonForm.cpp 	\
+					RobotomyRequestForm.cpp 	\
+					ShrubberyCreationForm.cpp
 
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)

@@ -5,13 +5,12 @@
 
 #define MSG_BORDER "-----------------------------------------------"
 
-bool t_constructors(Bureaucrat **B1, Bureaucrat **B2, AForm **F1)
+bool t_constructors(Bureaucrat **B1, Bureaucrat **B2)
 {
 	try
 	{
 		*B1 = new Bureaucrat("Jimmy", 40);
 		*B2 = new Bureaucrat("James", 80);
-		*F1 = new AForm("Garbage License", 75, 50);
 	}
 	catch (std::exception &e)
 	{
@@ -22,12 +21,10 @@ bool t_constructors(Bureaucrat **B1, Bureaucrat **B2, AForm **F1)
 	return (true);
 }
 
-bool t_signing(Bureaucrat &B1, Bureaucrat &B2, AForm &F1)
+bool t_signing(Bureaucrat &B1, Bureaucrat &B2)
 {
-	B2.signForm(F1);
-
-	B1.signForm(F1);
-	B1.signForm(F1);
+	(void)B1;
+	(void)B2;
 
 	return (true);
 }
@@ -36,9 +33,8 @@ int main()
 {
 	Bureaucrat *B1;
 	Bureaucrat *B2;
-	AForm *F1;
 
-	if (!t_constructors(&B1, &B2, &F1))
+	if (!t_constructors(&B1, &B2))
 		return (1);
 
 	std::cout << MSG_BORDER << std::endl;
@@ -46,11 +42,10 @@ int main()
 
 	std::cout << *B1 << std::endl;
 	std::cout << *B2 << std::endl;
-	std::cout << *F1 << std::endl;
 
 	std::cout << "\n" << MSG_BORDER << std::endl;
 
-	if (!t_signing(*B1, *B2, *F1))
+	if (!t_signing(*B1, *B2))
 		return (1);
 
 	return (0);

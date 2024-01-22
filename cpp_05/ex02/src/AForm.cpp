@@ -35,6 +35,18 @@ void AForm::beSigned(const Bureaucrat &bur)
 	_signed = true;
 }
 
+void AForm::execute(const Bureaucrat &bur)
+{
+	if (!isSigned())
+		throw AForm::FormNotSignedException();
+
+	std::cout << "Checking grades:\nBureaucrat\t[" << bur.getGrade() << "]\n"
+			  << "Form\t\t[" << getExecuteGrade() << "]" << std::endl;
+
+	if (bur.getGrade() > getExecuteGrade())
+		throw AForm::GradeTooLowException();
+}
+
 std::ostream &operator<<(std::ostream &out, const AForm &form)
 {
 	std::cout << "Form: " << form.getName() << "\nsigned ["
