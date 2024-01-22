@@ -1,31 +1,57 @@
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include <exception>
 
-int main()
+#define MSG_BORDER "-----------------------------------------------"
+
+bool t_constructors(Bureaucrat **B1, Bureaucrat **B2, Form **F1)
 {
 	try
 	{
-		Bureaucrat Burarray[4];
-		int numbers[4] = {1, 1, 150, 150};
-		// int numbers[4] = {0, 1, 150, 151};
-
-		for (size_t i = 0; i < 4; i++)
-			Burarray[i] = Bureaucrat("Bob", numbers[i]);
-
-		Burarray[1].decreaseGrade();
-		Burarray[2].increaseGrade();
-
-		for (size_t i = 0; i < 4; i++)
-			std::cout << Burarray[i] << std::endl;
-
-		// Burarray[3].decreaseGrade();
-		// Burarray[0].increaseGrade();
+		*B1 = new Bureaucrat("Jimmy", 40);
+		*B2 = new Bureaucrat("James", 80);
+		*F1 = new Form("Garbage License", 75, 50);
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
+		return (false);
 	}
+
+	return (true);
+}
+
+bool t_signing(Bureaucrat &B1, Bureaucrat &B2, Form &F1)
+{
+	B2.signForm(F1);
+
+	B1.signForm(F1);
+	B1.signForm(F1);
+
+	return (true);
+}
+
+int main()
+{
+	Bureaucrat *B1;
+	Bureaucrat *B2;
+	Form *F1;
+
+	if (!t_constructors(&B1, &B2, &F1))
+		return (1);
+
+	std::cout << MSG_BORDER << std::endl;
+	std::cout << "\nOUTPUT: \n";
+
+	std::cout << *B1 << std::endl;
+	std::cout << *B2 << std::endl;
+	std::cout << *F1 << std::endl;
+
+	std::cout << "\n" << MSG_BORDER << std::endl;
+
+	if (!t_signing(*B1, *B2, *F1))
+		return (1);
 
 	return (0);
 }

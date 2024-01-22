@@ -9,6 +9,8 @@
 
 //-------------------Class------------------//
 
+class Form;
+
 class Bureaucrat
 {
   private:
@@ -27,6 +29,8 @@ class Bureaucrat
 
 	void increaseGrade();
 	void decreaseGrade();
+
+	void signForm(Form &form);
 
 	class GradeTooHighException : public std::exception
 	{

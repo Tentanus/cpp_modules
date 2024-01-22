@@ -15,10 +15,10 @@ class Form
 	const int _grade_exec;
 	bool _signed;
 
-	Form();
 	Form &operator=(const Form &rhs); // Impossible, due to const values;
 
   public:
+	Form();
 	Form(std::string name, int grade_sign, int grade_exec);
 	Form(const Form &rhs);
 	~Form();

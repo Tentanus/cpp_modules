@@ -1,5 +1,6 @@
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #include <exception>
 #include <iostream>
@@ -29,15 +30,39 @@ void Bureaucrat::decreaseGrade()
 	_grade++;
 }
 
+void Bureaucrat::signForm(Form &form)
+{
+	if (form.isSigned())
+	{
+		std::cout << "Form: " << form.getName() << " was allready signed."
+				  << std::endl;
+		return;
+	}
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch (Form::GradeTooLowException &e)
+	{
+		std::cout << "Bureaucrat: " << getName() << " couldn't sign form \""
+				  << form.getName() << "\", due to [" << e.what() << "]."
+				  << std::endl;
+		return;
+	}
+	std::cout << "Bureaucrat: " << getName() << " signed form \""
+			  << form.getName() << "\"." << std::endl;
+}
+
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bur)
 {
-	std::cout << bur.getName() << ", Bureaucrat grade " << bur.getGrade();
+	std::cout << "Bureaucrat: " << bur.getName()
+			  << "\tgrade: " << bur.getGrade();
 	return (out);
 }
 
 //-------------------Orthodox Canonical Form-------------------//
 
-Bureaucrat::Bureaucrat() : _name(""), _grade(150)
+Bureaucrat::Bureaucrat() : _name(), _grade(150)
 {
 #ifdef MSG
 	std::cout << "Called\tBureaucrat\tConstructor:\tDefault" << std::endl;
