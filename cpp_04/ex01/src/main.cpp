@@ -41,18 +41,18 @@ int main()
 	std::cout << "\n\n" << MSG_BORDER << "\n" << std::endl;
 
 	{
-		Animal *playpen[10];
+		Animal *playpen[6];
 
-		for (size_t i = 0; i < 10; i += 2)
+		for (size_t i = 0; i < 6; i += 2)
 		{
 			playpen[i] = new Cat;
 			playpen[i + 1] = new Dog;
 		}
 
-		for (size_t i = 0; i < 10; i++)
+		for (size_t i = 0; i < 6; i++)
 			playpen[i]->MakeNoise();
 
-		for (size_t i = 0; i < 10; i++)
+		for (size_t i = 0; i < 6; i++)
 			delete playpen[i];
 	}
 

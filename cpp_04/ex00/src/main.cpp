@@ -50,7 +50,14 @@ int main()
 
 		std::cout << "\n" << MSG_BORDER << "\n" << std::endl;
 
+		std::cout << "|" << Wdog->get_type()
+				  << "| Makes the sound: " << std::endl;
 		Wdog->MakeNoise();
+
+		std::cout << "\n" << MSG_BORDER << "\n" << std::endl;
+
+		std::cout << "|" << Wanimal->get_type()
+				  << "| Makes the sound: " << std::endl;
 		Wanimal->MakeNoise();
 
 		std::cout << "\n" << MSG_BORDER << "\n" << std::endl;

@@ -83,7 +83,11 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 	}
 
 	if (idx == MATERIASOURCE_MAX)
+	{
+		std::cout << "MateriaSource does not contain this Materia."
+				  << std::endl;
 		return (NULL);
+	}
 
 	return (_slots[idx]->clone());
 }

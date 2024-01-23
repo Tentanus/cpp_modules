@@ -21,7 +21,7 @@ int main()
 
 	std::cout << "\n" << MSG_BORDER << "\n" << std::endl;
 
-	ICharacter *me = new Character("horry");
+	ICharacter *me = new Character("Horry Patter");
 
 	AMateria *tmp;
 	tmp = src->createMateria("ice");
