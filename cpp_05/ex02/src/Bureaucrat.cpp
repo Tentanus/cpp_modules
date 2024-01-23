@@ -43,7 +43,7 @@ void Bureaucrat::signForm(AForm &form)
 	}
 	catch (AForm::GradeTooLowException &e)
 	{
-		std::cout << "Bureaucrat: " << getName() << " couldn't sign form \""
+		std::cerr << "Bureaucrat: " << getName() << " couldn't sign form \""
 				  << form.getName() << "\", due to " << e.what() << "."
 				  << std::endl;
 		return;
@@ -64,14 +64,14 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &bur)
 Bureaucrat::Bureaucrat() : _name(), _grade(150)
 {
 #ifdef MSG
-	std::cout << "Called\tBureaucrat\tConstructor:\tDefault" << std::endl;
+	std::cout << "Called\tBureaucrat\t\tConstructor:\tDefault" << std::endl;
 #endif
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
 #ifdef MSG
-	std::cout << "Called\tBureaucrat\tConstructor:\tNamed" << std::endl;
+	std::cout << "Called\tBureaucrat\t\tConstructor:\tNamed" << std::endl;
 #endif
 
 	if (grade < 1)
@@ -85,14 +85,14 @@ Bureaucrat::Bureaucrat(const Bureaucrat &rhs)
 	: _name(rhs._name), _grade(rhs._grade)
 {
 #ifdef MSG
-	std::cout << "Called\tBureaucrat\tConstructor:\tCopy" << std::endl;
+	std::cout << "Called\tBureaucrat\t\tConstructor:\tCopy" << std::endl;
 #endif
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs)
 {
 #ifdef MSG
-	std::cout << "Called\tBureaucrat\tCopy Assignment operator" << std::endl;
+	std::cout << "Called\tBureaucrat\t\tCopy Assignment operator" << std::endl;
 #endif
 	if (this == &rhs)
 		return (*this);
@@ -106,6 +106,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs)
 Bureaucrat::~Bureaucrat()
 {
 #ifdef MSG
-	std::cout << "Called\tBureaucrat\tDeconstructor" << std::endl;
+	std::cout << "Called\tBureaucrat\t\tDeconstructor" << std::endl;
 #endif
 }

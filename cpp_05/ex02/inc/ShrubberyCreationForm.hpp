@@ -4,6 +4,8 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
+#include <fstream>
+#include <ios>
 #include <iostream>
 #include <string>
 
@@ -13,12 +15,13 @@
 class ShrubberyCreationForm : public AForm
 {
   private:
-	const std::string _target;
+	std::string _target;
 
   public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(const std::string target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &rhs);
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &rhs);
 	~ShrubberyCreationForm();
 
 	const std::string getTarget();

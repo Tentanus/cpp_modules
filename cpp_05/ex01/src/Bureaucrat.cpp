@@ -44,7 +44,7 @@ void Bureaucrat::signForm(Form &form)
 	}
 	catch (Form::GradeTooLowException &e)
 	{
-		std::cout << "Bureaucrat: " << getName() << " couldn't sign form \""
+		std::cerr << "Bureaucrat: " << getName() << " couldn't sign form \""
 				  << form.getName() << "\", due to [" << e.what() << "]."
 				  << std::endl;
 		return;

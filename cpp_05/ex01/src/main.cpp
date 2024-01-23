@@ -15,7 +15,7 @@ bool t_constructors(Bureaucrat **B1, Bureaucrat **B2, Form **F1)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		return (false);
 	}
 

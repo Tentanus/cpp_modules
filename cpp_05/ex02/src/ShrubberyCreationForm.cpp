@@ -59,6 +59,20 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &rhs)
 #endif
 }
 
+ShrubberyCreationForm &
+ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
+{
+#ifdef MSG
+	std::cout << "Called\tShrubberyCreationForm\tConstructor:\tCopy"
+			  << std::endl;
+#endif
+	if (this == &rhs)
+		return (*this);
+
+	_target = rhs._target;
+	return (*this);
+}
+
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 #ifdef MSG

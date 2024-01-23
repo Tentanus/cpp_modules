@@ -62,7 +62,7 @@ std::ostream &operator<<(std::ostream &out, const AForm &form)
 AForm::AForm() : _name(), _grade_sign(150), _grade_exec(150), _signed(false)
 {
 #ifdef MSG
-	std::cout << "Called\tForm\t\tConstructor:\tDefault" << std::endl;
+	std::cout << "Called\tForm\t\t\tConstructor:\tDefault" << std::endl;
 #endif
 }
 
@@ -71,7 +71,7 @@ AForm::AForm(std::string name, int grade_sign, int grade_exec)
 	  _signed(false)
 {
 #ifdef MSG
-	std::cout << "Called\tForm\t\tConstructor:\tNamed" << std::endl;
+	std::cout << "Called\tForm\t\t\tConstructor:\tNamed" << std::endl;
 #endif
 
 	if (grade_sign < 1 || grade_exec < 1)
@@ -85,23 +85,30 @@ AForm::AForm(const AForm &rhs)
 	  _grade_exec(rhs._grade_exec), _signed(rhs._signed)
 {
 #ifdef MSG
-	std::cout << "Called\tForm\t\tConstructor:\tCopy" << std::endl;
+	std::cout << "Called\tForm\t\t\tConstructor:\tCopy" << std::endl;
 #endif
 }
 
-/*
 AForm &AForm::operator=(const AForm &rhs)
 {
 #ifdef MSG
-	std::cout << "Called\tForm\tCopy Assignment operator" << std::endl;
+	std::cout << "Called\tForm\t\t\tCopy Assignment operator" << std::endl;
 #endif
-Not possible due to there being constants.
+
+	if (this == &rhs)
+		return (*this);
+
+	_name = rhs.getName();
+	_grade_sign = rhs.getSigningGrade();
+	_grade_exec = rhs.getExecuteGrade();
+	_signed = rhs.isSigned();
+
+	return (*this);
 }
-*/
 
 AForm::~AForm()
 {
 #ifdef MSG
-	std::cout << "Called\tForm\t\tDeconstructor" << std::endl;
+	std::cout << "Called\tForm\t\t\tDeconstructor" << std::endl;
 #endif
 }
