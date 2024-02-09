@@ -1,13 +1,9 @@
 
 #include "ScalarConverter.hpp"
 
-void ScalarConverter::convert(const std::string str)
+void ScalarConverter::convert(const std::string &str)
 {
-	(void)str;
-}
-
-void ScalarConverter::printEmpty(void)
-{
+	(void) str;	
 }
 
 //-------------------Orthodox Canonical Form-------------------//
