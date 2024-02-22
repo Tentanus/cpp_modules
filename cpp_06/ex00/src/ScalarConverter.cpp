@@ -2,23 +2,69 @@
 #include "ScalarConverter.hpp"
 #include <cctype>
 
-void ScalarConverter::convert(const std::string &str)
+//-------------------Static Fucntion-------------------//
+
+static bool stris(std::string str, int (*f)(int))
 {
-	type_id str_id = detectID(str);
+	for (std::string::iterator i = str.begin(); i < str.end(); i++)
+		if (!f(*i))
+			return (false);
+	return (true);
 }
 
-//-------------------Private Member Fucntion-------------------//
-
-ScalarConverter::type_id ScalarConverter::detectID(std::string str)
+static type_id detectID(std::string str)
 {
-	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")	
+	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
 		return (DOUBLE);
-	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")	
+	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
 		return (FLOAT);
 	if (str[0] == '-' || str[0] == '+')
 		str = str.substr(1);
-	if (std::isdigit(str.c_str()))
-} 
+	if (!str.empty() && stris(str, std::isdigit) == true)
+		return (INT);
+	if (str.find('.') == std::string::npos || str.find('.') != str.rfind('.'))
+		return (IMPOSSIBLE);
+	size_t pos = str.find('.');
+	if (stris(str.substr(0, pos), std::isdigit) &&
+		stris(str.substr(pos + 1, str.length() - pos - 1), std::isdigit))
+		return (DOUBLE);
+	if (str[str.length() - 1] == 'f' &&
+		stris(str.substr(0, pos), std::isdigit) &&
+		stris(str.substr(pos + 1, str.length() - pos - 2), std::isdigit))
+		return (FLOAT);
+	return (IMPOSSIBLE);
+}
+
+//-------------------Member Functions-------------------//
+
+void ScalarConverter::printImpossible(void)
+{
+}
+
+void ScalarConverter::convert(const std::string &str)
+{
+	type_id id = detectID(str);
+	printType(str);
+	(void)id;
+	/*
+	switch (id)
+		{
+		case CHAR:
+			break;
+		case INT:
+			break;
+		case FLOAT:
+			break;
+		case DOUBLE:
+			break;
+		case IMPOSSIBLE:
+			break;
+		default:
+			ScalarConverter::printType(str);
+			break;
+		}
+	*/
+}
 
 //-------------------Orthodox Canonical Form-------------------//
 
