@@ -17,6 +17,18 @@ class ScalarConverter
 	static void convert(const std::string &input);
 
 	private:
+
+	enum type_id {
+		CHAR,
+		INT,
+		FLOAT,
+		DOUBLE,
+		IMPOSSIBLE,
+		ERROR
+	};
+
+	type_id detectID(std::string str);
+
 	template <typename T>
 		
 	void printType(T t)
@@ -29,7 +41,26 @@ class ScalarConverter
 		printFloat(t);
 		std::cout << "Double:\t";
 		printDouble(t);
-		std::cout << std::endl;
+		std::cout << std::flush;
+	}
+
+	template <typename T> void printDouble(T t)
+	{
+		std::cout << static_cast<double>(t);
+		if (t - static_cast<double>(t) == 0)
+			std::cout << .0;
+
+		std::cout << "\n";
+	}
+
+	template <typename T> void printFloat(T t)
+	{
+		std::cout << static_cast<float>(t);
+		if (t - static_cast<float>(t) == 0)
+			std::cout << .0;
+		std::cout << 'f';
+
+		std::cout << "\n";
 	}
 
 	template <typename T> void printInt(T t)
@@ -50,6 +81,7 @@ class ScalarConverter
 			std::cout << "Non-printable";
 		else
 			std::cout << static_cast<char>(t);
+
 		std::cout << "\n";
 	}
 };
