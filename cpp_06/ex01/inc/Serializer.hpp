@@ -2,7 +2,6 @@
 #define SERIALIZER_HPP
 
 #include <cstdint>
-#include <cstddef>
 #include <iostream>
 #include "Data.hpp"
 

@@ -1,6 +1,5 @@
 #include "Data.hpp"
 #include "Serializer.hpp"
-#include <ratio>
 
 
 int main(void)
