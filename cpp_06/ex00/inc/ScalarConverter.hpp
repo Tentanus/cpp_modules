@@ -7,6 +7,7 @@
 #include <limits.h>
 #include <string>
 
+#define UCHAR_MIN 0
 enum type_id
 {
 	CHAR,
@@ -31,28 +32,12 @@ class ScalarConverter
 
 	static void convert(const std::string &input);
 
-  private:
-	// TODO: make sure class has only one static member function;
-	void printImpossible(void);
-	static void printType(const std::string &str)
-	{
-		std::cout << "Char:\t";
-		printChar(str[0]);
-		std::cout << "Int:\t";
-		printInt(std::strtol(str.c_str(), NULL, 10));
-		std::cout << "Float:\t";
-		printFloat(std::strtof(str.c_str(), NULL));
-		std::cout << "Double:\t";
-		printDouble(std::strtod(str.c_str(), NULL));
-		std::cout << std::flush;
-	}
-
 	template <typename T>
 	static void printDouble(T t)
 	{
 		std::cout << static_cast<double>(t);
-		if (t - static_cast<double>(t) == 0)
-			std::cout << .0;
+		if (static_cast<int>(t) - static_cast<double>(t) == 0)
+			std::cout << ".0";
 
 		std::cout << "\n";
 	}
@@ -61,8 +46,8 @@ class ScalarConverter
 	static void printFloat(T t)
 	{
 		std::cout << static_cast<float>(t);
-		if (t - static_cast<float>(t) == 0)
-			std::cout << .0;
+		if (static_cast<int>(t) - static_cast<float>(t) == 0)
+			std::cout << ".0";
 		std::cout << 'f';
 
 		std::cout << "\n";
@@ -72,7 +57,7 @@ class ScalarConverter
 	static void printInt(T t)
 	{
 		if (std::isnan(t) || t < INT_MIN || t > INT_MAX)
-			std::cout << "impossible";
+			std::cout << "Impossible";
 		else
 			std::cout << static_cast<int>(t);
 
@@ -82,15 +67,17 @@ class ScalarConverter
 	template <typename T>
 	static void printChar(T t)
 	{
-		if (std::isnan(t) || t < CHAR_MIN || t > CHAR_MAX)
-			std::cout << "impossible";
+		if (std::isnan(t) || static_cast<int>(t) < UCHAR_MIN || static_cast<int>(t) > CHAR_MAX)
+			std::cout << "Impossible";
 		else if (!isprint(t))
 			std::cout << "Non-printable";
 		else
-			std::cout << static_cast<char>(t);
+			std::cout << static_cast<char>(static_cast<int>(t));
 
 		std::cout << "\n";
 	}
+  private:
+	// TODO: make sure class has only one static member function;
 };
 
 #endif // !SCALARCONVERTER_HPP
