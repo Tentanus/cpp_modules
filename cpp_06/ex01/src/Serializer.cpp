@@ -1,5 +1,6 @@
 #include "Serializer.hpp"
 
+// clang-format off
 std::ostream &operator<<(std::ostream &os, const Data &ptr)
 {
 	std::cout << 	"Data:\n" <<
@@ -8,6 +9,7 @@ std::ostream &operator<<(std::ostream &os, const Data &ptr)
 					"y:\t" << ptr.y << "\n" << std::endl;
 	return (os);
 }
+// clang-format off
 
 uintptr_t Serializer::serialize(Data* ptr)
 {
