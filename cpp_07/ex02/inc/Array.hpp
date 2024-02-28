@@ -15,9 +15,19 @@ class Array
 	Array<T> &operator=(const Array &rhs);
 	~Array();
 
+	T &operator[](unsigned int size);
+	unsigned int getSize(void) const;
+	T getArray(unsigned int idx) const;
+
   private:
 	T *_array;
 	unsigned int _size;
+
+	class OutOfBoundsException : public std::exception
+	{
+	  public:
+		virtual const char *what() const throw();
+	};
 };
 
 template <typename T>
