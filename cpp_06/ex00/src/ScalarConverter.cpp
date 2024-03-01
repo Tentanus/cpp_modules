@@ -19,8 +19,7 @@ static type_id detectID(std::string str)
 	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
 		return (FLOAT);
 	if (str.length() == 1 &&
-		(stris(str, std::iscntrl) ||
-		 stris(str, std::isspace) ||
+		(stris(str, std::iscntrl) || stris(str, std::isspace) ||
 		 stris(str, std::isgraph)))
 		return (CHAR);
 	if (str[0] == '-' || str[0] == '+')
@@ -32,18 +31,19 @@ static type_id detectID(std::string str)
 	// std::cout << "str: " << str << std::endl;
 	size_t pos_dot = str.find('.');
 	if (stris(str.substr(0, pos_dot), std::isdigit) &&
-		stris(str.substr(pos_dot + 1, str.length() - pos_dot - 2), std::isdigit))
-		return (FLOAT);
+		stris(str.substr(pos_dot + 1, str.length() - pos_dot - 2),
+			  std::isdigit))
+		return (FLOAT); // TODO: DOUBLE [2.242] are seen as FLOAT
 	return (IMPOSSIBLE);
 }
 
 static void printImpossible(void)
 {
-		std::cout <<  "Char:\tImpossible\n";
-		std::cout <<   "Int:\tImpossible\n";
-		std::cout << "Float:\tImpossible\n";
-		std::cout <<"Double:\tImpossible\n";
-		std::cout << std::flush;
+	std::cout << "Char:\tImpossible\n";
+	std::cout << "Int:\tImpossible\n";
+	std::cout << "Float:\tImpossible\n";
+	std::cout << "Double:\tImpossible\n";
+	std::cout << std::flush;
 }
 
 static void printType(const std::string &str)
@@ -72,23 +72,23 @@ static void printSingleChar(const std::string &str)
 	std::cout << std::flush;
 }
 
-
 //-------------------Member Functions-------------------//
 
 void ScalarConverter::convert(const std::string &str)
 {
 	type_id id = detectID(str);
 	std::cout << id << "\t" << id_names[id] << std::endl;
-	switch (id) {
-		case(IMPOSSIBLE):
-			printImpossible();
-			break ;
-		case(CHAR):
-			printSingleChar(str);
-			break ;
-		default:
-			printType(str);
-			break ;
+	switch (id)
+	{
+	case (IMPOSSIBLE):
+		printImpossible();
+		break;
+	case (CHAR):
+		printSingleChar(str);
+		break;
+	default:
+		printType(str);
+		break;
 	}
 }
 
