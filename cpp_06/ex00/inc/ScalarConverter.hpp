@@ -67,7 +67,8 @@ class ScalarConverter
 	template <typename T>
 	static void printChar(T t)
 	{
-		if (std::isnan(t) || static_cast<int>(t) < UCHAR_MIN || static_cast<int>(t) > CHAR_MAX)
+		if (std::isnan(t) || static_cast<int>(t) < UCHAR_MIN ||
+			static_cast<int>(t) > CHAR_MAX)
 			std::cout << "Impossible";
 		else if (!isprint(t))
 			std::cout << "Non-printable";
@@ -76,8 +77,8 @@ class ScalarConverter
 
 		std::cout << "\n";
 	}
+
   private:
-	// TODO: make sure class has only one static member function;
 };
 
 #endif // !SCALARCONVERTER_HPP

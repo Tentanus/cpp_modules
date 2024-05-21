@@ -12,6 +12,17 @@ static bool stris(std::string str, int (*f)(int))
 	return (true);
 }
 
+static bool isFloat(std::string str)
+{
+	size_t pos_dot = str.find('.');
+
+	if (stris(str.substr(0, pos_dot), std::isdigit) &&
+		stris(str.substr(pos_dot + 1, str.length() - pos_dot - 2),
+			  std::isdigit))
+		return (true);
+	return (false);
+}
+
 static type_id detectID(std::string str)
 {
 	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
@@ -27,13 +38,13 @@ static type_id detectID(std::string str)
 	if (!str.empty() && stris(str, std::isdigit) == true)
 		return (INT);
 	if (str.find('f') == (str.length() - 1))
+	{
 		str = str.substr(0, str.length() - 1);
-	// std::cout << "str: " << str << std::endl;
-	size_t pos_dot = str.find('.');
-	if (stris(str.substr(0, pos_dot), std::isdigit) &&
-		stris(str.substr(pos_dot + 1, str.length() - pos_dot - 2),
-			  std::isdigit))
-		return (FLOAT); // TODO: DOUBLE [2.242] are seen as FLOAT
+		if (isFloat(str))
+			return (FLOAT);
+	}
+	else if (isFloat(str))
+		return (DOUBLE);
 	return (IMPOSSIBLE);
 }
 
@@ -77,7 +88,7 @@ static void printSingleChar(const std::string &str)
 void ScalarConverter::convert(const std::string &str)
 {
 	type_id id = detectID(str);
-	std::cout << id << "\t" << id_names[id] << std::endl;
+	//	std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
 	switch (id)
 	{
 	case (IMPOSSIBLE):
