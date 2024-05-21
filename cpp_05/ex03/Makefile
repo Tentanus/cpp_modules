@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	Brasil.mp4	
+NAME			:=	Brasil.exe	
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
