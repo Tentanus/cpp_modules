@@ -52,17 +52,16 @@ int main(void)
 	}
 
 	{
-		Array<int> test(numbers);
+		Array<int> deepcopy(numbers);
 
 		for (int i = 0; i < MAX_VAL; i++)
 			numbers[i] = rand() % 70;
 
 		std::cout << "numbers:\t" << numbers << std::endl;
-		std::cout << "test:\t" << test << std::endl;
+		std::cout << "deepcopy:\t" << deepcopy << std::endl;
 	}
 
-	/*
-	 * requires C++11
+/*		requires C++11
 		Array<std::string> strings(5);
 
 		for (int i = 0; i < 5; i++)
