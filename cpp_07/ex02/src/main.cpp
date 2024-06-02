@@ -1,5 +1,6 @@
 
 #include "Array.hpp"
+#include "Array.tpp"
 #include <stdlib.h>
 #include <string>
 #include <time.h>
