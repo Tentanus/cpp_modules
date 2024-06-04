@@ -5,6 +5,8 @@
 #include <string>
 #include <time.h>
 
+#define MSG_BORDER "-----------------------------------------------"
+
 #define MAX_VAL 10
 
 int main(void)
@@ -34,6 +36,9 @@ int main(void)
 
 	delete[] mirror;
 
+	std::cout << "\n" << MSG_BORDER << std::endl;
+	std::cout << "\tShow Out of bound Cases:\n" << std::endl;
+
 	try
 	{
 		numbers[-2] = 0;
@@ -52,6 +57,8 @@ int main(void)
 		std::cerr << e.what() << '\n';
 	}
 
+	std::cout << "\n" << MSG_BORDER << std::endl;
+	std::cout << "\tShow Deepcopies :\n" << std::endl;
 	{
 		Array<int> deepcopy(numbers);
 
@@ -62,13 +69,13 @@ int main(void)
 		std::cout << "deepcopy:\t" << deepcopy << std::endl;
 	}
 
-/*		requires C++11
-		Array<std::string> strings(5);
+	/*		requires C++11
+			Array<std::string> strings(5);
 
-		for (int i = 0; i < 5; i++)
-			strings[i] = "TEST_0" + std::to_string(i);
+			for (int i = 0; i < 5; i++)
+				strings[i] = "TEST_0" + std::to_string(i);
 
-		std::cout << "strings:\t" << strings << std::endl;
-	*/
+			std::cout << "strings:\t" << strings << std::endl;
+		*/
 	return 0;
 }

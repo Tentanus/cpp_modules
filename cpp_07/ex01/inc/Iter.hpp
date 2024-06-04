@@ -1,5 +1,5 @@
-#ifndef SWAP_HPP
-#define SWAP_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
 #include <iostream>
 
@@ -52,4 +52,4 @@ void iter(T *ptr, size_t n, T(f)(T))
 		ptr[i] = f(ptr[i]);
 	}
 }
-#endif // !SWAP_HPP
+#endif // !ITER_HPP
