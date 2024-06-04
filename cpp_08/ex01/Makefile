@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	span	
+NAME			:=	Span	
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
