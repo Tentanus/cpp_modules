@@ -19,7 +19,7 @@ enum type_id
 };
 
 const std::string id_names[ERROR] = {
-	"Character", "Integer", "Float", "Double", "Impossible",
+	"CHAR", "INT", "FLOAT", "DOUBLE", "IMPOSSIBLE",
 };
 
 class ScalarConverter
@@ -67,13 +67,14 @@ class ScalarConverter
 	template <typename T>
 	static void printChar(T t)
 	{
-		if (std::isnan(t) || static_cast<int>(t) < UCHAR_MIN ||
-			static_cast<int>(t) > CHAR_MAX)
+		char c = static_cast<char>(t);
+		if (std::isnan(t) || static_cast<char>(t) < UCHAR_MIN ||
+			static_cast<char>(t) > CHAR_MAX || c == '\0')
 			std::cout << "Impossible";
-		else if (!isprint(t))
+		else if (!isprint(static_cast<char>(t)))
 			std::cout << "Non-printable";
 		else
-			std::cout << static_cast<char>(static_cast<int>(t));
+			std::cout << c;
 
 		std::cout << "\n";
 	}

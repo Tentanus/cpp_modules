@@ -25,6 +25,8 @@ static bool isFloat(std::string str)
 
 static type_id detectID(std::string str)
 {
+	if (str.empty())
+		return (IMPOSSIBLE);
 	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
 		return (DOUBLE);
 	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
@@ -35,7 +37,7 @@ static type_id detectID(std::string str)
 		return (CHAR);
 	if (str[0] == '-' || str[0] == '+')
 		str = str.substr(1);
-	if (!str.empty() && stris(str, std::isdigit) == true)
+	if (stris(str, std::isdigit) == true)
 		return (INT);
 	if (str.find('f') == (str.length() - 1))
 	{
@@ -70,32 +72,16 @@ static void printType(const std::string &str)
 	std::cout << std::flush;
 }
 
-static void printSingleChar(const std::string &str)
-{
-	std::cout << "Char:\t";
-	ScalarConverter::printChar(str[0]);
-	std::cout << "Int:\t";
-	ScalarConverter::printInt(str[0]);
-	std::cout << "Float:\t";
-	ScalarConverter::printFloat(str[0]);
-	std::cout << "Double:\t";
-	ScalarConverter::printDouble(str[0]);
-	std::cout << std::flush;
-}
-
 //-------------------Member Functions-------------------//
 
 void ScalarConverter::convert(const std::string &str)
 {
 	type_id id = detectID(str);
-	//	std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
+	std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
 	switch (id)
 	{
 	case (IMPOSSIBLE):
 		printImpossible();
-		break;
-	case (CHAR):
-		printSingleChar(str);
 		break;
 	default:
 		printType(str);
