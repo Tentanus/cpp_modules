@@ -3,8 +3,9 @@
 
 int main(void)
 {
-	Span spn(4);
-	spn.addRange(3, 8, 2);
+	Span spn(5);
+
+	spn.addNumber(10000);
 	try
 	{
 		spn.addNumber(11);

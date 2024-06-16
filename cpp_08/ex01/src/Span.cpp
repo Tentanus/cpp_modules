@@ -5,14 +5,29 @@ void Span::addNumber(int value)
 	if (_size == _index)
 		throw SpanExceedSizeException(_size);
 #ifdef MSG
-	std::cout << "addNumber(" << std::to_string(value) << ")" << std::endl;
+	std::cout << "Span:\taddNumber(" << std::to_string(value) << ")"
+			  << std::endl;
 #endif
 	_set.emplace(value);
 	_index++;
 }
 
+void Span::addRange(const std::vector<int> &rhs)
+{
+#ifdef MSG
+	std::cout << "Span:\taddRange(Vector)" << std::endl;
+#endif
+	if (_index + rhs.size() > static_cast<size_t>(_index))
+		throw SpanExceedSizeException(_index + rhs.size());
+	_set.insert(rhs.begin(), rhs.end());
+}
+
 void Span::addRange(int start, int end, int step)
 {
+#ifdef MSG
+	std::cout << "Span:\taddRange(" << start << ", " << end << ", " << step
+			  << ")" << std::endl;
+#endif
 	for (int i = start; i < end; i += step)
 	{
 		try
@@ -23,6 +38,19 @@ void Span::addRange(int start, int end, int step)
 		{
 			break;
 		}
+	}
+}
+
+void Span::merge(const Span &rhs)
+{
+#ifdef MSG
+	std::cout << "Span:\tmerge()" << std::endl;
+#endif
+	if (_index + rhs._size > _index)
+		throw SpanExceedSizeException(_index + rhs._size);
+	for (int nbr : rhs._set)
+	{
+		_set.emplace(nbr);
 	}
 }
 
@@ -45,16 +73,17 @@ int Span::shortestSpan()
 	for (std::set<int>::iterator it = ++_set.begin();
 		 it != _set.end() && ret != 1; it++)
 	{
-
 		std::set<int>::iterator diff;
 		int tmp;
 		diff = --it;
 		it++;
 		tmp = *it - *diff;
-#ifdef MSG
-		std::cout << "\ndiff:\t" << std::to_string(*diff) << " "
-				  << std::to_string(*it) << "\t| " << std::to_string(tmp);
-#endif
+		/*
+		#ifdef MSG
+				std::cout << "\ndiff:\t" << std::to_string(*diff) << " "
+						  << std::to_string(*it) << "\t| " <<
+		std::to_string(tmp); #endif
+//		*/
 		if (tmp < ret)
 			ret = tmp;
 	}
