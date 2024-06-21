@@ -23,7 +23,9 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					main.cpp		\
+					BitcoinExchange.cpp	\
+					Date.cpp			\
+					main.cpp			\
 
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
@@ -41,7 +43,11 @@ CC				:=	c++
 CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++11
 
 ifdef DEBUG
-CFL				+=	-g -fstandalone-debug
+CFL				+=	-g #-fstandalone-debug
+endif
+
+ifndef NOTEST
+CFL				+=	-D TEST=1
 endif
 
 ifndef NOMSG
