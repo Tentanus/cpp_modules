@@ -47,6 +47,7 @@ Date::Date(const std::string inp)
 	endptr++;
 	_day = strtoul(endptr, NULL, 10);
 	endptr++;
+	// TODO: check date value;
 #ifdef TEST
 	std::cout << "Date double:\t" << _year << " " << _month << " " << _day
 			  << " " << std::endl;

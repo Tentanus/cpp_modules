@@ -24,7 +24,7 @@ class BitcoinExchange
 	BitcoinExchange &operator=(const BitcoinExchange &rhs);
 	~BitcoinExchange();
 
-	void takeInfile(std::ifstream input_fs);
+	void takeInfile(std::stringstream &ss, std::string filename);
 	// TODO: takeInfile
 	//		parse infile
 	//		print to std::cout

@@ -1,4 +1,32 @@
 #include "BitcoinExchange.hpp"
+#include <regex>
+#include <string>
+
+void BitcoinExchange::takeInfile(std::stringstream &ss, std::string filename)
+{
+#ifdef MSG
+	std::cout << "Called\tBitcoinExchange::takeInfile()" << std::endl;
+#endif
+	std::string line;
+	std::regex pattern(R"(^(\d{4}-\d{2}-\d{2})\s?\|\s?(\d+\.\d+|\d+)$)");
+	std::smatch match;
+
+	for (; std::getline(ss, line, '\n');)
+	{
+		if (std::regex_match(line, match, pattern) != true)
+		{
+			std::cerr << "error: " + filename + " contain faulty line \'"
+					  << line << "\'" << std::endl;
+			continue;
+		}
+
+		Date date(std::string(match[1].str()));
+		std::map<Date, double>::const_iterator it = _map.upper_bound(date);
+#ifdef TEST
+		std::cout << "BTCE::takeInfile" << date << std::endl;
+#endif
+	}
+}
 
 //-------------------Orthodox Canonical Form-------------------//
 
