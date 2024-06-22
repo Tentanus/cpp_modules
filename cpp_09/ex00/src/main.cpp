@@ -33,4 +33,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	BitcoinExchange btc(ss);
+	std::ifstream infile_fs(argv[2], std::ios_base::in);
+	std::stringstream infile_ss;
+	infile_ss << infile_fs.rdbuf();
+	btc.takeInfile(infile_ss, std::string(argv[2]));
 }
