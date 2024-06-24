@@ -47,7 +47,21 @@ Date::Date(const std::string inp)
 	endptr++;
 	_day = strtoul(endptr, NULL, 10);
 	endptr++;
-	// TODO: check date value;
+
+	if (_year < 1)
+		throw std::runtime_error("invalid date: " + inp);
+	if (_month > 12 || _month < 1)
+		throw std::runtime_error("invalid date: " + inp);
+
+	unsigned int days_in_month[12] = {31, 29, 31, 30, 31, 30,
+									  31, 31, 30, 31, 30, 31};
+	if (_day > days_in_month[_month - 1] || _day < 1)
+		throw std::runtime_error("invalid date: " + inp);
+
+	if (_month == 2 && _day > 28 &&
+		!(_year % 400 == 0 || (_year % 4 == 0 && _year % 100 != 0)))
+		throw std::runtime_error("invalid date no-leap: " + inp);
+
 #ifdef TEST
 	std::cout << "Date double:\t" << _year << " " << _month << " " << _day
 			  << " " << std::endl;
