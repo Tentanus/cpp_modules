@@ -15,7 +15,7 @@
 #=========  GENERAL VARIABLES:  =========#
 #========================================#
 
-NAME			:=	easyfind	
+NAME			:=	PmergeMe
 
 OBJ_DIR			:=	OBJ
 SRC_DIR			:=	src
@@ -23,6 +23,7 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
+					PmergeMe.cpp	\
 					main.cpp		\
 
 
@@ -42,6 +43,10 @@ CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++98
 
 ifdef DEBUG
 CFL				+=	-g -fstandalone-debug
+endif
+
+ifdef SHOW 
+CFL				+=	-D SHOW=1
 endif
 
 ifndef NOMSG
