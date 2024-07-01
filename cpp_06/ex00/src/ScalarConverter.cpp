@@ -77,7 +77,7 @@ static void printType(const std::string &str)
 void ScalarConverter::convert(const std::string &str)
 {
 	type_id id = detectID(str);
-	std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
+	// std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
 	switch (id)
 	{
 	case (IMPOSSIBLE):
@@ -90,6 +90,7 @@ void ScalarConverter::convert(const std::string &str)
 }
 
 //-------------------Orthodox Canonical Form-------------------//
+//		these are never used since the class is Abstract.
 
 ScalarConverter::ScalarConverter()
 {

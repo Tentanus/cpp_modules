@@ -4,7 +4,7 @@
 int main(void)
 {
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		std::cout << "\n";
 		sleep(1);

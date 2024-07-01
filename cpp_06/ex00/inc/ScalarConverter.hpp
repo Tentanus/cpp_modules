@@ -68,8 +68,8 @@ class ScalarConverter
 	static void printChar(T t)
 	{
 		char c = static_cast<char>(t);
-		if (std::isnan(t) || static_cast<char>(t) < UCHAR_MIN ||
-			static_cast<char>(t) > CHAR_MAX || c == '\0')
+		if (std::isnan(t) || static_cast<int>(t) < UCHAR_MIN ||
+			static_cast<int>(t) > CHAR_MAX || c == '\0')
 			std::cout << "Impossible";
 		else if (!isprint(static_cast<char>(t)))
 			std::cout << "Non-printable";

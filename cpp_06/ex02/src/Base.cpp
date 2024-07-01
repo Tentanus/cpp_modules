@@ -35,7 +35,8 @@ void Base::identify(Base *ptr)
 	else if (dynamic_cast<C *>(ptr))
 		std::cout << "identify: identied C class" << std::endl;
 	else
-		std::cout << "identify: unfamiliar class" << std::endl;
+		std::cout << "identify: unfamiliar class"
+				  << std::endl; // this could throw an exception
 }
 
 void Base::identify(Base &ref)
@@ -47,7 +48,8 @@ void Base::identify(Base &ref)
 	else if (dynamic_cast<C *>(&ref))
 		std::cout << "identify: identied C class" << std::endl;
 	else
-		std::cout << "identify: unfamiliar class" << std::endl;
+		std::cout << "identify: unfamiliar class"
+				  << std::endl; // this could throw an exception
 }
 
 Base::~Base()

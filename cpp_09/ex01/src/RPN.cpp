@@ -35,9 +35,9 @@ void RPN::add()
 {
 	if (getStackSize() < 2)
 		throw std::runtime_error("not enough values in stack to add");
-	int lhs = _stack.top();
-	_stack.pop();
 	int rhs = _stack.top();
+	_stack.pop();
+	int lhs = _stack.top();
 	_stack.pop();
 	lhs += rhs;
 	_stack.push(lhs);
@@ -47,21 +47,21 @@ void RPN::subtract()
 {
 	if (getStackSize() < 2)
 		throw std::runtime_error("not enough values in stack to subtract");
-	int lhs = _stack.top();
-	_stack.pop();
 	int rhs = _stack.top();
 	_stack.pop();
-	rhs -= lhs;
-	_stack.push(rhs);
+	int lhs = _stack.top();
+	_stack.pop();
+	lhs -= rhs;
+	_stack.push(lhs);
 }
 
 void RPN::multiply()
 {
 	if (getStackSize() < 2)
 		throw std::runtime_error("not enough values in stack to multiply");
-	int lhs = _stack.top();
-	_stack.pop();
 	int rhs = _stack.top();
+	_stack.pop();
+	int lhs = _stack.top();
 	_stack.pop();
 	lhs *= rhs;
 	_stack.push(lhs);
@@ -71,12 +71,14 @@ void RPN::divide()
 {
 	if (getStackSize() < 2)
 		throw std::runtime_error("not enough values in stack to divide");
-	int lhs = _stack.top();
-	_stack.pop();
 	int rhs = _stack.top();
 	_stack.pop();
-	rhs /= lhs;
-	_stack.push(rhs);
+	int lhs = _stack.top();
+	_stack.pop();
+	if (rhs == 0)
+		throw std::runtime_error("division by zero");
+	lhs /= rhs;
+	_stack.push(lhs);
 }
 
 //-------------------Orthodox Canonical Form-------------------//
