@@ -1,6 +1,7 @@
 
 #include "ScalarConverter.hpp"
 #include <cctype>
+#include <string>
 
 //-------------------Static Fucntion-------------------//
 
@@ -59,32 +60,45 @@ static void printImpossible(void)
 	std::cout << std::flush;
 }
 
-static void printType(const std::string &str)
+template <typename T>
+static void printType(T t)
 {
 	std::cout << "Char:\t";
-	ScalarConverter::printChar(std::strtol(str.c_str(), NULL, 10));
+	ScalarConverter::printChar(t);
 	std::cout << "Int:\t";
-	ScalarConverter::printInt(std::strtol(str.c_str(), NULL, 10));
+	ScalarConverter::printInt(t);
 	std::cout << "Float:\t";
-	ScalarConverter::printFloat(std::strtof(str.c_str(), NULL));
+	ScalarConverter::printFloat(t);
 	std::cout << "Double:\t";
-	ScalarConverter::printDouble(std::strtod(str.c_str(), NULL));
+	ScalarConverter::printDouble(t);
 	std::cout << std::flush;
 }
 
 //-------------------Member Functions-------------------//
 
-void ScalarConverter::convert(const std::string &str)
+void ScalarConverter::convert(const std::string str)
 {
 	type_id id = detectID(str);
 	// std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
 	switch (id)
 	{
-	case (IMPOSSIBLE):
+	case IMPOSSIBLE:
 		printImpossible();
 		break;
+	case CHAR:
+		printType(str[0]);
+		break;
+	case INT:
+		printType(std::stoi(str));
+		break;
+	case FLOAT:
+		printType(std::stof(str));
+		break;
+	case DOUBLE:
+		printType(std::stod(str));
+		break;
 	default:
-		printType(str);
+		std::cerr << "Error: Unknown type_id" << std::endl;
 		break;
 	}
 }
