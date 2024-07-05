@@ -1,53 +1,81 @@
 
+#include <arpa/inet.h>
+#include <cstddef>
 #include <cstdint>
 #include <cstdlib>
+#include <dirent.h>
+#include <errno.h>
 #include <filesystem>
 #include <iostream>
-#include <string>
-
-#include <errno.h>
+#include <netdb.h>
+#include <netinet/in.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-
-#include <dirent.h>
+#include <string>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 #include <tester.hpp>
+
+void printinfo(struct addrinfo *p)
+{
+	char ipstr[INET6_ADDRSTRLEN];
+	std::string ipver;
+	void *addr;
+
+	if (p->ai_family == AF_INET)
+	{ // IPv4
+		struct sockaddr_in *ipv4 = (struct sockaddr_in *)p->ai_addr;
+		addr = &(ipv4->sin_addr);
+		ipver = "IPv4";
+	}
+	else
+	{ // IPv6
+		struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr;
+		addr = &(ipv6->sin6_addr);
+		ipver = "IPv6";
+	}
+
+	// Convert the IP to a string and print it:
+	inet_ntop(p->ai_family, addr, ipstr, sizeof ipstr);
+	std::cout << "\t" << ipver << ":\t\t" << ipstr << "\n";
+
+	// Print the port number and protocol:
+	struct sockaddr_in *sa = (struct sockaddr_in *)p->ai_addr;
+	std::cout << "\tPort:\t\t" << ntohs(sa->sin_port) << "\n";
+
+	// Print the canonical name:
+	if (p->ai_canonname != NULL)
+		std::cout << "\tCanon Name:\t" << p->ai_canonname << "\n";
+	else
+		std::cout << "\tCanon Name:\t(none)\n";
+	std::cout << std::endl;
+}
 
 int main(int argc, char *argv[])
 {
 	(void)argc;
-	(void)argv;
 
-	std::string str1 = "src";
-	bool val = std::filesystem::is_directory(str1);
-	std::cout << "does " << str1 << " exist: " << (val ? "TRUE" : "FALSE")
-			  << std::endl;
+	struct addrinfo hints, *p;
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_INET; // AF_INET or AF_INET6 to force version
+	hints.ai_socktype = SOCK_STREAM;
 
-	std::string path = "./src";
-	DIR *dir = opendir(path.c_str());
-	struct dirent *dp;
-	std::filesystem::path pwd = std::filesystem::current_path();
+	struct addrinfo *res = NULL;
+	int ret;
 
-	while ((dp = readdir(dir)) != NULL)
+	if ((ret = getaddrinfo(argv[1], argv[2], &hints, &res)) != 0)
 	{
-		std::string path = pwd.string();
-		std::string filepath = path + "/src/" + dp->d_name;
-
-		struct stat filestat;
-		if (stat(filepath.c_str(), &filestat) == -1)
-		{
-			std::cout << "NO STAT\t" << filepath << "\t"
-					  << std::string(strerror(errno)) << "\n";
-			continue;
-		}
-		std::cout << std::to_string((intmax_t)filestat.st_size) << "\t"
-				  << sizeof(filestat.st_size) << "\t" << filepath << std::endl;
+		std::cerr << "getaddrinfo:\t" << gai_strerror(ret) << std::endl;
+		return (2);
 	}
+	for (p = res; p != NULL; p = p->ai_next)
+	{
+		printinfo(p);
+	}
+
+	freeaddrinfo(res);
 }
-
-// I don't get why i can't use stat to find the size wtf.
-
-// You can compare Vector::iterators originating from the same
-// vector
