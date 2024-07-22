@@ -32,10 +32,6 @@ static type_id detectID(std::string str)
 		return (DOUBLE);
 	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
 		return (FLOAT);
-	if (str.length() == 1 &&
-		(stris(str, std::iscntrl) || stris(str, std::isspace) ||
-		 stris(str, std::isgraph)))
-		return (CHAR);
 	if (str[0] == '-' || str[0] == '+')
 		str = str.substr(1);
 	if (stris(str, std::isdigit) == true)
@@ -84,9 +80,6 @@ void ScalarConverter::convert(const std::string str)
 	{
 	case IMPOSSIBLE:
 		printImpossible();
-		break;
-	case CHAR:
-		printType(str[0]);
 		break;
 	case INT:
 		printType(std::stoi(str));

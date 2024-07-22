@@ -10,7 +10,6 @@
 #define UCHAR_MIN 0
 enum type_id
 {
-	CHAR,
 	INT,
 	FLOAT,
 	DOUBLE,
@@ -19,7 +18,10 @@ enum type_id
 };
 
 const std::string id_names[ERROR] = {
-	"CHAR", "INT", "FLOAT", "DOUBLE", "IMPOSSIBLE",
+	"INT",
+	"FLOAT",
+	"DOUBLE",
+	"IMPOSSIBLE",
 };
 
 class ScalarConverter
