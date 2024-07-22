@@ -16,9 +16,10 @@ int main(void)
 		std::cout << "\n";
 	}
 
-	std::cout << "Checking NULL ptr";
+	std::cout << "Checking NULL ptr\n";
 	Base *ptr = NULL;
 	Base::identify(ptr);
+	Base::identify(*ptr);
 	std::cout << std::endl;
 
 	return (0);
