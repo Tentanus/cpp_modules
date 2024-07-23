@@ -13,6 +13,8 @@ void BitcoinExchange::takeInfile(std::stringstream &ss)
 	{
 		try
 		{
+			if (line.empty())
+				continue;
 			if (std::regex_match(line, match, pattern) != true)
 				throw std::runtime_error("contains faulty line \'" + line +
 										 "\'");
@@ -20,15 +22,16 @@ void BitcoinExchange::takeInfile(std::stringstream &ss)
 			Date date(std::string(match[1].str()));
 			double amount = std::strtod(match[2].str().c_str(), NULL);
 			if (amount < 0)
-				throw std::runtime_error("negative amount: " + match[2].str());
+				throw std::runtime_error("non-positive amount: " +
+										 match[2].str());
 			else if (amount > 1000)
-				throw std::runtime_error("zero amount: " + match[2].str());
+				throw std::runtime_error("too large a number: " +
+										 match[2].str());
 
 #ifdef TEST
 			std::cout << "BTCE::takeInfile\t" << date << " " << amount
 					  << std::endl;
 #endif
-
 			std::map<Date, double>::const_iterator it = _map.upper_bound(date);
 			if (it == _map.begin())
 				throw std::runtime_error("no data before " + date.getDate());
@@ -59,6 +62,9 @@ BitcoinExchange::BitcoinExchange(std::stringstream &ss)
 	{
 		try
 		{
+			line = line.substr(0, line.find_first_of('#'));
+			if (line.empty())
+				continue;
 			if (std::regex_match(line, pattern) != true)
 				throw std::runtime_error("data.csv contain faulty line \'" +
 										 line + "\'");

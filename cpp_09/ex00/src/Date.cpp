@@ -60,7 +60,7 @@ Date::Date(const std::string inp)
 
 	if (_month == 2 && _day > 28 &&
 		!(_year % 400 == 0 || (_year % 4 == 0 && _year % 100 != 0)))
-		throw std::runtime_error("invalid date no-leap: " + inp);
+		throw std::runtime_error("invalid date no-leap year: " + inp);
 
 #ifdef TEST
 	std::cout << "Date double:\t" << _year << " " << _month << " " << _day
