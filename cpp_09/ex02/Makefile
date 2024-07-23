@@ -39,7 +39,7 @@ DIR_LIST		:=	$(sort $(dir $(OBJ)))
 INCLUDE			:=	-I $(INC_DIR)
 
 CC				:=	c++
-CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++11
+CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++17
 
 ifdef DEBUG
 CFL				+=	-g -fstandalone-debug

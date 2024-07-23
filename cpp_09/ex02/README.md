@@ -12,38 +12,46 @@
 ## Understanding
 
 1. The list of numbers will be paired up The method for pairing is arbitrary.
-   (I chose: n, n + size/2). Leaving any unpaired number out
-2. The pairs will do swap their values if the first number is greater than the second number.
-3. This will be done recursively until the no more pairs can be made. Keep in mind swapping values will also influence the parent pairs.
-4.
+   (I chose: n, n + size/2). Leaving any unpaired number out.
+2. The pairs swap their values if the first number is greater than the second number.
+3. This will be done recursively until the no more pairs can be made.
+   Keep in mind swapping values will also influence the parent pairs.
+4. Now the biggest number will be at the end of the list and we can start the
+   binary-insertion sort. The order of which number is inserted are determined by
 
 ### Example
 
 ```plaintext
- 9 2 4 7 0 8 5 1 6        | 1
- 8 2 1 6   9 5 4 7        | 2
- |_|_|_|___| | | | swap
-   |_|_|_____| | |
-     |_|_______| | swap
-       |_________| swap
- 8 2 1 6  |9 5 4 7        | 3
- 1 2 8 6  |4 5 9 7        | 3.3
- |_|_| |   |_|_| | swap
-   |___|     |___|
- 2 1 6 8   5 4|7 9        | 3.3.3
- |_| |_|   |_| |_| swap
+9 2 4 7 10 8 5 1 6        | 1
+8 2 1 6    9 5 4 7        | 2
+|_|_|_|____| | | | swap
+  |_|_|______| | |
+    |_|________| | swap
+      |__________| swap
+8 2 1 6   |9 5 4 7        | 3
+1 2 8 6   |4 5 9 7        | 3.3
+|_|_| |    |_|_| | swap
+  |___|      |___|
+2 1 6 8    5 4|7 9        | 3.3.3
+|_| |_|    |_| |_| swap
                           | Recursion ends
- 2 1 6 8   5 4 7-9        | 3.3.4
- 2 1 6 8   5 4 7-9        |
- 2 1 6 8   5 4-7 9        |
- 2 1 6 8   4-5 7 9        |
- 2 1 6 8   4 5 7 9        |
- 2 1 6 8 0-4 5 7 9        |
- 1 6 8 0-2 4 5 7 9        |
- 1 8 0-2 4 5 6 7 9        |
- 8 0-1 2 4 5 6 7 9        |
- 0-1 2 4 5 6 7 8 9        |
- 0 1 2 4 5 6 7 8 9        |
+2 1 6 8    5 4 7-9        | 3.3.4
+2 1 6 8    5 4 7-9        |
+2 1 6 8    5 4-7 9        |
+2 1 6 8    4-5 7 9        |
+2 1 6 8    4 5 7 9        |
+2 1 6 8   -4 5 7 9        |
+1 6 8   -2 4 5 7 9        |
+	1 6 8   -[2 4 5]7 9        |
+	1 8   -[2 4 x]5 7 9        |
+	1 8   -[2 4]5 x 7 9        |
+
+	1 6 8   -[2 4]5 7 9        |
+	6 8   -[2 x 4 5]7 9        |
+1 8   -2 4 5 6 7 9        |
+8   -1 2 4 5 6 7 9        |
+10-1 2 4 5 6 7 8 9        |
+ 1 2 4 5 6 7 8 9 10       |
 
 legend:
   |    - List for current itteration
