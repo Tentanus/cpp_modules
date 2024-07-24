@@ -1,3 +1,8 @@
+#pragma once
+#ifndef MUTANTSTACK_TPP
+#define MUTANTSTACK_TPP
+
+#include "MutantStack.hpp"
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::begin()
@@ -23,5 +28,4 @@ typename MutantStack<T>::const_iterator MutantStack<T>::cend() const
 	return this->c.cend();
 }
 
-//-------------------Orthodox Canonical Form-------------------//
-
+#endif // !MUTANTSTACK_TPP
