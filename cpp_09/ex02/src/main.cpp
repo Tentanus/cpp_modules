@@ -1,6 +1,10 @@
 #include "PmergeMe.hpp"
+
 #include <chrono>
+#include <list>
 #include <ratio>
+#include <sys/types.h>
+#include <vector>
 
 template <typename Container>
 Container parse_arguments(int argc, char *argv[])
@@ -13,29 +17,58 @@ Container parse_arguments(int argc, char *argv[])
 	return numbers;
 }
 
-template <typename Container>
-void sort_container(size_t run, int argc, char *argv[])
+void print_overview(std::chrono::duration<double, std::micro> time_parse,
+					double ms, ssize_t times, std::string container)
 {
-	std::vector<std::chrono::duration<double, std::micro>> result;
+	std::cout << "Container:\t\t" << container << "\n";
+	std::cout << "Succesfull Runs:\t" << times << "\n";
+	std::cout << "Duration (μs):\n";
+	std::cout << "Parsing :\t\t" << std::to_string(time_parse.count()) << "\n";
+	std::cout << "Average :\t\t" << ms * 1000 / times << std::endl;
+	std::cout << std::endl;
+}
+
+template <typename Container>
+size_t estimate_time(double ms, Container numbers)
+{
+	std::chrono::time_point<std::chrono::steady_clock> time_start =
+		std::chrono::steady_clock::now();
+
+	PmergeMe<Container> pm(numbers);
+	pm.sort();
+
+	std::chrono::time_point<std::chrono::steady_clock> time_end =
+		std::chrono::steady_clock::now();
+
+	return std::chrono::duration_cast<std::chrono::microseconds>(time_end -
+																 time_start)
+		.count();
+}
+
+template <typename Container>
+void sort_container(double ms, int argc, char *argv[], std::string container)
+{
+	std::chrono::time_point<std::chrono::steady_clock> time_start =
+		std::chrono::steady_clock::now();
 	Container numbers = parse_arguments<Container>(argc, argv);
+	std::chrono::time_point<std::chrono::steady_clock> time_parse =
+		std::chrono::steady_clock::now();
+	std::chrono::duration<double> diff_parse = time_parse - time_start;
 
-	for (size_t i = 0; i < run; i++)
+	size_t estimate = estimate_time<Container>(ms, numbers);
+
+	size_t times = 0;
+	for (; times <= estimate; times++)
 	{
-		std::chrono::time_point<std::chrono::steady_clock> start =
-			std::chrono::steady_clock::now();
-
-		Container numbers_copy = numbers;
-		PmergeMe pm(numbers_copy);
+		PmergeMe<Container> pm(numbers);
 		pm.sort();
-
-		std::chrono::time_point<std::chrono::steady_clock> end =
-			std::chrono::steady_clock::now();
-
-		std::chrono::duration<double, std::micro> diff_us = end - start;
-		std::cout << "[" << i + 1 << "] : " << diff_us.count() << " μs"
-				  << std::endl;
-		result.push_back(diff_us);
 	}
+
+	std::chrono::time_point<std::chrono::steady_clock> time_end =
+		std::chrono::steady_clock::now();
+
+	result.push_back(diff);
+	print_overview(result.at(0), ms, times, container);
 }
 
 int main(int argc, char *argv[])
@@ -48,7 +81,7 @@ int main(int argc, char *argv[])
 	}
 	try
 	{
-		sort_container<std::vector<int>>(3, argc, argv);
+		sort_container<std::vector<int>>(10, argc, argv, "vector<int>");
 	}
 	catch (const std::exception &e)
 	{

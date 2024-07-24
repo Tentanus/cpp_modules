@@ -24,6 +24,7 @@ LIB_DIR			:=	lib
 
 SRC				:=	\
 					PmergeMe.cpp	\
+					Slice.cpp		\
 					main.cpp		\
 
 
@@ -39,7 +40,7 @@ DIR_LIST		:=	$(sort $(dir $(OBJ)))
 INCLUDE			:=	-I $(INC_DIR)
 
 CC				:=	c++
-CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++17
+CFL				:=	-Wall -Werror -Wextra -Wpedantic -std=c++20
 
 ifdef DEBUG
 CFL				+=	-g -fstandalone-debug
