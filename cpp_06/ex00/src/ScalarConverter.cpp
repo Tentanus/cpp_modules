@@ -26,8 +26,10 @@ static bool isFloat(std::string str)
 
 static type_id detectID(std::string str)
 {
-	if (str.empty())
+	if (str.empty() || str == ".f")
 		return (IMPOSSIBLE);
+	if (str.size() == 1)
+		return (CHAR);
 	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
 		return (DOUBLE);
 	if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
@@ -80,6 +82,9 @@ void ScalarConverter::convert(const std::string str)
 	{
 	case IMPOSSIBLE:
 		printImpossible();
+		break;
+	case CHAR:
+		printType(str[0]);
 		break;
 	case INT:
 		printType(std::stoi(str));

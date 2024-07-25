@@ -4,6 +4,8 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <exception>
+#include <stdexcept>
 
 Base *Base::generate(void)
 {
@@ -28,28 +30,40 @@ Base *Base::generate(void)
 
 void Base::identify(Base *ptr)
 {
-	if (dynamic_cast<A *>(ptr))
-		std::cout << "identify *: identied A class" << std::endl;
-	else if (dynamic_cast<B *>(ptr))
-		std::cout << "identify *: identied B class" << std::endl;
-	else if (dynamic_cast<C *>(ptr))
-		std::cout << "identify *: identied C class" << std::endl;
-	else
-		std::cout << "identify *: unfamiliar class"
-				  << std::endl; // this could throw an exception
+	try
+	{
+		if (dynamic_cast<A *>(ptr))
+			std::cout << "identify *: identied A class" << std::endl;
+		else if (dynamic_cast<B *>(ptr))
+			std::cout << "identify *: identied B class" << std::endl;
+		else if (dynamic_cast<C *>(ptr))
+			std::cout << "identify *: identied C class" << std::endl;
+		else
+			throw std::logic_error("identify *: unfamiliar class");
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	};
 }
 
 void Base::identify(Base &ref)
 {
-	if (dynamic_cast<A *>(&ref))
-		std::cout << "identify &: identied A class" << std::endl;
-	else if (dynamic_cast<B *>(&ref))
-		std::cout << "identify &: identied B class" << std::endl;
-	else if (dynamic_cast<C *>(&ref))
-		std::cout << "identify &: identied C class" << std::endl;
-	else
-		std::cout << "identify &: unfamiliar class"
-				  << std::endl; // this could throw an exception
+	try
+	{
+		if (dynamic_cast<A *>(&ref))
+			std::cout << "identify &: identied A class" << std::endl;
+		else if (dynamic_cast<B *>(&ref))
+			std::cout << "identify &: identied B class" << std::endl;
+		else if (dynamic_cast<C *>(&ref))
+			std::cout << "identify &: identied C class" << std::endl;
+		else
+			throw std::logic_error("identify &: unfamiliar class");
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	};
 }
 
 Base::~Base()
