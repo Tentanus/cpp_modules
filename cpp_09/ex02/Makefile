@@ -46,6 +46,11 @@ ifdef DEBUG
 CFL				+=	-g -fstandalone-debug
 endif
 
+ifdef VERB
+CFL				+=	-D VERB=1
+SHOW 			:=	1
+endif
+
 ifdef SHOW 
 CFL				+=	-D SHOW=1
 endif
@@ -67,6 +72,7 @@ $(if $(findstring -g,$(CFL)),-g)							\
 $(if $(findstring address,$(CFL)),addr)						\
 $(if $(findstring undefined,$(CFL)),undef)					\
 $(if $(findstring MSG,$(CFL)),msg)							\
+$(if $(findstring SHOW,$(CFL)),show)						\
 
 
 #========================================#
