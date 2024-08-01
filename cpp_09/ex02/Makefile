@@ -23,8 +23,6 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					PmergeMe.cpp	\
-					Slice.cpp		\
 					main.cpp		\
 
 
