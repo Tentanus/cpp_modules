@@ -1,8 +1,10 @@
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
+#include <cctype>
 #include <cmath>
 #include <cstdlib>
+#include <exception>
 #include <iostream>
 #include <limits.h>
 #include <string>

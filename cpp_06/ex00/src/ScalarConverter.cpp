@@ -1,7 +1,5 @@
 
 #include "ScalarConverter.hpp"
-#include <cctype>
-#include <string>
 
 //-------------------Static Fucntion-------------------//
 
@@ -78,26 +76,36 @@ void ScalarConverter::convert(const std::string str)
 {
 	type_id id = detectID(str);
 	// std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
-	switch (id)
+	try
 	{
-	case IMPOSSIBLE:
-		printImpossible();
-		break;
-	case CHAR:
-		printType(str[0]);
-		break;
-	case INT:
-		printType(std::stoi(str));
-		break;
-	case FLOAT:
-		printType(std::stof(str));
-		break;
-	case DOUBLE:
-		printType(std::stod(str));
-		break;
-	default:
-		std::cerr << "Error: Unknown type_id" << std::endl;
-		break;
+		switch (id)
+		{
+		case CHAR:
+			printType(str[0]);
+			break;
+		case INT:
+			printType(std::stoi(str));
+			break;
+		case FLOAT:
+			printType(std::stof(str));
+			break;
+		case DOUBLE:
+			printType(std::stod(str));
+			break;
+		default:
+			printImpossible();
+			break;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Char:\tImpossible\n";
+		std::cout << "Int:\tImpossible\n";
+		std::cout << "Float:\t";
+		ScalarConverter::printFloat(std::stof(str));
+		std::cout << "Double:\t";
+		ScalarConverter::printDouble(std::stod(str));
+		std::cout << std::flush;
 	}
 }
 
