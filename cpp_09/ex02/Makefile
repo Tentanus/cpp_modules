@@ -23,7 +23,8 @@ INC_DIR			:=	inc
 LIB_DIR			:=	lib
 
 SRC				:=	\
-					main.cpp		\
+					JacobSthalSequence.cpp		\
+					main.cpp					\
 
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)

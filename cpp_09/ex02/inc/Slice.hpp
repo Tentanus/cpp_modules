@@ -16,14 +16,20 @@ class Slice
 	size_t _start;
 	size_t _end;
 	size_t _size;
+	bool _spare;
 
-	value_type &operator[](size_t index);
 	Slice(Container &container);
 	Slice(Container &container, size_t start, size_t end);
 	~Slice();
 
-	Slice<Container> getSubSlice(size_t gap);
+	void erase(size_t idx);
+	void insert(size_t idx, typename Container::value_type val);
+
+	size_t getSpare();
 	size_t getSize();
+
+	Slice<Container> getSubSlice(size_t gap);
+	value_type &operator[](size_t index);
 };
 
 template <typename Container>

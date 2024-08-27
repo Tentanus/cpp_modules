@@ -1,31 +1,47 @@
+#include "JacobSthalSequence.hpp"
+#include "PmergeMe.hpp"
+
 #ifndef PMERGEME_TPP
 #define PMERGEME_TPP
 
-#include "PmergeMe.hpp"
-
 template <typename Container>
-void PmergeMe<Container>::swapped(size_t idx, size_t idx_pair)
+void PmergeMe<Container>::moved(size_t from, size_t to)
 {
-	swap(idx, idx_pair);
+	move(from, to);
 	if (_parent)
-		_parent->swapped(idx + _pair_gap, idx_pair + _pair_gap);
+		_parent->moved(from + _pair_gap, to + _pair_gap);
 }
 
 template <typename Container>
-void PmergeMe<Container>::swap(size_t idx, size_t idx_pair)
+void PmergeMe<Container>::move(size_t from, size_t to)
 {
-	size_t tmp = _numbers[idx];
-	_numbers[idx] = _numbers[idx_pair];
-	_numbers[idx_pair] = tmp;
+	if (from == to)
+		return;
+	if (from >= _numbers.getSize() || to >= _numbers.getSize())
+		return;
+
+#ifdef SHOW
+	std::cout << "MOVE PRE:\n" << *this << std::endl;
+#endif
+	typename Container::value_type tmp = _numbers[from];
+	_numbers.erase(from);
+	_numbers.insert(to + (from > to), tmp);
+	// Insert get corrected if from > to
+
+	// TODO: why is the _parent moved still required?
 	if (_parent)
-		_parent->swapped(idx, idx_pair);
+		_parent->moved(from, to);
+
+#ifdef SHOW
+	std::cout << "MOVE POST:\n" << *this << std::endl;
+#endif
 }
 
 template <typename Container>
 void PmergeMe<Container>::recursive_sort()
 {
 	Slice<Container> slice = _numbers.getSubSlice(_pair_gap);
-	PmergeMe<Container> child(slice);
+	PmergeMe<Container> child(slice, _layer);
 
 	if (child.getPairs() < 1)
 		return;
@@ -37,23 +53,55 @@ template <typename Container>
 void PmergeMe<Container>::sort()
 {
 #ifdef SHOW
-	std::cout << *this << std::endl;
+	std::cout << "SORT INIT:\n" << *this << std::endl;
 #endif
 	for (size_t i = 0; i < _pairs; i++)
 	{
 		if (_numbers[i] > _numbers[i + _pair_gap])
 			swap(i, i + _pair_gap);
 	}
-	recursive_sort();
+
 #ifdef SHOW
-	std::cout << *this << std::endl;
+	std::cout << "SORT SINGLE SORT:\n" << *this << std::endl;
 #endif
+
+	recursive_sort();
+
+#ifdef SHOW
+	std::cout << "SORT REC SORT:\n" << *this << std::endl;
+#endif
+
 	insertJacobSthal();
+#ifdef SHOW
+	std::cout << "SORT POST:\n" << *this << std::endl;
+#endif
 }
 
 template <typename Container>
-size_t PmergeMe<Container>::insertJacobSthal()
+void PmergeMe<Container>::swap(size_t idx, size_t idx_pair)
 {
+	size_t tmp = _numbers[idx];
+	_numbers[idx] = _numbers[idx_pair];
+	_numbers[idx_pair] = tmp;
+
+	if (_parent)
+		_parent->swapped(idx, idx_pair);
+}
+
+template <typename Container>
+void PmergeMe<Container>::swapped(size_t idx, size_t idx_pair)
+{
+#ifdef SHOW
+	std::cout << "SWAP PRE:\n" << *this << std::endl;
+#endif
+	swap(idx, idx_pair);
+
+	if (_parent)
+		_parent->swapped(idx + _pair_gap, idx_pair + _pair_gap);
+
+#ifdef SHOW
+	std::cout << "SWAP POST:\n" << *this << std::endl;
+#endif
 }
 
 //-------------------   Getters  -------------------//
@@ -69,7 +117,7 @@ size_t PmergeMe<Container>::getPairs()
 template <typename Container>
 std::ostream &operator<<(std::ostream &os, const PmergeMe<Container> &merge)
 {
-	os << "PmergeMe [" << &merge << "]:\n";
+	os << "  PmergeMe [" << merge._layer << "]:\t";
 	os << merge._numbers;
 #ifdef VERB
 	os << "pairs:  " << merge._pairs;
@@ -81,7 +129,7 @@ std::ostream &operator<<(std::ostream &os, const PmergeMe<Container> &merge)
 	else
 		os << "nullptr";
 #endif
-	os << std::endl;
+	//	os << std::endl;
 	return (os);
 }
 
@@ -90,8 +138,7 @@ std::ostream &operator<<(std::ostream &os, const PmergeMe<Container> &merge)
 template <typename Container>
 PmergeMe<Container>::PmergeMe(Container &numbers)
 	: _numbers(numbers), _pairs(numbers.size() / 2),
-	  _pair_gap((numbers.size() + 1) / 2), _spare(numbers.size() % 2 == 1),
-	  _parent(nullptr)
+	  _pair_gap((numbers.size() + 1) / 2), _parent(nullptr), _layer(0)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor [PMergeme]:\tContainer" << std::endl;
@@ -99,10 +146,10 @@ PmergeMe<Container>::PmergeMe(Container &numbers)
 };
 
 template <typename Container>
-PmergeMe<Container>::PmergeMe(Slice<Container> &numbers)
+PmergeMe<Container>::PmergeMe(Slice<Container> &numbers, size_t layer)
 	: _numbers(numbers), _pairs(numbers.getSize() / 2),
-	  _pair_gap((numbers.getSize() + 1) / 2),
-	  _spare(numbers.getSize() % 2 == 1), _parent(nullptr)
+	  _pair_gap((numbers.getSize() + 1) / 2), _parent(nullptr),
+	  _layer(layer + 1)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor [PMergeme]:\tSlice" << std::endl;

@@ -3,12 +3,30 @@
 
 #include "Slice.hpp"
 
+template <typename Container>
+void Slice<Container>::erase(size_t idx)
+{
+	_container.erase(_container.begin() + _start + idx);
+}
+
+template <typename Container>
+void Slice<Container>::insert(size_t idx, typename Container::value_type val)
+{
+	_container.insert(_container.begin() + _start + idx, val);
+}
+
 //-------------------   Getters  -------------------//
 
 template <typename Container>
 size_t Slice<Container>::getSize()
 {
 	return (_size);
+}
+
+template <typename Container>
+size_t Slice<Container>::getSpare()
+{
+	return (_spare);
 }
 
 //-------------------  Utilities -------------------//
@@ -31,12 +49,12 @@ std::ostream &operator<<(std::ostream &os, const Slice<Container> &slice)
 	{
 		os << *nbr << ", ";
 	}
-	os << std::endl;
 #ifdef VERB
 	os << "\t_start:\t" << slice._start;
 	os << "\n\t_end:\t" << slice._end;
 	os << "\n\t_size:\t" << slice._size << std::endl;
 #endif
+	//	os << std::endl;
 	return (os);
 }
 
@@ -51,7 +69,8 @@ Slice<Container>::operator[](size_t index)
 
 template <typename Container>
 Slice<Container>::Slice(Container &container)
-	: _container(container), _start(0), _end(container.size()), _size(_end)
+	: _container(container), _start(0), _end(container.size()), _size(_end),
+	  _spare(_size % 2)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor [Slice]:\tContainer" << std::endl;
@@ -60,7 +79,8 @@ Slice<Container>::Slice(Container &container)
 
 template <typename Container>
 Slice<Container>::Slice(Container &container, size_t start, size_t end)
-	: _container(container), _start(start), _end(end), _size(end - start)
+	: _container(container), _start(start), _end(end), _size(end - start),
+	  _spare(_size % 2)
 {
 #ifdef MSG
 	std::cout << "Called\tConstructor [Slice]:\tSubSlice" << std::endl;
