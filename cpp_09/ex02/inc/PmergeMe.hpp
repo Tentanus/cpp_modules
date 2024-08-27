@@ -23,10 +23,9 @@ class PmergeMe
 	size_t _pairs;
 	size_t _pair_gap;
 	PmergeMe *_parent;
-	size_t _layer;
 
 	PmergeMe(Container &numbers);
-	PmergeMe(Slice<Container> &numbers, size_t layer);
+	PmergeMe(Slice<Container> &numbers);
 	~PmergeMe();
 
 	void move(size_t from, size_t to);
@@ -40,7 +39,8 @@ class PmergeMe
 	size_t binary_search(typename Container::value_type value, size_t start,
 						 size_t end);
 
-	size_t getPairs();
+	size_t getPairs() const;
+	size_t getLayer() const;
 };
 
 template <typename Container>

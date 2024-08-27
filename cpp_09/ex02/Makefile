@@ -45,21 +45,32 @@ ifdef DEBUG
 CFL				+=	-g -fstandalone-debug
 endif
 
-ifdef VERB
-CFL				+=	-D VERB=1
-SHOW 			:=	1
-endif
-
-ifdef SHOW 
-CFL				+=	-D SHOW=1
-endif
-
 ifndef NOMSG
 CFL				+=	-D MSG=1
 endif
 
 ifdef FSAN
 CFL				+=	 -fsanitize=address,undefined
+endif
+
+#=============  SHOW TIME  ==============#
+
+ifdef VERB
+CFL				+=	-D VERB=1
+SHOW_ALL		:=	1
+endif
+
+ifdef SHOW_ALL
+SHOW			:=	1
+SHOW_OPP		:=	1
+endif
+
+ifdef SHOW
+CFL				+=	-D SHOW=1
+endif
+
+ifdef SHOW_OPP
+CFL				+= -D SHOW_OPP=1
 endif
 
 COMPILE			:=	$(CC) $(CFL)
