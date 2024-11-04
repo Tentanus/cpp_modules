@@ -11,12 +11,12 @@ static bool stris(std::string str, int (*f)(int))
 	return (true);
 }
 
-static bool isFloat(std::string str)
+static bool isDouble(std::string str)
 {
 	size_t pos_dot = str.find('.');
 
 	if (stris(str.substr(0, pos_dot), std::isdigit) &&
-		stris(str.substr(pos_dot + 1, str.length() - pos_dot - 2),
+		stris(str.substr(pos_dot + 1, str.length() - pos_dot - 1),
 			  std::isdigit))
 		return (true);
 	return (false);
@@ -25,8 +25,8 @@ static bool isFloat(std::string str)
 static type_id detectID(std::string str)
 {
 	if (str.empty() || str == ".f")
-		return (IMPOSSIBLE);
-	if (str.size() == 1)
+		return (ERROR);
+	if (str.size() == 1 && !(str[0] >= '0' && str[0] <= '9'))
 		return (CHAR);
 	if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
 		return (DOUBLE);
@@ -39,21 +39,12 @@ static type_id detectID(std::string str)
 	if (str.find('f') == (str.length() - 1))
 	{
 		str = str.substr(0, str.length() - 1);
-		if (isFloat(str))
+		if (isDouble(str))
 			return (FLOAT);
 	}
-	else if (isFloat(str))
+	else if (isDouble(str))
 		return (DOUBLE);
-	return (IMPOSSIBLE);
-}
-
-static void printImpossible(void)
-{
-	std::cout << "Char:\tImpossible\n";
-	std::cout << "Int:\tImpossible\n";
-	std::cout << "Float:\tImpossible\n";
-	std::cout << "Double:\tImpossible\n";
-	std::cout << std::flush;
+	return (ERROR);
 }
 
 template <typename T>
@@ -75,7 +66,7 @@ static void printType(T t)
 void ScalarConverter::convert(const std::string str)
 {
 	type_id id = detectID(str);
-	// std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
+	//	std::cout << id << "\t" << id_names[id] << "\n" << std::endl;
 	try
 	{
 		switch (id)
@@ -93,19 +84,14 @@ void ScalarConverter::convert(const std::string str)
 			printType(std::stod(str));
 			break;
 		default:
-			printImpossible();
+			throw std::invalid_argument("Invalid Argument");
 			break;
 		}
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Char:\tImpossible\n";
-		std::cout << "Int:\tImpossible\n";
-		std::cout << "Float:\t";
-		ScalarConverter::printFloat(std::stof(str));
-		std::cout << "Double:\t";
-		ScalarConverter::printDouble(std::stod(str));
-		std::cout << std::flush;
+		std::cerr << "Error: " << e.what() << std::endl;
+		std::cerr << "gorb muh => CHAR, INT, FLOAT, DOUBLE" << std::endl;
 	}
 }
 

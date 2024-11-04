@@ -7,6 +7,7 @@
 #include <exception>
 #include <iostream>
 #include <limits.h>
+#include <limits>
 #include <string>
 
 #define UCHAR_MIN 0
@@ -16,12 +17,11 @@ enum type_id
 	INT,
 	FLOAT,
 	DOUBLE,
-	IMPOSSIBLE,
 	ERROR
 };
 
-const std::string id_names[ERROR] = {
-	"CHAR", "INT", "FLOAT", "DOUBLE", "IMPOSSIBLE",
+const std::string id_names[ERROR + 1] = {
+	"CHAR", "INT", "FLOAT", "DOUBLE", "ERROR",
 };
 
 class ScalarConverter
@@ -63,10 +63,17 @@ class ScalarConverter
 	template <typename T>
 	static void printFloat(T t)
 	{
-		std::cout << static_cast<float>(t);
-		if (static_cast<int>(t) - static_cast<float>(t) == 0)
-			std::cout << ".0";
-		std::cout << 'f';
+		if ((t > static_cast<float>(MAXFLOAT) ||
+			 t < static_cast<float>(float(-MAXFLOAT))) &&
+			std::isinf(t) == 0)
+			std::cout << "Impossible";
+		else
+		{
+			std::cout << static_cast<float>(t);
+			if (static_cast<int>(t) - static_cast<float>(t) == 0)
+				std::cout << ".0";
+			std::cout << 'f';
+		}
 
 		std::cout << "\n";
 	}
