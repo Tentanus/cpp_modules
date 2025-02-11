@@ -90,8 +90,8 @@ void ScalarConverter::convert(const std::string str)
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
-		std::cerr << "gorb muh => CHAR, INT, FLOAT, DOUBLE" << std::endl;
+		std::cerr << "Error: " << e.what();
+		std::cerr << " [CHAR/INT/FLOAT/DOUBLE]" << std::endl;
 	}
 }
 
