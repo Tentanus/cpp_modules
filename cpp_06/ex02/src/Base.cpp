@@ -66,6 +66,32 @@ void Base::identify(Base &ref)
 	};
 }
 
+//-------------------Orthodox Canonical Form-------------------//
+
+Base::Base()
+{
+	#ifdef MSG
+		std::cout << "Called\tBase\tConstructor:\tDefault" << std::endl;
+	#endif
+}
+Base::Base(const Base &rhs)
+{
+	#ifdef MSG
+		std::cout << "Called\tBase\tConstructor:\tCopy" << std::endl;
+	#endif
+	(void)rhs;
+
+}
+
+Base &Base::operator=(const Base &rhs)
+{
+	#ifdef MSG
+		std::cout << "Called\tBase\tcopy Assignment Operator" << std::endl;
+	#endif
+	(void)rhs;
+	return (*this);
+}
+
 Base::~Base()
 {
 #ifdef MSG
