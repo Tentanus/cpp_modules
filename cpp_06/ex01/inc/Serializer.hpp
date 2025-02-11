@@ -2,6 +2,7 @@
 #define SERIALIZER_HPP
 
 #include "Data.hpp"
+
 #include <cstdint>
 #include <iostream>
 
@@ -18,5 +19,4 @@ class Serializer
 	Serializer &operator=(const Serializer &rhs);
 };
 
-std::ostream &operator<<(std::ostream &os, const Data &ptr);
 #endif // SERIALIZER_HPP

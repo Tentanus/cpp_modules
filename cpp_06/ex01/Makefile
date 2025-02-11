@@ -24,7 +24,8 @@ LIB_DIR			:=	lib
 
 SRC				:=	\
 					main.cpp		\
-					Serializer.cpp
+					Serializer.cpp	\
+					Data.cpp
 
 
 OBJ				:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
