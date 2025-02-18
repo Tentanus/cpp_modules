@@ -6,13 +6,13 @@
 template <typename Container>
 void Slice<Container>::erase(size_t idx)
 {
-	_container.erase(_container.begin() + _start + idx);
+	_container.erase(std::advance(_container.begin(), _start + idx));
 }
 
 template <typename Container>
 void Slice<Container>::insert(size_t idx, typename Container::value_type val)
 {
-	_container.insert(_container.begin() + _start + idx, val);
+	_container.insert(std::advance(_container.begin(), _start + idx), val);
 }
 
 //-------------------   Getters  -------------------//
@@ -42,19 +42,20 @@ Slice<Container> Slice<Container>::getSubSlice(size_t gap)
 template <typename Container>
 std::ostream &operator<<(std::ostream &os, const Slice<Container> &slice)
 {
-	os << "\tSlice: ";
+	os << "  Slice: ";
 	for (typename Container::iterator nbr =
 			 slice._container.begin() + slice._start;
 		 nbr != slice._container.end(); nbr++)
 	{
-		os << *nbr << ", ";
+		os << *nbr;
+		if (nbr != slice._container.end() - 1)
+			os << ", ";
 	}
 #ifdef VERB
-	os << "\t_start:\t" << slice._start;
-	os << "\n\t_end:\t" << slice._end;
-	os << "\n\t_size:\t" << slice._size << std::endl;
+	os << "\t_start:\t" << slice._start << "\n";
+	os << "\t_end:\t" << slice._end << "\n";
+	os << "\t_size:\t" << slice._size << std::endl;
 #endif
-	//	os << std::endl;
 	return (os);
 }
 

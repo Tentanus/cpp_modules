@@ -1,3 +1,4 @@
+#this line shouldn't give an error
 date,exchange_rate
 2009-01-02,2
 2009-01-03,3

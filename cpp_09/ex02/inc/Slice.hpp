@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <iostream>
 #include <stdexcept>
+#include <iterator>
+#include <algorithm>
 
 template <typename Container>
 class Slice

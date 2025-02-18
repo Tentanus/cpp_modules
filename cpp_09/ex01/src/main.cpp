@@ -14,15 +14,11 @@ int main(int argc, char **argv)
 		for (size_t i = 0; i < str.length(); i++)
 		{
 #ifdef SHOW
+		if (str[i] != ' ')
 			std::cout << "str[i]: " << str[i] << "\t";
 #endif
 			if (str[i] == ' ')
-			{
-#ifdef SHOW
-				std::cout << std::endl;
-#endif
 				continue;
-			}
 			else if (str[i] == '-')
 				rpn.subtract();
 			else if (str[i] == '*')

@@ -6,17 +6,21 @@ void validateFile(int argc, char **argv, std::stringstream &ss)
 		throw std::runtime_error("expected one input file " +
 								 std::string(argv[0]) +
 								 " [datafile.csv] [inputfile.txt]");
+
 	const std::string datafile(argv[1]);
 	if (datafile.find(".csv") != datafile.length() - 4)
 		throw std::runtime_error("expected a datafile with extention \'.csv\'");
+
 	const std::string inputfile(argv[2]);
 	if (inputfile.find(".txt") != inputfile.length() - 4)
 		throw std::runtime_error(
 			"expected an inputfile with extention \'.txt\'");
+
 	std::ifstream data_fs;
 	data_fs.open(argv[1], std::ios_base::in);
 	if (!data_fs.is_open())
 		throw std::runtime_error("unable to open file");
+	
 	ss << data_fs.rdbuf();
 }
 

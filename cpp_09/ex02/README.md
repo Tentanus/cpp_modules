@@ -35,25 +35,24 @@
 2 1 6 8    5 4|7 9        | 3.3.3
 |_| |_|    |_| |_| swap
                           | Recursion ends
-2 1 6 8    5 4 7-9        | 3.3.4
-2 1 6 8    5 4 7-9        |
-2 1 6 8    5 4-7 9        |
-2 1 6 8    4-5 7 9        |
-2 1 6 8    4 5 7 9        |
-2 1 6 8   -4 5 7 9        |
-1 6 8   -2 4 5 7 9        |
+2 1 6 8    5 4| 7-9        |
+2 1 6 8    5 4|-7 9        | 3.3.4
+2 1 6 8   |5 4 -7 9        |
+1 2 6 8   |4-5  7 9        | 3.4
+1 2 6 8  |-4 5  7 9        | 3.5
+ |2 6 8   -1 4 5  7 9      | 4
 
-why we use Jacobsthal-sequence.
-    1 6 8   - 2 4 5 7 9        |
+We split up the number sequence from the slice using Jacobsthalnumbers as buckets for insertion
+    2 6 8   - 1 4 5 7 9        |
 
-    1 6 8   -[2 4 5]7 9        |
-    1 8   -[2 4 x]5 7 9        |
-    1 8   -[2 4]5 x 7 9        |
+    2 6 8   -[1 4 5]7 9        |
+    2 8   -[1 4 x]5 7 9        |
+    2 8   -[1 4]5 x 7 9        |
 
-    1 6 8   -[2 4]5 7 9        |
-    6 8   -[2 x 4 5]7 9        |
+    2 6 8   -[1 4]5 7 9        |
+    6 8   -[1 x 4 5]7 9        |
 
-1 8   -2 4 5 6 7 9        |
+2 8   -1 4 5 6 7 9        | 5
 8   -1 2 4 5 6 7 9        |
 10-1 2 4 5 6 7 8 9        |
  1 2 4 5 6 7 8 9 10       |
@@ -61,6 +60,6 @@ why we use Jacobsthal-sequence.
 legend:
   |    - List for current itteration
 |___|  - pair
-  -    - start sorted list
+  -    - start sorted list (S)
  [ ]   - numbers to compare to
 ```

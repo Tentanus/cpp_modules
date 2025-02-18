@@ -1,11 +1,12 @@
 #include "PmergeMe.hpp"
 
-#include <chrono>
 #include <cstddef>
-#include <list>
 #include <ratio>
 #include <sys/types.h>
+#include <list>
 #include <vector>
+#include <algorithm>
+#include <chrono>
 
 template <typename Container>
 Container parse_arguments(int argc, char *argv[])
@@ -34,14 +35,14 @@ void print_overview(std::chrono::duration<double, std::micro> time_parse,
 template <typename Container>
 double estimate_time(double ms, Container numbers)
 {
-	const size_t n = 100;
+	const size_t n = 5;
 	std::chrono::time_point<std::chrono::steady_clock> time_start =
 		std::chrono::steady_clock::now();
 
 	for (size_t i = 0; i < n; i++)
 	{
 		PmergeMe<Container> pm(numbers);
-		// pm.sort();
+		pm.sort();
 	}
 
 	std::chrono::time_point<std::chrono::steady_clock> time_end =
@@ -70,9 +71,9 @@ void sort_container(double ms, int argc, char *argv[], std::string container)
 	std::chrono::duration<double, std::micro> diff_parse =
 		time_parse - time_start;
 
-	// size_t estimate = estimate_time<Container>(ms, numbers);
-	(void)ms;
-	size_t estimate = 0; // TODO: remove
+	size_t estimate = estimate_time<Container>(ms, numbers);
+	// (void)ms;
+	// size_t estimate = 10; // TODO: remove
 
 	std::chrono::time_point<std::chrono::steady_clock> time_estimate =
 		std::chrono::steady_clock::now();
@@ -83,6 +84,7 @@ void sort_container(double ms, int argc, char *argv[], std::string container)
 		Container copy(numbers);
 		PmergeMe<Container> pm(copy);
 		pm.sort();
+		std::cout << "sorted PmergeMe [" << container << "]: " << std::is_sorted(copy.begin(), copy.end()) << std::endl;
 	}
 
 	std::chrono::time_point<std::chrono::steady_clock> time_end =
@@ -103,7 +105,8 @@ int main(int argc, char *argv[])
 	}
 	try
 	{
-		sort_container<std::vector<int>>(100, argc, argv, "vector<int>");
+		sort_container<std::vector<int>>(10000, argc, argv, "vector<int>");
+		sort_container<std::list<int>>(10000, argc, argv, "list<int>");
 	}
 	catch (const std::exception &e)
 	{

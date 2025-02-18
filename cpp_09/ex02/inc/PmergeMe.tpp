@@ -4,13 +4,7 @@
 #ifndef PMERGEME_TPP
 #define PMERGEME_TPP
 
-template <typename Container>
-void PmergeMe<Container>::moved(size_t from, size_t to)
-{
-	move(from, to);
-	if (_parent)
-		_parent->moved(from + _pair_gap, to + _pair_gap);
-}
+//-------------------   Operations  -------------------//
 
 template <typename Container>
 void PmergeMe<Container>::move(size_t from, size_t to)
@@ -20,22 +14,55 @@ void PmergeMe<Container>::move(size_t from, size_t to)
 	if (from >= _numbers.getSize() || to >= _numbers.getSize())
 		return;
 
-#ifdef SHOW_OPP
-	std::cout << "MOVE PRE:\n" << *this << std::endl;
-#endif
 	typename Container::value_type tmp = _numbers[from];
 	_numbers.erase(from);
 	_numbers.insert(to + (from > to), tmp);
 
-	// TODO: why is the _parent moved still required?
+#ifdef SHOW_OPP
+	std::cout << "move     :  " << *this << std::endl;
+#endif
 	if (_parent)
 		_parent->moved(from, to);
+}
 
-#ifdef SHOW_OPP
-	std::cout << "MOVE POST:\n" << *this << "\n" << std::endl;
+template <typename Container>
+void PmergeMe<Container>::moved(size_t from, size_t to)
+{
+	move(from, to);
+	if (_parent)
+		_parent->moved(from + _pair_gap, to + _pair_gap);
+
+#ifdef SHOW
+	std::cout << "moved    :  " << *this << std::endl;
 #endif
 }
 
+template <typename Container>
+void PmergeMe<Container>::swap(size_t idx, size_t idx_pair)
+{
+	size_t tmp = _numbers[idx];
+	_numbers[idx] = _numbers[idx_pair];
+	_numbers[idx_pair] = tmp;
+
+#ifdef SHOW_OPP
+	std::cout << "swap     :  " << *this << std::endl;
+#endif
+	if (_parent)
+		_parent->swapped(idx, idx_pair);
+
+}
+
+template <typename Container>
+void PmergeMe<Container>::swapped(size_t idx, size_t idx_pair)
+{
+	swap(idx, idx_pair);
+	if (_parent)
+		_parent->swapped(idx + _pair_gap, idx_pair + _pair_gap);
+
+#ifdef SHOW
+	std::cout << "swapped  :  " << *this << std::endl;
+#endif
+}
 template <typename Container>
 void PmergeMe<Container>::recursive_sort()
 {
@@ -48,62 +75,86 @@ void PmergeMe<Container>::recursive_sort()
 	child.sort();
 }
 
+//-------------------   Algorithm Helpers  -------------------//
+
+// NOTE: end is exclusive
+template <typename Container>
+size_t PmergeMe<Container>::findInsertSpot(typename Container::value_type value, size_t start, size_t end)
+{
+	while (start != end) {
+		size_t mid = (start + end) / 2;
+		if (value > _numbers[mid])
+			start = mid + 1;
+		else
+			end = mid;
+	}
+	return (start);
+}
+
+template <typename Container>
+void PmergeMe<Container>::insertJacobSthal()
+{
+	size_t to_insert = _pair_gap;
+	move(0, _pair_gap - 1);
+	to_insert--;
+#ifdef SHOW
+	std::cout << "mijs 1st :  " << *this << std::endl;
+#endif
+	JacobSthalSequence seq;
+
+	while (to_insert > _numbers.getSpare()) {
+		size_t already_inserted = _pair_gap - to_insert;
+		size_t jacob = seq.next();
+		size_t max_group_size = to_insert - _numbers.getSpare();
+		size_t group_size = jacob < max_group_size ? jacob : max_group_size;
+		size_t search_size = already_inserted * 2 + group_size - 1;
+		for (size_t i = group_size; i > 0 ; i--)
+		{
+			size_t spot = findInsertSpot(_numbers[i - 1], to_insert, to_insert + search_size);
+			move(i - 1, spot - 1);
+			to_insert--;
+#ifdef SHOW
+			std::cout << "mijs MeIn:  " << *this << "[" << spot - 1 <<"]" << std::endl;
+#endif
+		}
+	}
+	if (to_insert) {
+		size_t spot = findInsertSpot(_numbers[0], 1, _numbers.getSize());
+		move(0, spot - 1);
+#ifdef SHOW
+		std::cout << "mijs left:  " << *this << "[" << spot - 1 <<"]" << std::endl;
+#endif
+	}
+
+	return ;
+}
+
+//-------------------   Sort  -------------------//
+
 template <typename Container>
 void PmergeMe<Container>::sort()
 {
 #ifdef SHOW
-	std::cout << "SORT INIT:\n" << *this << std::endl;
+	std::cout << "sort init:  " << *this << std::endl;
 #endif
+
 	for (size_t i = 0; i < _pairs; i++)
 	{
 		if (_numbers[i] > _numbers[i + _pair_gap])
 			swap(i, i + _pair_gap);
 	}
-
 #ifdef SHOW
-	std::cout << "SORT SINGLE SORT:\n" << *this << std::endl;
+	std::cout << "sort swap:  " << *this << "\n" << std::endl;
 #endif
 
 	recursive_sort();
-
 #ifdef SHOW
-	std::cout << "SORT REC SORT:\n" << *this << std::endl;
+	std::cout << "sort recs:  " << *this << std::endl;
 #endif
 
 	insertJacobSthal();
 #ifdef SHOW
-	std::cout << "SORT POST:\n" << *this << "\n" << std::endl;
-#endif
-}
-
-template <typename Container>
-void PmergeMe<Container>::swap(size_t idx, size_t idx_pair)
-{
-#ifdef SHOW_OPP
-	std::cout << "SWAP PRE:\n" << *this << std::endl;
-#endif
-	size_t tmp = _numbers[idx];
-	_numbers[idx] = _numbers[idx_pair];
-	_numbers[idx_pair] = tmp;
-
-	if (_parent)
-		_parent->swapped(idx, idx_pair);
-#ifdef SHOW_OPP
-	std::cout << "SWAP POST:\n" << *this << "\n" << std::endl;
-#endif
-}
-
-template <typename Container>
-void PmergeMe<Container>::swapped(size_t idx, size_t idx_pair)
-{
-	swap(idx, idx_pair);
-
-	if (_parent)
-		_parent->swapped(idx + _pair_gap, idx_pair + _pair_gap);
-}
-
-#ifdef SHOW
-	std::cout << "SWAP POST:\n" << *this << std::endl;
+	std::cout << "sort post:  " << *this << "\n" << std::endl;
 #endif
 }
 
@@ -129,7 +180,7 @@ size_t PmergeMe<Container>::getPairs() const
 template <typename Container>
 std::ostream &operator<<(std::ostream &os, const PmergeMe<Container> &merge)
 {
-	os << "  PmergeMe [" << merge.getLayer() << "]:\t";
+	os << "PmergeMe [" << merge.getLayer() << "]: ";
 	os << merge._numbers;
 #ifdef VERB
 	os << "pairs:  " << merge._pairs;

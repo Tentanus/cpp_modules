@@ -13,7 +13,7 @@
 template <typename Container>
 class PmergeMe
 {
-  private: // TODO: move variables to private
+  private:
 	PmergeMe() = delete;
 	PmergeMe(const PmergeMe &rhs) = delete;
 	PmergeMe &operator=(const PmergeMe &rhs) = delete;
@@ -35,8 +35,9 @@ class PmergeMe
 	void swap(size_t idx, size_t idx_pair);
 	void swapped(size_t idx, size_t idx_pair);
 
+
 	void insertJacobSthal();
-	size_t binary_search(typename Container::value_type value, size_t start,
+	size_t findInsertSpot(typename Container::value_type value, size_t start,
 						 size_t end);
 
 	size_t getPairs() const;

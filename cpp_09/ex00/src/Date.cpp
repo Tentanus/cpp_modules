@@ -38,7 +38,7 @@ Date::Date(const std::string inp)
 	std::cout << "Called\tDate\tConstructor:\tString" << std::endl;
 #endif
 #ifdef TEST
-	std::cout << "Date string:\t" << inp << std::endl;
+	std::cout << " Date::string:\t\t" << inp << std::endl;
 #endif
 	char *endptr;
 	_year = strtoul(inp.c_str(), &endptr, 10);
@@ -63,7 +63,7 @@ Date::Date(const std::string inp)
 		throw std::runtime_error("invalid date no-leap year: " + inp);
 
 #ifdef TEST
-	std::cout << "Date double:\t" << _year << " " << _month << " " << _day
+	std::cout << " Date::double:\t\t" << _year << " " << _month << " " << _day
 			  << " " << std::endl;
 #endif
 }
@@ -72,7 +72,7 @@ Date::Date(const Date &rhs)
 	: _year(rhs._year), _month(rhs._month), _day(rhs._day)
 {
 #ifdef MSG
-	std::cout << "Called\tDate\tConstructor:\tcopy" << std::endl;
+	std::cout << "Called\tDate\tConstructor:\tCopy" << std::endl;
 #endif
 }
 

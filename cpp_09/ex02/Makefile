@@ -78,6 +78,7 @@ COMPILE			:=	$(CC) $(CFL)
 INFO_FL			:=											\
 $(if $(findstring -std=c++98,$(CFL)),c++98)					\
 $(if $(findstring -std=c++11,$(CFL)),c++11)					\
+$(if $(findstring -std=c++20,$(CFL)),c++20)					\
 $(if $(findstring -g,$(CFL)),-g)							\
 $(if $(findstring address,$(CFL)),addr)						\
 $(if $(findstring undefined,$(CFL)),undef)					\

@@ -29,7 +29,7 @@ void BitcoinExchange::takeInfile(std::stringstream &ss)
 										 match[2].str());
 
 #ifdef TEST
-			std::cout << "BTCE::takeInfile\t" << date << " " << amount
+			std::cout << " BTCE::takeInfile\t" << date << " " << amount
 					  << std::endl;
 #endif
 			std::map<Date, double>::const_iterator it = _map.upper_bound(date);
@@ -96,7 +96,7 @@ BitcoinExchange::BitcoinExchange(std::stringstream &ss)
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &rhs) : _map(rhs._map)
 {
 #ifdef MSG
-	std::cout << "Called\tBitcoinExchange\tConstructor:\tcopy" << std::endl;
+	std::cout << "Called\tBitcoinExchange\tConstructor:\tCopy" << std::endl;
 #endif
 }
 
