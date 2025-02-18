@@ -2,6 +2,7 @@
 #define ITER_HPP
 
 #include <iostream>
+#include <string>
 
 template <typename T>
 T &min(T &a, T &b)
@@ -33,7 +34,7 @@ void swap(T &a, T &b)
 }
 
 template <typename T>
-T mult(T a)
+T mult(const T a)
 {
 #ifdef MSG
 	std::cout << "Called mult\n";
@@ -42,7 +43,19 @@ T mult(T a)
 }
 
 template <typename T>
-void iter(T *ptr, size_t n, T(f)(T))
+T capital(const T val)
+{
+#ifdef MSG
+	std::cout << "Called capital\n";
+#endif
+	if (val.empty()) return T("");
+	T tmp = val;
+	tmp[0] = toupper(val[0]);
+	return tmp;
+}
+
+template <typename T>
+void iter(T *ptr, size_t n, T(f)(const T))
 {
 #ifdef MSG
 	std::cout << "Called iter\n";
@@ -52,4 +65,5 @@ void iter(T *ptr, size_t n, T(f)(T))
 		ptr[i] = f(ptr[i]);
 	}
 }
+
 #endif // !ITER_HPP
