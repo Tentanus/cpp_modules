@@ -70,6 +70,9 @@ int Span::shortestSpan()
 	if (_set.size() < 2)
 		throw NoSpanException(_index);
 	int ret = INT_MAX;
+#ifdef MSG
+	std::cout << "\n";
+#endif
 	for (std::set<int>::iterator it = ++_set.begin();
 		 it != _set.end() && ret != 1; it++)
 	{
@@ -78,24 +81,20 @@ int Span::shortestSpan()
 		diff = --it;
 		it++;
 		tmp = *it - *diff;
-		/*
 		#ifdef MSG
-				std::cout << "\ndiff:\t" << std::to_string(*diff) << " "
-						  << std::to_string(*it) << "\t| " <<
-		std::to_string(tmp); #endif
-//		*/
+				std::cout << "diff:\t" << std::to_string(*diff) << " "
+						  << std::to_string(*it) << "\t| " 
+						  << std::to_string(tmp) << std::endl; 
+		#endif
 		if (tmp < ret)
 			ret = tmp;
 	}
-#ifdef MSG
-	std::cout << std::endl;
-#endif
 	return (ret);
 }
 
 //-------------------Orthodox Canonical Form-------------------//
 
-Span::Span(int size) : _size(size), _index(0), _set()
+Span::Span(unsigned int size) : _size(size), _index(0), _set()
 {
 #ifdef MSG
 	std::cout << "Called\tSpan\tConstructor:\tSized" << std::endl;

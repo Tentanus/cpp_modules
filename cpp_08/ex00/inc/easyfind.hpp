@@ -13,10 +13,10 @@ class NotFoundException : public std::exception
 	};
 };
 
-template <typename C>
-typename C::iterator easyfind(C &container, int value)
+template <typename Container>
+typename Container::iterator easyfind(Container &container, int value)
 {
-	typename C::iterator it =
+	typename Container::iterator it =
 		std::find(container.begin(), container.end(), value);
 	if (it == container.end())
 	{
@@ -25,4 +25,4 @@ typename C::iterator easyfind(C &container, int value)
 	return it;
 }
 
-#endif // EASYFIND_HPP
+#endif // !EASYFIND_HPP

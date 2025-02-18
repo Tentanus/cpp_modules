@@ -13,13 +13,13 @@
 class Span
 {
   private:
-	int _size;
-	int _index;
+	unsigned int _size;
+	unsigned int _index;
 	std::set<int> _set;
 	Span();
 
   public:
-	Span(int size);
+	Span(unsigned int size);
 	Span(const Span &rhs);
 	Span &operator=(const Span &rhs);
 	~Span();
@@ -31,27 +31,38 @@ class Span
 	int shortestSpan(void);
 	int longestSpan(void);
 
-	class SpanExceedSizeException : public std::exception
-	{
-	  public:
-		SpanExceedSizeException(int value)
-		{
-			std::ostringstream ss;
-			ss << value;
-			std::cerr << "Size of Span Exceeded [" << ss.str() << "]"
-					  << std::endl;
-		};
-	};
 	class NoSpanException : public std::exception
 	{
-	  public:
-		NoSpanException(int index)
-		{
+	private:
+    	std::string message;
+
+	public:
+	    explicit NoSpanException(int size) {
 			std::ostringstream ss;
-			ss << index;
-			std::cerr << "No Span possible, due to Span containing " << ss.str()
-					  << " numbers." << std::endl;
+			ss  << "No Span possible, due to Span containing " 
+				<< size << " numbers.";
+			message = ss.str();
 		};
+	
+	    const char* what() const noexcept override {
+	        return message.c_str();
+	    }
+	};
+
+	class SpanExceedSizeException : public std::exception	{
+	  private:
+    	std::string message;
+
+	  public:
+	    explicit SpanExceedSizeException(int index) {
+	        std::ostringstream ss;
+			ss << "Size of Span Exceeded [" << index << "]";
+	        message = ss.str();
+	    }
+	
+	    const char* what() const noexcept override {
+	        return message.c_str();
+	    }
 	};
 };
 
