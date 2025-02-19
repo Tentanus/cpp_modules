@@ -5,14 +5,13 @@
 #include <iostream>
 #include <stdexcept>
 #include <iterator>
-#include <algorithm>
 
 template <typename Container>
 class Slice
 {
 	typedef typename Container::value_type value_type;
 
-  private: // TODO: move variables to private
+  private:
   public:
 	Container &_container;
 	size_t _start;

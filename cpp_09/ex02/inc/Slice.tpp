@@ -2,17 +2,25 @@
 #define SLICE_TPP
 
 #include "Slice.hpp"
+#include <typeinfo>
 
 template <typename Container>
 void Slice<Container>::erase(size_t idx)
-{
-	_container.erase(std::advance(_container.begin(), _start + idx));
+{	
+	typename Container::iterator it = _container.begin();
+	std::advance(it, _start + idx);
+
+	_container.erase(it);
 }
 
 template <typename Container>
 void Slice<Container>::insert(size_t idx, typename Container::value_type val)
 {
-	_container.insert(std::advance(_container.begin(), _start + idx), val);
+	typename Container::iterator it = _container.begin();
+	std::advance(it, _start + idx);
+
+	_container.insert(it, val);
+	
 }
 
 //-------------------   Getters  -------------------//
@@ -42,13 +50,15 @@ Slice<Container> Slice<Container>::getSubSlice(size_t gap)
 template <typename Container>
 std::ostream &operator<<(std::ostream &os, const Slice<Container> &slice)
 {
+	typename Container::iterator it = slice._container.begin();
+	std::advance(it, slice._start);
+
 	os << "  Slice: ";
-	for (typename Container::iterator nbr =
-			 slice._container.begin() + slice._start;
-		 nbr != slice._container.end(); nbr++)
+	while(it != slice._container.end())
 	{
-		os << *nbr;
-		if (nbr != slice._container.end() - 1)
+		os << *it ;
+		it++;
+		if (it != slice._container.end())
 			os << ", ";
 	}
 #ifdef VERB
