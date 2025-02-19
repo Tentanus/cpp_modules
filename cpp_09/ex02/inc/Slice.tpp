@@ -73,7 +73,10 @@ template <typename Container>
 typename Slice<Container>::value_type &
 Slice<Container>::operator[](size_t index)
 {
-	return (_container[_start + index]);
+	typename Container::iterator it = _container.begin();
+	std::advance(it, _start + index);
+
+	return (*it);
 }
 
 //-------------------Constructors-------------------//

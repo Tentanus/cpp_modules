@@ -12,6 +12,7 @@ template <typename Container>
 Container parse_arguments(int argc, char *argv[])
 {
 	Container numbers;
+
 	for (int i = 1; i < argc; i++)
 	{
 		numbers.push_back(std::stoi(argv[i]));
@@ -21,21 +22,25 @@ Container parse_arguments(int argc, char *argv[])
 
 void print_overview(std::chrono::duration<double, std::micro> time_parse,
 					std::chrono::duration<double, std::milli> time_end,
-					ssize_t runs, std::string container)
+					ssize_t runs)
 {
-	std::cout << "\nContainer:\t\t" << container << "\n";
-	std::cout << "Duration (μs):\n";
-	std::cout << "\tParsing :\t" << time_parse.count() << " μs\n\n";
-	std::cout << "\tDuration:\t" << time_end.count() << " ms\n";
-	std::cout << "\tRuns:\t\t" << runs << "\n";
-	std::cout << "\tAverage :\t" << time_end.count() * 1000 / runs << std::endl;
+	std::cout << "Resulting Duration (μs):\n";
+	std::cout << "\tParsing :\t\t" << time_parse.count() << " μs\n";
+	std::cout << "\tTotal Duration:\t\t" << time_end.count() << " ms\n";
+	std::cout << "\tRuns:\t\t\t" << runs << "\n";
+	std::cout << "\tAverage :\t\t" << time_end.count() * 1000 / runs << " μs\n";
+	std::cout << "\n -==========================================================-\n";
 	std::cout << std::endl;
 }
 
 template <typename Container>
-double estimate_time(double ms, Container numbers)
+double estimate_time(double ms, Container numbers, std::string container)
 {
-	const size_t n = 5;
+	const size_t n = 3;
+
+	std::cout << "Container:\t\t" << container << "\n";
+	std::cout << "est over " << n << " runs:\t";
+
 	std::chrono::time_point<std::chrono::steady_clock> time_start =
 		std::chrono::steady_clock::now();
 
@@ -43,8 +48,10 @@ double estimate_time(double ms, Container numbers)
 	{
 		PmergeMe<Container> pm(numbers);
 		pm.sort();
+		std::cout << i << ", ";
 	}
-
+	std::cout << "\n\n";
+	
 	std::chrono::time_point<std::chrono::steady_clock> time_end =
 		std::chrono::steady_clock::now();
 	std::chrono::duration<double, std::micro> diff = time_end - time_start;
@@ -71,9 +78,9 @@ void sort_container(double ms, int argc, char *argv[], std::string container)
 	std::chrono::duration<double, std::micro> diff_parse =
 		time_parse - time_start;
 
-	size_t estimate = estimate_time<Container>(ms, numbers);
-	// (void)ms;
-	// size_t estimate = 10; // TODO: remove
+	size_t estimate = estimate_time<Container>(ms, numbers, container);
+	// (void) container;
+	// (void) ms;
 
 	std::chrono::time_point<std::chrono::steady_clock> time_estimate =
 		std::chrono::steady_clock::now();
@@ -84,7 +91,7 @@ void sort_container(double ms, int argc, char *argv[], std::string container)
 		Container copy(numbers);
 		PmergeMe<Container> pm(copy);
 		pm.sort();
-		std::cout << "sorted PmergeMe [" << container << "]: " << std::is_sorted(copy.begin(), copy.end()) << std::endl;
+		// std::cout << "is_sorted[" << container << "]: " << std::is_sorted(copy.begin(), copy.end()) << std::endl;
 	}
 
 	std::chrono::time_point<std::chrono::steady_clock> time_end =
@@ -92,7 +99,7 @@ void sort_container(double ms, int argc, char *argv[], std::string container)
 	std::chrono::duration<double, std::milli> diff_end =
 		time_end - time_estimate;
 
-	print_overview(diff_parse, diff_end, times, container);
+	print_overview(diff_parse, diff_end, times);
 }
 
 int main(int argc, char *argv[])
@@ -103,10 +110,11 @@ int main(int argc, char *argv[])
 				  << std::endl;
 		return FAILURE;
 	}
+	std::cout << "\n";
 	try
 	{
-		sort_container<std::vector<int>>(10000, argc, argv, "vector<int>");
-		sort_container<std::list<int>>(10000, argc, argv, "list<int>");
+		sort_container<std::vector<int>>(1000, argc, argv, "vector<int>");
+		sort_container<std::list<int>>(1000, argc, argv, "list<int>");
 	}
 	catch (const std::exception &e)
 	{
@@ -115,3 +123,6 @@ int main(int argc, char *argv[])
 	}
 	return SUCCESS;
 }
+
+// Testing command in bash
+// ARG=$(shuf -i 0-999999 -n 2000) && ./PmergeMe $ARG
